@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pokemon Trainer Sheet</title>
+	<meta name=“viewport” content=“width=device-width, initial-scale=1.0”>
+	<link rel=“stylesheet” href=“style.css”>
+</head>
+
+<h1>Trainer Sheet</h1>
+
+<label>Trainer Name:</label>
+<input id=“trainerName” placeholder=“Enter Name”>
+
+<label>Badges:</label>
+<input id=“badges” placeholder=e.g. 3”>
+
+<h2>Pokemon Team</h2>
+
+<div id=“team”></div>
+
+<button onclick=“addPokemon()”>+ Add Pokemon</button>
+
+<script arc=“app.js”></script>
+
+</body>
+</html>
