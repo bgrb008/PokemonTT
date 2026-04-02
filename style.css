@@ -26,3 +26,10 @@ button {
 	padding: 15px;
 	font-size: 16px;
 }
+
+field {
+	display: flex;				/* Useflexbox */
+	flex- direction: column;	/*stack label + input vertically */
+	align- items: flex-start;	/* Align everything to the left*/
+	margin-bottom: 15px;		/* Space between fields */
+}
