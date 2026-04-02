@@ -33,3 +33,12 @@ field {
 	align- items: flex-start;	/* Align everything to the left*/
 	margin-bottom: 15px;		/* Space between fields */
 }
+
+.field label {
+	margin-bottom: 5px;			/* space between label and input */
+}
+
+input {
+	width: 200px;				/* optional: set input width */
+	padding: 8px;
+}
