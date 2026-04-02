@@ -1,9 +1,6 @@
 body {
 	font-family: Ariel;
 	padding: 30px;
-}
-
-body {
 	background-image: url("PNG image.png");
 	background-size: cover;       /* fills screen */
 	background-position: center;  /* keeps it centered */
