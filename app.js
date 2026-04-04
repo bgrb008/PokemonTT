@@ -1,15 +1,15 @@
-let teamDiv = document.getElementbyId(“team”);
+let teamDiv = document.getElementById("team");
 
 function addPokemon() {
-	let div = document.createElement(“div”);
-	div.className = “Pokemon”;
+        let div = document.createElement("div");
+        div.className = "pokemon";
 
-	div.innerhtml = ‘
-		<input placeholder=“Pokemon Name”>
-		<input type=“number” placeholder=“HP”>
-		<input placeholder=“Move 1”>
-		<input placeholder=“Move 2”>
-	‘;
+        div.innerHTML = `
+                <input placeholder="Pokemon Name">
+                <input type="number" placeholder="HP">
+                <input placeholder="Move 1">
+                <input placeholder="Move 2">
+        `;
 
-	teamDiv.appendChild(div);
+        teamDiv.appendChild(div);
 }
