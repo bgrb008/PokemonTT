@@ -1,69 +1,69 @@
 @font-face {
-	font-family: "PokemonSolid";
-	src: url(pokemonfont.woff) format("truetype");
+        font-family: "PokemonSolid";
+        src: url(pokemonfont.woff) format("truetype");
 }
 
 body {
-	font-family: "PokemonSolid", sans-serif;
-	padding: 20px;
-	background: #f2f2f2;
+        font-family: "PokemonSolid", sans-serif;
+        padding: 20px;
+        background: #f2f2f2;
 }
 
 h1 {
-	text-align: center;
+        text-align: center;
 }
 
 .pokemon {
-	background: white;
-	padding: 10px;
-	margin-bottom: 10px;
-	border-radius: 10px;
+        background: white;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 10px;
 }
 
 button {
-	width: 100%;
-	padding: 15px;
-	font-size: 16px;
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
 }
 
 .field {
-	display: flex;				/* Useflexbox */
-	flex-direction: column;	/*stack label + input vertically */
-	align-items: flex-start;	/* Align everything to the left*/
-	margin-bottom: 15px;		/* Space between fields */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 15px;
 }
 
 .field label {
-	margin-bottom: 5px;			/* space between label and input */
+        margin-bottom: 5px;
 }
 
 input {
-	width: 200px;				/* optional: set input width */
-	padding: 8px;
+        width: 200px;
+        padding: 8px;
 }
 
 .stats {
-	display: flex;
-	justify-content: space-between;
-	gap: 10px;
-	margin-top: 10px;
-	background: rgba(255,255,255,0.9);
-	border-radius: 8px;
-	padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 10px;
+        background: rgba(255,255,255,0.9);
+        border-radius: 8px;
+        padding: 5px;
 }
 
 .stat {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	flex: 1;
-	background: rgba(255,255,255,0.9)
-	border-radius: 8px;
-	padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        background: rgba(255,255,255,0.9);
+        border-radius: 8px;
+        padding: 10px;
 }
 
 .stat input {
-	width: 100%;
-	text-align: center;
-	padding: 5px;
+        width: 100%;
+        text-align: center;
+        padding: 5px;
 }
