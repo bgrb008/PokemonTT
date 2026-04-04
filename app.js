@@ -12,3 +12,4 @@ function addPokemon() {
 	‘;
 
 	teamDiv.appendChild(div);
+}
