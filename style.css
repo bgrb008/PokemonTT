@@ -1,6 +1,6 @@
 @font-face {
 	font-family: "PokemonSolid";
-	src: url(PokemonSolid.ttf) format("truetype");
+	src: url(pokemonfont.woff) format("truetype");
 }
 
 body {
