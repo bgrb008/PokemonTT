@@ -1,5 +1,7 @@
 body {
-	background-color: red;
+	font-family: arial;
+	padding: 20px;
+	background: #f2f2f2
 }
 
 h1 {
