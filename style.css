@@ -21,7 +21,7 @@ input {
 
 .pokemon {
 	background: white;
-	padding: 10px
+	padding: 10px;
 	margin-bottom: 10px;
 	border-radius: 10px;
 }
@@ -32,10 +32,10 @@ button {
 	font-size: 16px;
 }
 
-field {
+.field {
 	display: flex;				/* Useflexbox */
-	flex- direction: column;	/*stack label + input vertically */
-	align- items: flex-start;	/* Align everything to the left*/
+	flex-direction: column;	/*stack label + input vertically */
+	align-items: flex-start;	/* Align everything to the left*/
 	margin-bottom: 15px;		/* Space between fields */
 }
 
@@ -58,14 +58,14 @@ input {
 	padding: 5px;
 }
 
-. stat {
+.stat {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	flex: 1;
 	background: rgba(255,255,255,0.9)
 	border-radius: 8px;
-	padding: 10px
+	padding: 10px;
 }
 
 .stat input {
