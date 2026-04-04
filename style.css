@@ -1,12 +1,12 @@
 @font-face {
-	font-family: "Myfont";
+	font-family: "PokemonSolid";
 	src: url("PokemonSolid.ttf");
 }
 
 body {
-	font-family: "Myfont", sans-serif;
+	font-family: "PokemonSolid", sans-serif;
 	padding: 20px;
-	background: #f2f2f2
+	background: #f2f2f2;
 }
 
 h1 {
