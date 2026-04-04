@@ -1,10 +1,5 @@
 body {
-	font-family: Ariel;
-	padding: 30px;
-	background-image: url("pokeball.png");
-	background-size: cover;       /* fills screen */
-	background-position: center;  /* keeps it centered */
-	background-repeat: no-repeat;  /* no tiling */
+	background-color: red;
 }
 
 h1 {
