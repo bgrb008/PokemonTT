@@ -72,6 +72,22 @@
                         width: 50px; padding: 8px;
                 }
                 
+                .info {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        margin: bottom;
+                }
+                
+                .info label {
+                        margin: bottom;
+                }
+                
+                .info input {
+                        width: 50px; padding: 8px;
+                }        
+                
+                
                 .stats {
                         display: flex;
                         justify-content: space-between;
@@ -170,6 +186,7 @@
         <label>Age:</label>
         <input id="age" placeholder="e.g. 25">
 </div>
+
 <div class="field">
         <label for="region">Home Region:</label>
         <select id="region" name="region">
@@ -187,6 +204,20 @@
         
         
 </div>
+
+<div class="additional info">
+        <div class="info"
+                <label>Pokecoin</label>
+                <input-id="pokecoin" placeholder="Amount">
+        </div>
+        
+        <div classe="info"
+                <label>XP</label>
+                <input-id="xp" placeholder="e.g. 45">
+        </div>
+        
+</div>
+
 <div class="field">
         <label>Backstory</label>
         <textarea id="backstory" name="backstory"></textarea>
