@@ -15,7 +15,7 @@ function addPokemon() {
 }
 
 const levelInput = document.getElementById('level');
-const xpInput = document.getaelementById('xp');
+const xpInput = document.getElementById('xp');
 
 xpInput.addEventListener('input', () => {
     let currentLevel = parseInt(levelInput.value) || 1;
