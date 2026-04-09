@@ -31,7 +31,7 @@ xpInput.addEventListener('input', () => {
         //this resets xp to 0.
         //if you want to keep the "extra" xp:
 xpInput.value = currentXP - xpNeeded;
-        xpInput.value = 0;
+        
         
         alert('level up! you need${Math.floor(100 * 
 Math.pow(1.25, currentLevel))} xp for the bext level.');
