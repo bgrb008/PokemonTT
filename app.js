@@ -13,3 +13,27 @@ function addPokemon() {
 
         teamDiv.appendChild(div);
 }
+
+const levelInput = document.getElementById('level');
+const xpInput = document.getaelementById('xp');
+
+xpInput.addEventListener('input', () => {
+    let currentLevel = parseInt(levelInput.value) || 1;
+    let currentXP = parseInt(xpInput.value) || 0;
+    
+    // the progressive math;
+    //starting at 100 xp, increasing by 25% per level
+    let xpNeeded = Math.floor(100 * Math.pow(1.25, currentLevel - 1));
+    
+    if (currentXP >= xpNeeded) {
+        levelInput.value = currentLevel + 1;
+        
+        //this resets xp to 0.
+        //if you want to keep the "extra" xp:
+xpInput.value = currentXP - xpNeeded;
+        xpInput.value = 0;
+        
+        alert('level up! you need${Math.floor(100 * 
+Math.pow(1.25, currentLevel))} xp for the bext level.');
+    }
+});
