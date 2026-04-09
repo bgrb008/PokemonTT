@@ -33,7 +33,7 @@ xpInput.addEventListener('input', () => {
 xpInput.value = currentXP - xpNeeded;
         
         
-        alert('level up! you need${Math.floor(100 * 
+        alert(`level up! you need${Math.floor(100 * 
 Math.pow(1.25, currentLevel))} xp for the next level.');
     }
 });
