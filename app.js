@@ -37,3 +37,10 @@ xpInput.value = currentXP - xpNeeded;
 Math.pow(1.25, currentLevel))} xp for the next level.`);
     }
 });
+
+
+function updateXPBar() {
+    const levelInput =
+document.getElementById(`level`)
+    const xpInput = document.getElementById(`xp`)
+    
