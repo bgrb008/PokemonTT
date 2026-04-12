@@ -41,6 +41,22 @@ Math.pow(1.25, currentLevel))} xp for the next level.`);
 
 function updateXPBar() {
     const levelInput =
-document.getElementById(`level`)
-    const xpInput = document.getElementById(`xp`)
+document.getElementById(`level`);
+    const xpInput = document.getElementById(`xp`);
+    const barFill = document.getElementById(`xp-bar-fill`);
+    const upText = document.getElemebtById(`xp-text`);
+    
+    let currentLevel = parseInt(levelInput.value) || 1;
+    let currentXP = parseInt(xpInput.level) || 0;
+    
+    let xpNeeded = Math.floor(100 * Math.pow(1.25, currentLevel - 1));
+    
+    let percentage = (currentXP / xpNeeded) * 100;
+    
+    barFill.style.width = percentage + "%";
+    xpText.innerText = `${currentXP} / ${xpNeeded} XP`;
+    
+}
+
+updateXPBar();
     
