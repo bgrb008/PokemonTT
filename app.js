@@ -241,7 +241,7 @@ classSelect.addEventListener("change",() => {
 
     statsDisplay.innerHTML = `
     <h3>${classData.name} Stats</h3>
-    <p>BattleTactics: +${stats.battleTactics}</p>
+    <p>BattleTactics: +${stats.battletactics}</p>
     <p>Bonding: +${stats.bonding}</p>
     <p>Perception: +${stats.perception}</p>
     <p>Command: +${stats.command}</p>
