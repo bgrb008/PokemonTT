@@ -58,3 +58,46 @@ parseInt(document.getElementById('xp-amount').value) || 0;
     document.getElementById('xp-amount').value = '';
     updateXPBar();
 });
+
+const classes = {
+     pokemonMaster: {
+         name: "Pokemon Master",
+
+         stats: {
+             battle tactics: 2,
+             bonding: 2,
+             perception: 1,
+             command: 1,
+             inspiration: 1,
+             pokemon lore: 0,
+         },
+
+         abilities: [
+             "Adaptive Trainer",
+             "Bond Stability",
+             "Clutch Synchronization",
+             "Masters Switch",
+         ]
+        },
+
+    theCollector:
+        name: "The Collector",
+
+        stats: {
+            catching: 3,
+            tracking: 2,
+            perception: 1,
+            survival: 1,
+            pokemon lore: 1,
+            bonding: -1
+        },
+
+        abilities: [
+            "Shiny Sense",
+            "Efficient Catching",
+            "Foeld Awareness",
+            "Pack Catalog"
+        ]
+        },
+
+    

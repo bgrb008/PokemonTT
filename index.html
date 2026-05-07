@@ -116,9 +116,9 @@
                         width: 50px; padding: 8px;
                 }
                 .additional-info {
-                        display: grid;
-                        grid-template-columns: repeat(2, 1fr);
-                        gap: 10px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
                         margin-top: 10px;
                 }
                 
@@ -360,10 +360,7 @@
                 <input id="level" type="number" value="1">
         </div>
         
-        <div class="info">
-                <label>Pokecoins</label>
-                <input id="pokecoins" placeholder="e.g. 250">
-        </div>
+        
         
 </div>
 
@@ -461,9 +458,13 @@
                 </div>
 
 
-<div id="abilitiesDisplay">
+
 </div>
 
+<div class="abilities-section">
+        <h3>Abilities</h3>
+        
+</div>
                 
 
 <script src="app.js"></script>
