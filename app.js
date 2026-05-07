@@ -1,3 +1,5 @@
+let currentXP = P;
+
 let teamDiv = document.getElementById("team");
 
 function addPokemon() {
