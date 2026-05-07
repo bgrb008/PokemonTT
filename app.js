@@ -1,4 +1,4 @@
-let currentXP = P;
+let currentXP = 0;
 
 let teamDiv = document.getElementById("team");
 
@@ -16,29 +16,7 @@ function addPokemon() {
         teamDiv.appendChild(div);
 }
 
-const levelInput = document.getElementById('level');
-const xpInput = document.getElementById('xp');
 
-xpInput.addEventListener('input', () => {
-    let currentLevel = parseInt(levelInput.value) || 1;
-    let currentXP = parseInt(xpInput.value) || 0;
-    
-    // the progressive math;
-    //starting at 100 xp, increasing by 25% per level
-    let xpNeeded = Math.floor(100 * Math.pow(1.25, currentLevel - 1));
-    
-    if (currentXP >= xpNeeded) {
-        levelInput.value = currentLevel + 1;
-        
-        //this resets xp to 0.
-        //if you want to keep the "extra" xp:
-xpInput.value = currentXP - xpNeeded;
-        
-        
-        alert(`level up! you need ${Math.floor(100 * 
-Math.pow(1.25, currentLevel))} xp for the next level.`);
-    }
-});
 
 
 function updateXPBar() {
@@ -49,7 +27,7 @@ document.getElementById(`level`);
     const xpText = document.getElementById(`xp-text`);
     
     let currentLevel = parseInt(levelInput.value) || 1;
-    let currentXP = currentXP || 0;
+
     
     let xpNeeded = Math.floor(100 * Math.pow(1.25, currentLevel - 1));
 
@@ -68,7 +46,15 @@ updateXPBar();
 document.getElementById('add-xp-button').addEventListener('click', () => {
     let amount =
 parseInt(document.getElementById('xp-amount').value) || 0;
-    currentXp += amount;
+    currentXP += amount;
+
+    let currentLevel = parseInt(document.getElementBtId('level').value) || 1;
+    let xpNeeded = Math.floor(100 * Math.pow(1.25, currentLevel - 1));
+    if (currentXP >= xpNeeded) {
+        document.getElementById('level').value = currentLevel + 1;
+    currentXP = currentXP - xpNeeded;
+   alert(`level up! You need ${Math.floor(100 * Math.pow(1.25, currentLevel))} XP for the next level.`);
+ }
     document.getElementById('xp-amount').value = '';
     updateXPBar();
 });
