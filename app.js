@@ -45,7 +45,7 @@ document.getElementById(`level`);
     const xpInput = document.getElementById(`xp`);
     const barFill = document.getElementById(`xp-bar-fill`);
     const xpText = document.getElementById(`xp-text`);
-    let currentXP = 0;
+    
     let currentLevel = parseInt(levelInput.value) || 1;
     let currentXP = currentXP || 0;
     
