@@ -107,7 +107,7 @@ const classes = {
             bonding: 3,
             empathy: 2,
             pokemonlore: 1,
-            inspration: 1,
+            inspiration: 1,
             command: 1,
             catching: -1,
         },
@@ -153,9 +153,9 @@ const classes = {
         },
 
         abilities: [
-            "Scan Analasis",
+            "Scan Analysis",
             "Data Advantage",
-            "Field Study"
+            "Field Study",
             "Tech Synergy",
         ]
         },
@@ -193,7 +193,7 @@ const classes = {
         },
 
         abilities: [
-            "Stafe Pressence",
+            "Stage Presence",
             "Flow State",
             "Audience Effect",
             "Graceful Recovery",
@@ -209,7 +209,7 @@ const classes = {
             empathy: 1,
             perception: 1,
             technology: 1,
-            battletqctics: -1,
+            battletactics: -1,
         },
 
         abilities: [
@@ -220,5 +220,4 @@ const classes = {
         ]
         },
 
-});
-)
+};
