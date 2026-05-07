@@ -221,3 +221,38 @@ const classes = {
         },
 
 };
+
+
+const classSelect = document.getElementById("class");
+const starsDisplay = document.getElementById(statsDisplat);
+const abilitiesDisplay = document.getElementById("abilitiesDisplay");
+
+classSelect.addEventListener("change",() => {
+    const selectedClass = classSelect.value;
+
+    statsDisplay.innerHTML = "";
+    abilitiesDisplay.innerHTML = "";
+
+    if (classes[selectedClass]) return;
+
+    const classData = classes[selectedClass];
+
+    const stats = classData.stats;
+
+    statsDisplay.innerHTML = `
+    <h3>${classData.name} Stats<h3>
+    <p>Strategy: +${stats.strategy}</p>
+    <p>Bonding: +${stats.bonding}</p>
+    <p>Knowledge: +${stats.knowledge}</p>
+    <p>Command: +${stats.command}</p>
+    <p>Presence: +${stats.presence}</p>
+    <p>Power: +${stats.power}</p>
+    `;
+
+    abilitiesDisplay.internalHTML =
+        <h3>abilities</h3>
+    <ul> ${classData.abolities.map( a => <li>${a}</li>`).join("")}
+    </ul>
+    `;
+});
+    
