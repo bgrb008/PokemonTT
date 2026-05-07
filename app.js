@@ -48,7 +48,7 @@ document.getElementById('add-xp-button').addEventListener('click', () => {
 parseInt(document.getElementById('xp-amount').value) || 0;
     currentXP += amount;
 
-    let currentLevel = parseInt(document.getElementBtId('level').value) || 1;
+    let currentLevel = parseInt(document.getElementById('level').value) || 1;
     let xpNeeded = Math.floor(100 * Math.pow(1.25, currentLevel - 1));
     if (currentXP >= xpNeeded) {
         document.getElementById('level').value = currentLevel + 1;
