@@ -22,7 +22,7 @@ function addPokemon() {
 function updateXPBar() {
     const levelInput =
 document.getElementById(`level`);
-    const xpInput = document.getElementById(`xp`);
+    
     const barFill = document.getElementById(`xp-bar-fill`);
     const xpText = document.getElementById(`xp-text`);
     
@@ -64,12 +64,12 @@ const classes = {
          name: "Pokemon Master",
 
          stats: {
-             battle tactics: 2,
+             battletactics: 2,
              bonding: 2,
              perception: 1,
              command: 1,
              inspiration: 1,
-             pokemon lore: 0,
+             pokemonlore: 0,
          },
 
          abilities: [
@@ -80,7 +80,7 @@ const classes = {
          ]
         },
 
-    theCollector:
+    theCollector: {
         name: "The Collector",
 
         stats: {
@@ -88,14 +88,14 @@ const classes = {
             tracking: 2,
             perception: 1,
             survival: 1,
-            pokemon lore: 1,
+            pokemonlore: 1,
             bonding: -1
         },
 
         abilities: [
             "Shiny Sense",
             "Efficient Catching",
-            "Foeld Awareness",
+            "Field Awareness",
             "Pack Catalog"
         ]
         },
