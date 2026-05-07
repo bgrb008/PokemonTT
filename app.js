@@ -244,11 +244,11 @@ classSelect.addEventListener("change",() => {
     document.getElementById("mod-perception").value = stats.perception || 0;
     document.getElementById("mod-command").value = stats.command || 0;
     document.getElementById("mod-inspiration").value = stats.inspiration || 0;
-    document.getElementById("mod-pokemonlore"). value = stats.pokemonlore || 0;
+    document.getElementById("mod-pokemonlore").value = stats.pokemonlore || 0;
     document.getElementById("mod-catching").value = stats.catching || 0;
     document.getElementById("mod-empathy").value = stats.empathy || 0;
     document.getElementById("mod-technology").value = stats.technology || 0;
-    document.getlementById("mod-survival").value = stats.survival || 0;
+    document.getElementById("mod-survival").value = stats.survival || 0;
     document.getElementById("mod-tracking").value = stats.tracking || 0;
     
     
