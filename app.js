@@ -239,15 +239,9 @@ classSelect.addEventListener("change",() => {
 
     const stats = classData.stats;
 
-    statsDisplay.innerHTML = `
-    <h3>${classData.name} Stats</h3>
-    <p>BattleTactics: +${stats.battletactics}</p>
-    <p>Bonding: +${stats.bonding}</p>
-    <p>Perception: +${stats.perception}</p>
-    <p>Command: +${stats.command}</p>
-    <p>Inspiration: +${stats.inspiration}</p>
-    <p>PokemonLore: +${stats.pokemonlore}</p>
-    `;
+    document.getElementById('mod-battletactics').value = stats.battletactics;
+    document.getElementById('mod-')
+    
 
     abilitiesDisplay.innerHTML =`
         <h3>abilities</h3>
