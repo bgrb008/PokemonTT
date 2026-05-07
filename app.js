@@ -100,4 +100,125 @@ const classes = {
         ]
         },
 
-    
+    pokemonBreeder: {
+        name: "Pokemon Breeder",
+
+        stats: {
+            bonding: 3,
+            empathy: 2,
+            pokemonlore: 1,
+            inspration: 1,
+            command: 1,
+            catching: -1,
+        },
+
+        abilities: [
+            "Deep Bond Link",
+            "Evolution Insight",
+            "Calm Presence",
+            "Nurture Boost",
+        ]
+        },
+
+    battleMaster: {
+        name: "Battle Master",
+
+        stats: {
+            battletactics: 3,
+            command: 2,
+            perception: 2,
+            inspiration: 1,
+            bonding: -1,
+            survival: -1,
+        },
+
+        abilities: [
+            "Tactical Edge",
+            "Prediction Window",
+            "Pressure Play",
+            "Finisher Instinct",
+        ]
+        },
+
+    researchFellow: {
+        name: "Research Fellow",
+
+        stats: {
+            pokemonlore: 3,
+            technology: 3,
+            perception: 1,
+            battletactics: 1,
+            survival: 1,
+            catching: 1,
+        },
+
+        abilities: [
+            "Scan Analasis",
+            "Data Advantage",
+            "Field Study"
+            "Tech Synergy",
+        ]
+        },
+
+    influencer: {
+        name: "Influencer",
+
+        stats: {
+            inspiration: 3,
+            bonding: 1,
+            command: 1,
+            perception: 1,
+            pokemonlore: 1,
+            survival: -1,
+        },
+
+        abilities: [
+            "Crowd Hype",
+            "Charisma Boost",
+            "Trend Setter",
+            "Fan Momentum",    
+        ]
+        },
+
+    pokemonPerformer: {
+        name: "Pokemon Performer",
+
+        stats: {
+            inspiration: 3,
+            bonding: 2,
+            battletactics: 1,
+            perception: 1,
+            command: 1,
+            catching: -1,
+        },
+
+        abilities: [
+            "Stafe Pressence",
+            "Flow State",
+            "Audience Effect",
+            "Graceful Recovery",
+        ]
+        },
+
+    pokemonRanger: {
+        name: "Pokemon Ranger",
+
+        stats: {
+            survival: 3,
+            tracking: 3,
+            empathy: 1,
+            perception: 1,
+            technology: 1,
+            battletqctics: -1,
+        },
+
+        abilities: [
+            "Wild Sense",
+            "Nature Bond",
+            "Environmental Adaptation",
+            "Guardian Instinct",
+        ]
+        },
+
+});
+)
