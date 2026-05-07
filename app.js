@@ -44,10 +44,10 @@ function updateXPBar() {
 document.getElementById(`level`);
     const xpInput = document.getElementById(`xp`);
     const barFill = document.getElementById(`xp-bar-fill`);
-    const upText = document.getElemebtById(`xp-text`);
+    const xpText = document.getElementById(`xp-text`);
     
     let currentLevel = parseInt(levelInput.value) || 1;
-    let currentXP = parseInt(xpInput.level) || 0;
+    let currentXP = parseInt(currentXP) || 0;
     
     let xpNeeded = Math.floor(100 * Math.pow(1.25, currentLevel - 1));
     
@@ -59,4 +59,14 @@ document.getElementById(`level`);
 }
 
 updateXPBar();
-    
+
+
+let currentXp = 0;
+
+document.getElementById('add-xp-button').addEventListener('click', () => {
+    let amount =
+parseInt(document.getElementById('xp-amount').value) || 0;
+    currentXp += amount;
+    document.getElementById('xp-amount').value = '';
+    updateXPBar();
+});
