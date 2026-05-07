@@ -45,12 +45,12 @@ document.getElementById(`level`);
     const xpInput = document.getElementById(`xp`);
     const barFill = document.getElementById(`xp-bar-fill`);
     const xpText = document.getElementById(`xp-text`);
-    
+    let currentXP = 0;
     let currentLevel = parseInt(levelInput.value) || 1;
-    let currentXP = parseInt(currentXP) || 0;
+    let currentXP = currentXP || 0;
     
     let xpNeeded = Math.floor(100 * Math.pow(1.25, currentLevel - 1));
-    
+
     let percentage = (currentXP / xpNeeded) * 100;
     
     barFill.style.width = percentage + "%";
@@ -61,7 +61,7 @@ document.getElementById(`level`);
 updateXPBar();
 
 
-let currentXp = 0;
+
 
 document.getElementById('add-xp-button').addEventListener('click', () => {
     let amount =
