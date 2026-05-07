@@ -241,12 +241,12 @@ classSelect.addEventListener("change",() => {
 
     statsDisplay.innerHTML = `
     <h3>${classData.name} Stats</h3>
-    <p>BattleTactics: +${battleTactics}</p>
-    <p>Bonding: +${bonding}</p>
-    <p>Knowledge: +${knowledge}</p>
-    <p>Command: +${command}</p>
-    <p>Presence: +${presence}</p>
-    <p>Power: +${power}</p>
+    <p>BattleTactics: +${stats.battleTactics}</p>
+    <p>Bonding: +${stats.bonding}</p>
+    <p>Perception: +${stats.perception}</p>
+    <p>Command: +${stats.command}</p>
+    <p>Inspiration: +${stats.inspiration}</p>
+    <p>PokemonLore: +${stats.pokemonlore}</p>
     `;
 
     abilitiesDisplay.innerHTML =`
