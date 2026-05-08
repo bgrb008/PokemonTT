@@ -73,10 +73,9 @@ const classes = {
          },
 
          abilities: [
-             "Adaptive Trainer",
-             "Bond Stability",
-             "Clutch Synchronization",
-             "Masters Switch",
+             "Adaptive Flow",
+             description: "When your pokemon has a critical hit, you may attack a 2nd time immediately after",
+            cooldown: "Once per battle"
          ]
         },
 
