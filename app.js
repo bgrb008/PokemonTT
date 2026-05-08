@@ -73,9 +73,13 @@ const classes = {
          },
 
          abilities: [
-             "Adaptive Flow",
+             {
+             name: "Adaptive Flow",
              description: "When your pokemon has a critical hit, you may attack a 2nd time immediately after",
-            cooldown: "Once per battle"
+            cooldown: "Once per battle",
+            }
+
+             {
          ]
         },
 
@@ -254,8 +258,19 @@ classSelect.addEventListener("change",() => {
 
     abilitiesDisplay.innerHTML =`
         <h3>abilities</h3>
-    <ul> ${classData.abilities.map( a =>` <li>${a}</li>`).join("")}
-    </ul>
+
+        abilitiesList.innerHTML = "";
+
+        selectedClass.abilities.forEach(ability =>
+
+        abilitiesList.innerHTML += `
+            <div class="ability-card">
+                <h3>${ability.name}</h3>
+                <p><strong>Description:</strong>${ability.description}</p>
+                <p><strong>Mechanics:</strong>${ability.mechanics}</p>
+                <p><strong>Cooldown:</strong>${ability.cooldown}</p>
+            <div>
+        
     `;
 });
     
