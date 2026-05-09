@@ -1,22 +1,5 @@
 let currentXP = 0;
 
-let teamDiv = document.getElementById("team");
-
-function addPokemon() {
-        let div = document.createElement("div");
-        div.className = "pokemon";
-
-        div.innerHTML = `
-                <input placeholder="Pokemon Name">
-                <input type="number" placeholder="HP">
-                <input placeholder="Move 1">
-                <input placeholder="Move 2">
-        `;
-
-        teamDiv.appendChild(div);
-}
-
-
 
 
 function updateXPBar() {
@@ -76,10 +59,25 @@ const classes = {
              {
              name: "Adaptive Flow",
              description: "When your pokemon has a critical hit, you may attack a 2nd time immediately after",
-            cooldown: "Once per battle",
-            }
+             cooldown: "Once per battle",
+            },
 
              {
+             name: "Master's Switch",
+             description: "Trainer may switch there active pokemon with out use of an action",
+             cooldown: "Once per Battle",
+             },
+
+             {
+             name: "Clutch Syncronization",
+             description: "when your active pokemon has 30% or less hp, add 1d6 to all rolls and +2 to AC or defense",
+             cooldown: "duration 2 turns, once per battle",
+             },
+
+             {
+             name: "Bond Stability",
+             description: "when commanding pokemon +2 to all bond checks, reduce failure chance reroll 1s once per battle",
+             },
          ]
         },
 
@@ -258,19 +256,19 @@ classSelect.addEventListener("change",() => {
 
     abilitiesDisplay.innerHTML =`
         <h3>abilities</h3>
+        `;
 
-        abilitiesList.innerHTML = "";
+        abilitiesDisplay.innerHTML = "";
 
-        selectedClass.abilities.forEach(ability =>
-
-        abilitiesList.innerHTML += `
+        classData.abilities.forEach((ability) => {
+            const desc= ability.description || "special class ability";
+            const cooldown= ability.cooldown || "N/A";
+        abilitiesDisplay.innerHTML += `
             <div class="ability-card">
                 <h3>${ability.name}</h3>
-                <p><strong>Description:</strong>${ability.description}</p>
-                <p><strong>Mechanics:</strong>${ability.mechanics}</p>
-                <p><strong>Cooldown:</strong>${ability.cooldown}</p>
-            <div>
-        
-    `;
+                <p><strong>Description:</strong><span class="ability-data">${desc}</scan></p>
+                <p><strong>Cooldown:</strong><span class="ability-data">${cooldown}</span></p>
+            </div>
+       `;
+    });
 });
-    

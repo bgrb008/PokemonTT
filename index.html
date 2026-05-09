@@ -10,6 +10,7 @@
                    background-size: cover;
                    background-position: center;
                    background-repeat: no-repeat;
+                   background-attachment: fixed;
                    min-height: 100vh;
                    margin: 0;
                    font-family: "PokemonSolid", sans-serif;
@@ -31,6 +32,12 @@
                 @font-face {
                         font-family: "PokemonSolid";
                         src: url(pokemonfont.woff) format("truetype");
+                }
+
+                @font-face {
+                        font-family: "PokemonGB";
+                        src: url(PokemonGB.woff) format("truetype")
+                        font-display: swap;
                 }
                 
                 h1 { 
@@ -291,6 +298,22 @@
                     padding: 2px;
                     font-size: 12px;
                     text-align: center;
+                }
+
+                .abilities-section{
+                        border: 2px aolid black;
+                        border-radius: 10px;
+                        padding: 10px;
+                        margin-bottom: 10px;
+                        background: #f4f4f4;
+                        font-family: pokemonsolid;
+                        font-size: 16px;
+                }
+
+                .ability-data{
+                        font-family: "PokemonGB", sans-serif;
+                        font-size: 1.1rem;
+                        color: #333;
                 }
                 
                 
