@@ -94,12 +94,33 @@ const classes = {
         },
 
         abilities: [
-            "Shiny Sense",
-            "Efficient Catching",
-            "Field Awareness",
-            "Pack Catalog"
+            {
+            name: "Efficient Catcher",
+            description: "when catching a wild pokemon, roll 1d20 + tracking , if wild pokemon is below 50% hp, add 1d6 roll, roll with advantage on first catching roll",
+            cooldown: "N/A",
+            },
+
+            {
+            name: "Field Awareness",
+            description: "when entering a wild area, roll 1d20 + tracking, if roll is more than a dc15 reveal a rare spawn",
+            cooldown: "once per wild area",
+            },
+
+            {
+            name: "Shiny Sense",
+            description: "when encountering a wild pokemon, roll 1d20 if dc18 or higher, rare varient detected",
+            cooldown: "upon successful encounter +2 to catching rolls until wnd of encounter",
+            },
+
+            {
+            name: "Lucky Encounter",
+            description: "fortune seems to guide you, reroll failed encounter or catching roll",
+            cooldown: "once per ecounter",
+            },
+            
         ]
         },
+
 
     pokemonBreeder: {
         name: "Pokemon Breeder",
@@ -114,10 +135,29 @@ const classes = {
         },
 
         abilities: [
-            "Deep Bond Link",
-            "Evolution Insight",
-            "Calm Presence",
-            "Nurture Boost",
+            {
+            name: "Nurturing care",
+            description: "your care for your pokemon is unmatched, roll 1d6 for addition healing during a short rest",
+            cooldown: "once per short rest",
+            },
+
+            {
+            name: "Evolution Insight",
+            description: "when evolving a pokemon, roll 1d20 + bonding vs dc15, if successful roll 1d4 to reduce evolution level",
+            cooldown: "once per evolution"
+            },
+
+            {
+            name: "Calm Presence",
+            description: "when status effect is applied to your pokemon, roll 1d20 + empathy vs dc15, if successful remove status effect",
+            cooldown: "once per battler",
+            },
+
+            {
+            name: "Nature Boost",
+            description: "when in a wild area, roll 1d20 + empathy vs dc15, if successful add 1d6 to a healing roll",
+            cooldown: "once per wild area",
+            },
         ]
         },
 
@@ -134,12 +174,32 @@ const classes = {
         },
 
         abilities: [
-            "Tactical Edge",
-            "Prediction Window",
-            "Pressure Play",
-            "Finisher Instinct",
+            {
+            name: "Prediction Window",
+            description: "when entering a battle, roll 1d20 + perception vs enemy hidden 1d20 roll + battle tactics, if successfil reveal enemy's next move",
+            cooldown: "once at beginning of turn",
+            },
+
+            {
+            name: "Finisher Instinct",
+            description: "when enemy pokemon is less than 25% hp, add 1d8 damage to all attack rolls, if roll is 18 or higher, automatic critical hit",
+            cooldown: "once per battler",
+            },
+
+            {
+            name: "Tactical Edge",
+            description: "when entering a battle gain the advantage on your first 2 turns, +2 on all rolls and +1 to AC",
+            cooldown: "once per battle, twice per long rest",
+            },
+
+            {
+            name: "Pressure Play",
+            description: "roll penalty for enemy, if battle master is winning the match enemy rolls with disadvantage and take -2 to AC",
+            cooldown: "once per battle",
+            },
         ]
-        },
+       
+    },
 
     researchFellow: {
         name: "Research Fellow",
@@ -154,10 +214,30 @@ const classes = {
         },
 
         abilities: [
-            "Scan Analysis",
-            "Data Advantage",
-            "Field Study",
-            "Tech Synergy",
+
+            {
+            name: "Scan Analysis",
+            description: "when encountering a new pikemon not in your pokedex, roll 1d20 + pokemonlore vs dc15, if successful reveal ability, resistance, and weakness",
+            cooldown: "once per encounter",
+            },
+
+            {
+            name: "Data Advantage",
+            description: "when encountering a pokemon that is in you pokedex, roll with arvantage on all rolls",
+            cooldown: "twice per long rest",
+            },
+
+            {
+            name: "Field study",
+            description: "wehn in the wild area, after a successful encounter, roll 1d20 if 12 or higher roll 1d8 to gain extra xp",
+            cooldown: "once per encounter",
+            },
+
+            {
+            name: "tech Synergy",
+            description: "when using an item roll 1d6 to add to strength of item or reroll failed item activation",
+            cooldown: "once per item",
+            },
         ]
         },
 
@@ -174,10 +254,30 @@ const classes = {
         },
 
         abilities: [
-            "Crowd Hype",
-            "Charisma Boost",
-            "Trend Setter",
-            "Fan Momentum",    
+
+            {
+            name: "Crowd Hype",
+            description: "during battle if player rolls a k/o or critical hit, roll 1d20 + inspiration vs dc15, if successeful stack 1d6 to all damage rolls",
+            cooldown: "max of 4 stacks and 1 time per long rest",
+            },
+
+            {
+            name: "Charisma Boost",
+            description: "at the end of battle, if successful, roll 1d20 + inspiration, if 15 or higher gain 1d6 xp, if you roll 18 or higher roll 2d6 xp",
+            cooldown: "once per battle",
+            },
+
+            {
+            name: "Trend Setter",
+            description: "when beginning a new battle, roll 1d20 + inspiration vs dc15, if successful gain advantage + 1d4 on first attack",
+            cooldown: "once per battle",
+            },
+
+            {
+            name: "Fame",
+            description: "the more you win the more famous you become, add 1d4 per win to all xp rolls",
+            cooldown: "if you lose a battle, all stacks are removed",
+            },
         ]
         },
 
