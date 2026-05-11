@@ -346,6 +346,12 @@ const classes = {
             },
 
             {
+            name: "Environmental Adaptation",
+            description: "when in a wild area or gym gain 1d6 to all damage rolls, based on environment( ie. grass, water, etc)",
+            cooldown: "once per battle",
+            },
+
+            {
             name: "Guardian Instinct",
             description: "when in a wild area roll 1d20 + perception vs dc 15, if successful divert 25% of allys damage to yourself",
             cooldown: "once per wild area",
