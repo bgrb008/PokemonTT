@@ -294,10 +294,29 @@ const classes = {
         },
 
         abilities: [
-            "Stage Presence",
-            "Flow State",
-            "Audience Effect",
-            "Graceful Recovery",
+            {
+            name: "Stage Pressence",
+            description: "during a contest battle, on your turn roll 1d20+ inspiration vs dc15, if successeful gain a combo bonus of 1d6 additional damage",
+            cooldown: "once per battle",
+            },
+
+            {
+            name: "Flow State",
+            description: "at the beginning of your turn, roll 1d20 + bonding vs dc15, if successeful gain 1d4 to all damage rolls, can stack up to 4 times",
+            cooldown: "if fail stacks reset, once per long rest",
+            },
+
+            {
+            name: "Audience Effect",
+            descriptions: "when performing a contest move, draw inspiration from the crowd, roll 1d20 + inspiration vs dc15, if successful add 1d6 in bonus xp",
+            cooldown: "once per contest",
+            },
+
+            {
+            name: "Graceful Recovery",
+            description: "during a contest battle, if your pokemon gets knocked out, roll 1d20 + bonding if 15 or higher, pokemon gains 1d6 of hp",
+            cooldown: "once per long rest",
+            },
         ]
         },
 
@@ -314,10 +333,23 @@ const classes = {
         },
 
         abilities: [
-            "Wild Sense",
-            "Nature Bond",
-            "Environmental Adaptation",
-            "Guardian Instinct",
+            {
+            name: "Wild Sense",
+            description: "when entering a wild are roll 1d20 + tracking vs dc15, if successful reveal a rare spawn",
+            cooldown: "once per wild area",
+            },
+
+            {
+            name: "Nature Bond",
+            description: "when encountering a wild pokemon, roll 1d20 + empathy vs dc15 if successful, skip battle and add 1d4 to catch roll",
+            cooldown: "twice per long rest"
+            },
+
+            {
+            name: "Guardian Instinct",
+            description: "when in a wild area roll 1d20 + perception vs dc 15, if successful divert 25% of allys damage to yourself",
+            cooldown: "once per wild area",
+            },
         ]
         },
 
