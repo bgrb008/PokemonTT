@@ -4,322 +4,7 @@
         <title>PokemonTT</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
-        <style>
-               body {
-                   background-image: url("pokeball.png");
-                   background-size: cover;
-                   background-position: center;
-                   background-repeat: no-repeat;
-                   background-attachment: fixed;
-                   min-height: 100vh;
-                   margin: 0;
-                   font-family: "PokemonSolid", sans-serif;
-                   font-size: 16px;
-                   line-height: 1.5;
-                   letter-spacing: 1px;
-                   padding: 20px;
-               }
-                
-                label, h1, h3 {
-                        color: black;
-                        text-shadow:
-                            -1px -1px 0 white,
-                             1px -1px 0 white,
-                            -1px  1px 0 white,
-                             1px  1px 0 white;
-                }
-                
-                @font-face {
-                        font-family: "PokemonSolid";
-                        src: url(pokemonfont.woff) format("woff");
-                        font-display: swap;
-                }
-                
-                @font-face {
-                        font-family: "PokemonGB";
-                        src: url(PokemonGB.woff) format("woff");
-                        font-display: swap;
-                }
-                
-                h1 { 
-                        text-align: center; 
-                }
-                
-                .pokemon {
-                        background: white;
-                        padding: 10px;
-                        margin-bottom: 10px;
-                        border-radius: 10px;
-                }
-                button { 
-                        width: 100%; padding: 15px; font-size: 16px; 
-                }
-                
-                .field {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-start;
-                        margin-bottom: 10px;
-                }
-                .field label { 
-                        margin-bottom: 5px; 
-                        
-                }
-                
-                .field input { 
-                        width: 100px; padding: 8px; 
-                }
-                
-                #backstory {
-                        -webkit-text-stroke: 0.5px white;
-                        
-                }
-                
-                
-                .class {
-                        display: flex;
-                        flex-direction: column;
-                        alighn-items: flex-start;
-                        margin-bottom: 10px
-                }
-                
-                .class label {
-                        margin-bottom: 5px;
-                }
-                
-                .class input {
-                        width: 100pc;
-                        padding: 8px;
-                } 
-                
-                .subclass {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-start;
-                        margin-bottom: 10px
-
-                }
-
-                .subclass label {
-                        margin-bottom: 5px;
-                        
-                }
-
-                .subclass input {
-                        width: 100px;
-                        padding: 8px;
-                }
-                .age {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-start;
-                        margin-bottom: 10px;
-                }
-                
-                .age label {
-                        margin-bottom: 5px;
-                }
-                
-                .age input {
-                        width: 50px; padding: 8px;
-                }
-                .additional-info {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-start;
-                        margin-top: 10px;
-                }
-                
-                
-                
-                .xp-adder {
-                        display: flex;
-                        justify-content: flex-start;
-                        width: 75%;
-                        height: 30px;
-                        font-size: 16px;
-                        margin-top: 10px;
-                        margin-bottom: 10px;
-                        gap: 20px;
-                }
-                
-                .xp-amount {
-                        flex: 1;
-                        height: 30px;
-                        padding: 8px;
-                        border-radius: 5px;
-                        border: 1px solid #ccc;
-                        margin-bottom: 10px;
-                        
-                        
-                }
-                
-                #add-xp-button {
-                        
-                        width: auto;
-                        height: 30px;
-                        padding: 0 20px;
-                        background-color:#333;
-                        color: white;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        font-size: 16px;
-                        white-space: nowrap;
-                        flex-shrink: 0;
-                }
-                        
-                        
-                .xp-container {
-                        
-                        width: 100%;
-                        height: 30px;
-                        background-color: #f0f0f0;
-                        border: 2px solid #000;
-                        border-top: 2px solid #000;
-                        border-bottom: 2px solid #000;
-                        border-radius: 10px;
-                        overflow: hidden;
-                        position: relative;
-                        margin-top: 10px;
-                        margin-bottom: 5px;
-                        
-                }
-                
-                
-                
-                #xp-bar-fill {
-                        height: 100%;
-                        width: 0%;
-                        background-color: green;
-                        
-                }
-
-                #xp-text {
-                        font-family: Arial, sans-serif;
-                        font-size: 12px;
-                        text-align: center;
-                }
-                
-                .info {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 5px;
-                        margin-top: 5px;
-                }
-                
-                .info label {
-                        margin-bottom: 0px;
-                }
-                
-                .info input {
-                        width: 100px;
-                        margin-bottom: 10px
-                }        
-                
-                
-                .stats {
-                        display: flex;
-                        justify-content: space-between;
-                        gap: 10px;
-                        margin-top: 10px;
-                        background: rgba(255,255,255,0.9);
-                        border-radius: 8px;
-                        padding: 5px;
-                }
-                .stat {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        flex: 1;
-                        background: rgba(255,255,255,0.9);
-                        border-radius: 8px;
-                        padding: 10px;
-                }
-                .stat input { 
-                        width: 100%; text-align: center; padding: 5px; 
-                }
-
-                select {
-                    width: 150px;
-                    parding: 5px;
-                    border-radius: 8px;
-                }
-
-                .skills-section {
-                    max-width: 500px;
-                }
-
-                .skills-grid {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 10px 20px;
-                }
-
-                .skill {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                }
-
-                .skill label {
-                    font-size: 14px;
-                }
-
-                .skill .mod {
-                    width: 50px;
-                    padding: 3px;
-                    text-align: center;
-                }
-
-                .skill {
-                    border: 1px solid #ccc;
-                    padding: 5px;
-                    background-radius- 6px;
-                    background: #f9f9f9;
-                }
-
-                #backstory {
-                    width: 100%;
-                    height: 120px;
-                    padding: 8px;
-                    font-size: 14px
-                    resize: verticle;
-                    
-                }
-                
-                textarea {
-                        width: 100%;
-                        box-sizing: border-box;
-                        
-                }
-
-                .skill .mod{
-                    width: 50px;
-                    height: 22px;
-                    padding: 2px;
-                    font-size: 12px;
-                    text-align: center;
-                }
-
-                .abilities-section{
-                        border: 2px aolid black;
-                        border-radius: 10px;
-                        padding: 10px;
-                        margin-bottom: 10px;
-                        background: #f4f4f4;
-                        font-family: pokemonsolid;
-                        font-size: 16px;
-                }
-
-                .ability-data{
-                        font-family: "PokemonGB", sans-serif;
-                        font-size: .85rem;
-                        color: #333;
-                }
-                
-                
-                
-        </style>
+        
 </head>
 <body>
 
@@ -337,7 +22,7 @@
 <div class="field">
         <label for="region">Home Region:</label>
         <select id="region" name="region">
-                <option value="<--Choose Region--"</option>
+                <option value="">--Choose Region--</option>
                 <option value="kanto">Kanto</option>
                 <option value="johto">Johto</option>
                 <option value="hoenn">Hoenn</option>
@@ -345,7 +30,7 @@
                 <option value="unova">Unova</option>
                 <option value="kalos">Kalos</option>
                 <option value="alola">Alola</option>
-                <oprion value="galar">Galar</oprion>
+                <option value="galar">Galar</option>
                 <option value="paldea">Paldea</option>
         </select>
         
@@ -355,7 +40,7 @@
 <div class="class">
         <label for="class">Class:</label>
         <select id="class" name="class">
-                <option value="<--Choose Class--"</option>
+                <option value="">--Choose Class--</option>
                 <option value="pokemonMaster">Pokemon Master</option>
                 <option value="theCollector">The Collector</option>
                 <option value="pokemonBreeder">Pokemon Breeder</option>
@@ -373,16 +58,17 @@
 <div class="subclass">
         <label for="subclass">Subclass:</label>
         <select id="subclass" name="subclass">
-
-
-
+                <option value="">--Choose Subclass--</option>
+                
         </select>
+</div>
 
-<div class="additional-info">
-        <div class="info">
-                <label>Level:</label>
-                <input id="level" type="number" value="1">
-        </div>
+<div class="level">
+        <label>Level</label>
+        <input for="level" id="level" type="number" value="1">
+
+</div>
+                
         
         
         
@@ -397,17 +83,13 @@
         <input type="number" id="xp-amount" placeholder="Amount">
         <button id="add-xp-button" type="button">Add XP</button>
 </div>
-                
-                        
-                                
-                                        
-                                                        
+                                                  
 <div class="xp-container">
         <div id="xp-bar-fill"></div>
 </div>
         <p id="xp-text">0 / 100 xp</p>
         
-</div>
+
 
 <div class="field">
         <label>Backstory</label>
@@ -482,9 +164,15 @@
                      <input type="number" class="mod" id="mod-technology">
                 </div>
 
-
+        </div>
 
 </div>
+
+<div class="region-boost">
+        <h3>Region Boost</h3>
+        <div id="regionboostdisplay"></div>
+</div>
+
 
 <div class="abilities-section">
         <h3>Abilities</h3>
