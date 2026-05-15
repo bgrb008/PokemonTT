@@ -331,9 +331,10 @@ body {
                 margin-bottom: 10px;
                 margin-top: 10px;
                 background: #e8e9eb;
-                font-family: pokemonsolid;
-                font-size: 16px;
+                
         }
+
+       
 
 
         .abilities-section{
@@ -344,6 +345,7 @@ body {
                 background: #e8e9eb;
                 font-family: pokemonsolid;
                 font-size: 16px;
+                
         }
 
         .ability-data{
