@@ -44,34 +44,38 @@ parseInt(document.getElementById('xp-amount').value) || 0;
 
 
 const classSelect = document.getElementById("class");
+const regionSelect = document.getElementById("region");
+
 const statsDisplay = document.getElementById("statsDisplay");
+const regionBoostDisplay = document.getElementById("regionBoostDisplay");
 const abilitiesDisplay = document.getElementById("abilitiesDisplay");
 
-classSelect.addEventListener("change",() => {
-    const selectedClass = classSelect.value;
+classSelect.addEventListener("change", updateCharacterSheet); 
+regionSelect.addEventListener("change", updateCharacterSheet);
 
-    statsDisplay.innerHTML = "";
+function updateCharacterSheet() {
+
+    const selectedClass = classSelect.value;
+    const selectedRegion = regionSelect.value;
+
+    
+    regionBoostDisplay.innerHTML = "";
     abilitiesDisplay.innerHTML = "";
+    statsDisplay.innerHTML = "";
 
     if (!classes[selectedClass]) return;
 
     const classData = classes[selectedClass];
+    const regionData = regions[selectedRegion];
 
-    const stats = classData.stats;
+    const finalStats = calculateStats(classData, regionData);
 
-    document.getElementById('mod-battletactics').value = stats.battletactics || 0;
-    document.getElementById('mod-bonding').value = stats.bonding || 0;
-    document.getElementById("mod-perception").value = stats.perception || 0;
-    document.getElementById("mod-command").value = stats.command || 0;
-    document.getElementById("mod-inspiration").value = stats.inspiration || 0;
-    document.getElementById("mod-pokemonlore").value = stats.pokemonlore || 0;
-    document.getElementById("mod-catching").value = stats.catching || 0;
-    document.getElementById("mod-empathy").value = stats.empathy || 0;
-    document.getElementById("mod-technology").value = stats.technology || 0;
-    document.getElementById("mod-survival").value = stats.survival || 0;
-    document.getElementById("mod-tracking").value = stats.tracking || 0;
-    
-    
+    statsDisplay.innerHTML = `<h3>Stats</h3>`;
+
+    for (let stat in finalStats) {
+        statsDisplay.innerHTML += ` <p>${stat}: ${finalStats[stat]}</p>`;
+    }
+
 
     abilitiesDisplay.innerHTML =`
         <h3>abilities</h3>
@@ -85,9 +89,9 @@ classSelect.addEventListener("change",() => {
         abilitiesDisplay.innerHTML += `
             <div class="ability-card">
                 <h3>${ability.name}</h3>
-                <p><strong>Description:</strong><span class="ability-data">${desc}</scan></p>
+                <p><strong>Description:</strong><span class="ability-data">${desc}</span></p>
                 <p><strong>Cooldown:</strong><span class="ability-data">${cooldown}</span></p>
             </div>
        `;
     });
-});
+}
