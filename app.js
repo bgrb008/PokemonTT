@@ -53,6 +53,18 @@ const abilitiesDisplay = document.getElementById("abilitiesDisplay");
 classSelect.addEventListener("change", updateCharacterSheet); 
 regionSelect.addEventListener("change", updateCharacterSheet);
 
+function calculateStats(classData, regionData) {
+    const result = { ...classData.stats };
+
+    if (regionData) {
+        for (let stat in regionData) {
+            result[stat] = (result[stat] || 0) + regionData[stat];
+        }
+    }
+
+    return result;
+}
+
 function updateCharacterSheet() {
 
     const selectedClass = classSelect.value;
