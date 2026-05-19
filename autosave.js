@@ -21,6 +21,8 @@ localStorage.getItem('trainerData');
         const el =document.getElementById(id);
         if (el) el.value = data[id];
      });
+     updateXPBar();
+     updateCharacterSheet();
   }
 
 loadData();
