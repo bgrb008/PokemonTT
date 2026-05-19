@@ -297,12 +297,6 @@
                 font-size: 14px;
         }
 
-        .skill .mod {
-                width: 50px;
-                padding: 3px;
-                text-align: center;
-        }
-
         .skill {
                 border: 1px solid black;
                 border-radius: 10px;
@@ -329,7 +323,7 @@
                 width: 50px;
                 height: 22px;
                 padding: 2px;
-                font-size: 12px;
+                font-size: 16px;
                 text-align: center;
         }
 

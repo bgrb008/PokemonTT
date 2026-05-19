@@ -9,21 +9,25 @@
 <body>
 
 <h1>PokemonTT</h1>
-
-<div class="field">
-        <label>Trainer Name:</label>
-        <input id="trainerName" placeholder="Enter Name">
-</div>
-<div class="age">
-        <label>Age:</label>
-        <input id="age" placeholder="e.g. 25">
-</div>
-
-<div class="trainers-action-container">
-        <button class="action-button">Backpack</button>
-        <button class="action-button">Pokedex</button>
-        <button class="action-button">Party</button>
-        <button class="action-button">Badges</button>
+        
+<div class="top-section">
+        <div class="left-fields">
+                <div class="field">
+                        <label>Trainer Name:</label>
+                        <input id="trainerName" placeholder="Enter Name">
+                </div>
+                <div class="age">
+                        <label>Age:</label>
+                        <input id="age" placeholder="e.g. 25">
+                </div>
+        </div>
+        
+        <div class="trainers-action-container">
+                <button class="action-button">Backpack</button>
+                <button class="action-button">Pokedex</button>
+                <button class="action-button">Party</button>
+                <button class="action-button">Badges</button>
+        </div>
 </div>
 
 <div class="field">
@@ -40,8 +44,6 @@
                 <option value="galar">Galar</option>
                 <option value="paldea">Paldea</option>
         </select>
-        
-        
 </div>
 
 <div class="class">
@@ -56,34 +58,23 @@
                 <option value="influencer">Influencer</option>
                 <option value="pokemonPerformer">Pokemon Performer</option>
                 <option value="pokemonRanger">Pokemon Ranger</option>
-                
-        
         </select>
-
 </div>
 
 <div class="subclass">
         <label for="subclass">Subclass:</label>
         <select id="subclass" name="subclass">
                 <option value="">--Choose Subclass--</option>
-                
         </select>
 </div>
 
 <div class="level">
         <label>Level</label>
         <input for="level" id="level" type="number" value="1">
-
-</div>
-                
-        
-        
-        
 </div>
 
 <div class="xp">
         <label>XP</label>
-        
 </div>
 
 <div class="xp-adder">
@@ -95,8 +86,6 @@
         <div id="xp-bar-fill"></div>
 </div>
         <p id="xp-text">0 / 100 xp</p>
-        
-
 
 <div class="field">
         <label>Backstory</label>
@@ -116,69 +105,66 @@
 
         <div class="skills grid">
                 <div class="skill">
-                     <label>Pokemon Lore</label>
-                     <input type="number" class="mod" id="mod-pokemonlore">
+                        <label>Pokemon Lore</label>
+                        <input type="number" class="mod" id="mod-pokemonlore">
                 </div>
 
                 <div class="skill">
-                     <label>Battle Tactics</label>
-                     <input type="number" class="mod" id="mod-battletactics">
+                        <label>Battle Tactics</label>
+                        <input type="number" class="mod" id="mod-battletactics">
                 </div>
 
                 <div class="skill">
-                     <label>Bonding</label>
-                     <input type="number" class="mod" id="mod-bonding">
+                        <label>Bonding</label>
+                        <input type="number" class="mod" id="mod-bonding">
                 </div>
 
                 <div class="skill">
-                     <label>Command</label>
-                     <input type="number" class="mod" id="mod-command">
+                        <label>Command</label>
+                        <input type="number" class="mod" id="mod-command">
                 </div>
 
                 <div class="skill">
-                     <label>Inspiration</label>
-                     <input type="number" class="mod" id="mod-inspiration">
+                        <label>Inspiration</label>
+                        <input type="number" class="mod" id="mod-inspiration">
                 </div>
 
                 <div class="skill">
-                     <label>Perception</label>
-                     <input type="number" class="mod" id="mod-perception">
+                        <label>Perception</label>
+                        <input type="number" class="mod" id="mod-perception">
                 </div>
 
                 <div class="skill">
-                     <label>Survival</label>
-                     <input type="number" class="mod" id="mod-survival">
+                        <label>Survival</label>
+                        <input type="number" class="mod" id="mod-survival">
                 </div>
 
                 <div class="skill">
-                     <label>Tracking</label>
-                     <input type="number" class="mod" id="mod-tracking">
+                        <label>Tracking</label>
+                        <input type="number" class="mod" id="mod-tracking">
                 </div>
 
                 <div class="skill">
-                     <label>Catching</label>
-                     <input type="number" class="mod" id="mod-catching">
+                        <label>Catching</label>
+                        <input type="number" class="mod" id="mod-catching">
                 </div>
 
                 <div class="skill">
-                     <label>Empathy</label>
-                     <input type="number" class="mod" id="mod-empathy">
+                        <label>Empathy</label>
+                        <input type="number" class="mod" id="mod-empathy">
                 </div>
 
                 <div class="skill">
-                     <label>Technology</label>
-                     <input type="number" class="mod" id="mod-technology">
+                        <label>Technology</label>
+                        <input type="number" class="mod" id="mod-technology">
                 </div>
-
         </div>
-
 </div>
 
 <div class="region-boost">
         <h3>Region Boost</h3>
         <div id="regionBoostDisplay"></div>
 </div>
-
 
 <div class="abilities-section">
         <h3>Abilities</h3>
