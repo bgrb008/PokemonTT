@@ -336,7 +336,7 @@ body {
 
         .region-boost-data{
                 font-family: "PokemonGB";
-                font-size: .75rem;
+                font-size: .65rem;
                 color: #333;
 
         }
@@ -357,6 +357,6 @@ body {
 
         .ability-data{
                 font-family: "PokemonGB", sans-serif;
-                font-size: .75rem;
+                font-size: .65rem;
                 color: #333;
         }

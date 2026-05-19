@@ -131,4 +131,5 @@ if (regionData && regionData.boosts) {
    });
  } else {
      abilitiesDisplay.innerHTML = "";
+   }
 }
