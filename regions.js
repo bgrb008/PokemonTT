@@ -144,4 +144,44 @@ const regions = {
             },
         ]
     },
+
+    galar: {
+        name:"Galar",
+
+        stats: {
+            battletactics: +2,
+            inspiration: +1,
+        },
+
+        boosts: [
+
+            {
+            description: " Galar is the hub for all things battle, they are known for the massive enjoyment in the spectater sport of battel",
+
+            boost: "Your love for battlr and pure enjoyment of the sport gives you +2 to battletactics and +1 to inspiration",
+
+            terrain: "Whether in a wild area or in the gym, roll with advantage on battletactics checks",
+            },
+        ]
+    },
+
+    paldea: {
+        name: "Paldea",
+
+        stats: {
+            perception: +1,
+            pokemonlore: +2,
+        },
+
+        boosts: [
+
+            {
+            description: "Paldea is all about docovery and legacy, encouraging personal growth and exploring how the past influences the present",
+
+            boost: "Your love for discovery and legacy gives you +1 to perception and +2 to pokemonlore",
+
+            terrain: "Whether in the mountains or the dessert and gyms, reroll 1 failed pokemonlore roll per encounter",
+            },
+        ]
+    },
 };
