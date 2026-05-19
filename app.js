@@ -40,6 +40,7 @@ parseInt(document.getElementById('xp-amount').value) || 0;
  }
     document.getElementById('xp-amount').value = '';
     updateXPBar();
+    saveData();
 });
 
 
