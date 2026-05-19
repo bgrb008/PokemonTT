@@ -23,7 +23,7 @@ localStorage.getItem('trainerData');
         if (el) el.value = data[id];
      });
   const savedXP = localStorage.getItem('currentXP');
-  if (savedXP !== null) current-p = parseInt(savedXP);
+  if (savedXP !== null) currentXP = parseInt(savedXP);
      updateXPBar();
      updateCharacterSheet();
   }
