@@ -10,6 +10,7 @@ function saveData() {
         }
     });
     localStorage.setItem('trainerData', JSON.stringify(data)); 
+    localStorage.setItem('currentXP', currentXP);
 }
 
 function loadData() {
@@ -21,6 +22,8 @@ localStorage.getItem('trainerData');
         const el =document.getElementById(id);
         if (el) el.value = data[id];
      });
+  const savedXP = localStorage.getItem('currentXP');
+  if (savedXP !== null) current-p = parseInt(savedXP);
      updateXPBar();
      updateCharacterSheet();
   }
