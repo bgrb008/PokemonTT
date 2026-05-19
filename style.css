@@ -1,10 +1,18 @@
-        body {
+        body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
                 background-image: url("pokeball.png");
                 background-position: center top;
                 background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-size: 140% auto;
-                min-height: 100vh;
+                background-size: auto;
+                z-index: -1;
+        }
+
+        body {
                 margin: 0;
                 font-family: "PokemonSolid", sans-serif;
                 font-size: 16px;
