@@ -54,11 +54,11 @@ classSelect.addEventListener("change", updateCharacterSheet);
 regionSelect.addEventListener("change", updateCharacterSheet);
 
 function calculateStats(classData, regionData) {
-    const result = { ...classData.stats };
+    const result = classData ? { ...classData.stats } : {};
 
     if (regionData) {
-        for (let stat in regionData) {
-            result[stat] = (result[stat] || 0) + regionData[stat];
+        for (let stat in regionData.stats) {
+            result[stat] = (result[stat] || 0) + regionData.stats[stat];
         }
     }
 
@@ -73,29 +73,52 @@ function updateCharacterSheet() {
     
     regionBoostDisplay.innerHTML = "";
     abilitiesDisplay.innerHTML = "";
-    statsDisplay.innerHTML = "";
-
-    if (!classes[selectedClass]) return;
+    
 
     const classData = classes[selectedClass];
     const regionData = regions[selectedRegion];
 
     const finalStats = calculateStats(classData, regionData);
 
-    statsDisplay.innerHTML = `<h3>Stats</h3>`;
+    statsDisplay.innerHTML = "";
+
+    const allStatInputs = document.querySelectorAll("[id^='mod-']");
+    allStatInputs.forEach(input => input.value = "");
 
     for (let stat in finalStats) {
-        statsDisplay.innerHTML += ` <p>${stat}: ${finalStats[stat]}</p>`;
+        const statInput = document.getElementById("mod-" + stat);
+    if (statInput) {
+        statInput.value = finalStats[stat];
+    }
     }
 
+        regionBoostDisplay.innerHTML = "";
+if (regionData && regionData.boosts) {
+    regionData.boosts.forEach((boostItem) => {
+    const desc= boostItem.description || "special region boost";
+    const boostVal= boostItem.boost || "regional specific boost";
+    const terrain= boostItem.terrain || "terrain specific boost";
+    regionBoostDisplay.innerHTML += `
+        <div class="region-boost-card">
+            <h3>${regionData.name}</h3>
+            <p><strong>Description:</strong><span class="region-boost-data">${desc}</span></p>
+            <p><strong>Boost:</strong><span class="region-boost-data">${boostVal}</span></p>
+            <p><strong>Terrain:</strong><span class="region-boost-data">${terrain}</span></p>
+        </div>
 
-    abilitiesDisplay.innerHTML =`
-        <h3>abilities</h3>
-        `;
+    `;
+    
+    });
+
+} else {
+    regionBoostDisplay.innerHTML = "";
+}
+
 
         abilitiesDisplay.innerHTML = "";
 
-        classData.abilities.forEach((ability) => {
+ if (classData && classData.abilities) {  
+   classData.abilities.forEach((ability) => {
             const desc= ability.description || "special class ability";
             const cooldown= ability.cooldown || "N/A";
         abilitiesDisplay.innerHTML += `
@@ -105,5 +128,7 @@ function updateCharacterSheet() {
                 <p><strong>Cooldown:</strong><span class="ability-data">${cooldown}</span></p>
             </div>
        `;
-    });
+   });
+ } else {
+     abilitiesDisplay.innerHTML = "";
 }
