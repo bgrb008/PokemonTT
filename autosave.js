@@ -1,4 +1,4 @@
-document.addeventListener('change', saveData);
+document.addEventListener('change', saveData);
 document.addEventListener('input', saveData);
 
 function saveData() {
@@ -12,12 +12,12 @@ function saveData() {
     localStorage.setItem('trainerData', JSON.stringify(data)); 
 }
 
-funtion loadData() {
+function loadData() {
     const saved =
 localStorage.getItem('trainerData');
    if (!saved) return;
    const data = JSON.parse(saved);
-   Object.keys(data).foreach(id => {
+   Object.keys(data).forEach(id => {
         const el =document.getElementById(id);
         if (el) el.value = data[id];
      });
