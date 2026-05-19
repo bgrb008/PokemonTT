@@ -24,7 +24,6 @@
         
         <div class="trainers-action-container">
                 <button class="action-button">Backpack</button>
-                        <button oneclick="window.locarion.href='backpack.html'">Backpack</button>
                 <button class="action-button">Pokedex</button>
                 <button class="action-button">Party</button>
                 <button class="action-button">Badges</button>
@@ -94,10 +93,10 @@
 </div>
 
 <div class="stats">
-        <div class="stat"><label>knowledge</label><input type="number"></div>
-        <div class="stat"><label>Defense</label><input type="number"></div>
-        <div class="stat"><label>Speed</label><input type="number"></div>
-        <div class="stat"><label>bond</label><input type="number"></div>
+        <div class="stat"><label>knowledge</label><input type="number" id="stat-knowledge"></div>
+        <div class="stat"><label>Defense</label><input type="number" id="stat-defense"></div>
+        <div class="stat"><label>Speed</label><input type="number" id="stat-speed"></div>
+        <div class="stat"><label>bond</label><input type="number" id="stat-bond"></div>
 </div>
 
 <div class="skills-section">
@@ -174,6 +173,7 @@
                 
 <script src="classes.js"></script>
 <script src="regions.js"></script>
+<script scr="autosave.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
