@@ -1,17 +1,16 @@
-body {
-           background-image: url("pokeball.png");
-           background-size: cover;
-           background-position: center top;
-           background-repeat: no-repeat;
-           background-attachment: fixed;
-           background-size: 140% auto;
-           min-height: 100vh;
-           margin: 0;
-           font-family: "PokemonSolid", sans-serif;
-           font-size: 16px;
-           line-height: 1.5;
-           letter-spacing: 1px;
-           padding: 20px;
+        body {
+                background-image: url("pokeball.png");
+                background-position: center top;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: 140% auto;
+                min-height: 100vh;
+                margin: 0;
+                font-family: "PokemonSolid", sans-serif;
+                font-size: 16px;
+                line-height: 1.5;
+                letter-spacing: 1px;
+                padding: 20px;
        }
 
         label, h1, h3 {
@@ -39,15 +38,24 @@ body {
                 text-align: center; 
         }
 
+        .top-section {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+        }
+
+        .left-fields {
+                display: flex;
+                flex-direction: column;
+        }
 
         .field {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
                 margin-bottom: 10px;
-                
-                
         }
+
         .field label { 
                 margin-bottom: 5px; 
 
@@ -61,18 +69,39 @@ body {
                 height: 10px;
         }
 
+        .trainers-actions-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 15px;
+                padding: 8px;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 100px;
+        }
+
+        .action-button {
+                background-color: #333;
+                color: white;
+                border: 2px solid black;
+                border-radius: 10px;
+                font-family: "PokemonGB";
+                font-size: 12px;
+                padding: 8px;      
+        }
+
         #backstory {
                 -webkit-text-stroke: 0.5px white;
                 border: 2px solid black;
                 border-radius: 10px;
-
         }
 
 
         .class {
                 display: flex;
                 flex-direction: column;
-                alighn-items: flex-start;
+                align-items: flex-start;
                 margin-bottom: 10px;
         }
 
@@ -92,18 +121,17 @@ body {
                 flex-direction: column;
                 align-items: flex-start;
                 margin-bottom: 10px
-
         }
 
         .subclass label {
                 margin-bottom: 5px;
-
         }
 
         .subclass input {
                 width: 100px;
                 padding: 8px;
         }
+
         .age {
                 display: flex;
                 flex-direction: column;
@@ -122,16 +150,13 @@ body {
                 border-radius: 10px;
                 height: 10px;
         }
+
         .additional-info {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
-                margin-top: 10px;
-                
-                
+                margin-top: 10px;     
         }
-
-
 
         .xp-adder {
                 display: flex;
@@ -141,8 +166,7 @@ body {
                 font-size: 16px;
                 margin-top: 10px;
                 margin-bottom: 10px;
-                gap: 20px;
-                
+                gap: 20px;      
         }
 
         #xp-amount {
@@ -152,12 +176,9 @@ body {
                 border-radius: 10px;
                 border: 2px solid black;
                 margin-bottom: 10px;
-
-
         }
 
         #add-xp-button {
-
                 width: auto;
                 height: 30px;
                 padding: 0 20px;
@@ -165,14 +186,13 @@ body {
                 color: white;
                 border-radius: 5px;
                 cursor: pointer;
-                font-size: 16px;
+                font-size: 12px;
                 white-space: nowrap;
                 flex-shrink: 0;
+                font-family: "PokemonGb";
         }
 
-
         .xp-container {
-
                 width: 100%;
                 height: 30px;
                 background-color: #f0f0f0;
@@ -184,16 +204,12 @@ body {
                 position: relative;
                 margin-top: 10px;
                 margin-bottom: 5px;
-
         }
-
-
 
         #xp-bar-fill {
                 height: 100%;
                 width: 0%;
                 background-color: green;
-
         }
 
         #xp-text {
@@ -206,8 +222,7 @@ body {
                 display: flex;
                 flex-direction: column;
                 gap: 5px;
-                margin-top: 5px;
-                
+                margin-top: 5px;     
         }
 
         .level label {
@@ -219,10 +234,8 @@ body {
                 margin-bottom: 10px;
                 height: 20px;
                 border: 2px solid black;
-                border-radius: 10px;
-        
+                border-radius: 10px    
         }        
-
 
         .stats {
                 display: flex;
@@ -234,6 +247,7 @@ body {
                 padding: 5px;
                 border: 2px solid black;
         }
+
         .stat {
                 display: flex;
                 flex-direction: column;
@@ -244,6 +258,7 @@ body {
                 padding: 10px;
                 border: 2px solid black;
         }
+
         .stat input { 
                 width: 100%; 
                 text-align: center; 
@@ -254,74 +269,68 @@ body {
         }
 
         select {
-            width: 150px;
-            parding: 5px;
-            border-radius: 8px;
+                width: 150px;
+                padding: 5px;
+                border-radius: 8px;
         }
 
         .skills-section {
-            max-width: 500px;
-            
+                max-width: 500px;
         }
 
         .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px 20px;
-            border: 2x solid black;
-            border-radius: 10px;
-            
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px 20px;
+                border: 2x solid black;
+                border-radius: 10px;            
         }
 
         .skill {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #a9a9a9;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: #a9a9a9;
         }
 
         .skill label {
-            font-size: 14px;
+                font-size: 14px;
         }
 
         .skill .mod {
-            width: 50px;
-            padding: 3px;
-            text-align: center;
+                width: 50px;
+                padding: 3px;
+                text-align: center;
         }
 
         .skill {
-            border: 1px solid black;
-            border-radius: 10px;
-            padding: 5px;
-            background-radius: 6px;
-            background: #e8e9eb;
-            
+                border: 1px solid black;
+                border-radius: 10px;
+                padding: 5px;
+                background: #e8e9eb;
         }
 
         #backstory {
-            width: 100%;
-            height: 120px;
-            padding: 8px;
-            font-size: 16px
-            resize: verticle;
-
+                width: 100%;
+                height: 120px;
+                padding: 8px;
+                font-size: 16px;
+                resize: verticle;
         }
 
-        textarea {
+        .text-area {
                 width: 100%;
                 box-sizing: border-box;
                 border: 2px solid black;
                 border-radius: 10px;
-
         }
 
         .skill .mod{
-            width: 50px;
-            height: 22px;
-            padding: 2px;
-            font-size: 12px;
-            text-align: center;
+                width: 50px;
+                height: 22px;
+                padding: 2px;
+                font-size: 12px;
+                text-align: center;
         }
 
         .region-boost{
@@ -330,19 +339,14 @@ body {
                 padding: 10px;
                 margin-bottom: 10px;
                 margin-top: 10px;
-                background: #e8e9eb;
-                
+                background: #e8e9eb;        
         }
 
         .region-boost-data{
                 font-family: "PokemonGB";
                 font-size: .65rem;
                 color: #333;
-
         }
-
-       
-
 
         .abilities-section{
                 border: 2px solid black;
@@ -351,8 +355,7 @@ body {
                 margin-bottom: 10px;
                 background: #e8e9eb;
                 font-family: pokemonsolid;
-                font-size: 16px;
-                
+                font-size: 16px;              
         }
 
         .ability-data{
