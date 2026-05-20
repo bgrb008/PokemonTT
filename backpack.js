@@ -25,3 +25,14 @@ document.getElementById('subtract-pokecoins-button').addEventListener('click', (
   savedata();
    document.getElementById('pokecoins-amount').value = '';
 });
+
+document.getElementById('potion-selector').addEventListener('change', () => {
+  const selected = document.getElementById('potion-selector').value;
+  if (selected) return;
+
+  const li = document.createElement('li');
+  li.textContent = selected;
+  document.getElementById('potion-list').appendChild(li);
+
+  document.getElementById('potion-selector').value = '';
+});
