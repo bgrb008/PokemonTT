@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "PokemonSolid";
+  src: url("pokemonfont.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PokemonGB";
+  src: url("PokemonGB.woff") format("woff");
+  font-display: swap
+}
+
 html, body{
   width: 100%;
   max-width: 100%;
@@ -28,6 +40,7 @@ body {
   padding: 20px;
   box-sizing: border-box;
   z-index: -1;  
+  letter-spacing: 1px;
   }
 
 label, h1, h3 {
@@ -39,13 +52,42 @@ label, h1, h3 {
     1px 1px 0 white;
 }
 
-@font-face {
-  font-family: "PokemonSolid";
-  src: url("PokemonSolid.woff") format("woff");
-  font-display: swap;
+h1 {
+  text-align: center;
+  margin-top: 10px;
 }
 
-@font-face {
-  font-family: "PokemonGB";
-  
+.pokecoins {
+  font-size: 24px;
+}
+
+.pokecoins input {
+  width: 50px;
+  padding: 8px;
+  border: 2px solid black;
+  border-radius: 10px;
+  height: 10px;
+}
+
+#pokecoins-amount{
+  width: 50px;
+  padding: 8px;
+  border: 2px solid black;
+  border-radius: 10px;
+  height: 10px;
+  margin-top: 10px;
+}
+
+#add-pokecoins-button {
+  width: auto;
+  height: 30px;
+  padding: 0 20px;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: "PokemonGB"
 }
