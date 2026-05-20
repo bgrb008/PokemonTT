@@ -62,26 +62,34 @@ h1 {
 }
 
 .pokecoins input {
-  width: 50px;
+  width: 75px;
   padding: 8px;
   border: 2px solid black;
   border-radius: 10px;
   height: 10px;
+  font-size: 16px;
+}
+
+.pokecoins-adder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 #pokecoins-amount{
-  width: 50px;
+  width: 80px;
   padding: 8px;
   border: 2px solid black;
   border-radius: 10px;
   height: 10px;
-  margin-top: 10px;
+  margin-top: 15px;
+  font-size: 16px;
 }
 
-#add-pokecoins-button {
-  width: auto;
+#add-pokecoins-button, .subtract-pokecoins-button {
+  width: 50px;
   height: 30px;
-  padding: 0 20px;
+  padding: 8px;
   background-color: #333;
   color: white;
   border-radius: 5px;
@@ -91,3 +99,4 @@ h1 {
   flex-shrink: 0;
   font-family: "PokemonGB"
 }
+

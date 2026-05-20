@@ -5,7 +5,7 @@ function saveData() {
     const inputs = document.querySelectorAll('input, select, textarea');
     const data = {};
     inputs.forEach(el => {
-        if (el.id) {
+        if (el.id && el.id !== 'pokecoins-amount') {
             data[el.id] = el.value;
         }
     });
