@@ -1,7 +1,10 @@
 html, body{
   width: 100%;
+  max-width: 100%;
+  height: 100dvh;
   margin: 0;
   padding: 0;
+  min-height: 100dvh;
   overflow-x: hidden;
 }
 
@@ -10,22 +13,39 @@ body:before {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
   width: 100%;
-  height: 100%;
+  height: 100dvh;
   background-image: url('Backpack.png');
-  background-size: 75% auto;
-  background-position: center;
+  background-size: 100% 100%;
+  background-position: top left;
   background-repeat: no-repeat;
   opacity: 0.5;
   z-index: -1;
 }
 
-
 body {
-    font-family: "PokemonSolid", sans-serif;
-    margin: 0;
-    
-    
+  font-family: "PokemonSolid", sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: -1;  
   }
+
+label, h1, h3 {
+  color:black;
+  text-shadow: 
+    -1px -1px 0 white,
+    1px -1px 0 white,
+    -1px 1px 0 white,
+    1px 1px 0 white;
+}
+
+@font-face {
+  font-family: "PokemonSolid";
+  src: url("PokemonSolid.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PokemonGB";
+  
+}
