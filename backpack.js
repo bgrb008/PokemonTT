@@ -1,6 +1,10 @@
 document.getElementById('pokecoins').value = parseInt(localStorage.getItem('pokecoins'))
   || 0;
 
+function savedata(){
+  localStorage.setItem('pokecoins', document.getElementById('pokecoins').value);
+}
+
 document.getElementById('add-pokecoins-button').addEventListener('click', () => {
   let currentpokecoins = parseInt(document.getElementById('pokecoins').value) || 0;
   let amount = parseInt(document.getElementById('pokecoins-amount').value) || 0;
