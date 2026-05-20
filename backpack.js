@@ -28,7 +28,7 @@ document.getElementById('subtract-pokecoins-button').addEventListener('click', (
 
 document.getElementById('potion-selector').addEventListener('change', () => {
   const selected = document.getElementById('potion-selector').value;
-  if (selected) return;
+  if (!selected) return;
 
   const li = document.createElement('li');
   li.textContent = selected;

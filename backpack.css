@@ -100,4 +100,29 @@ h1 {
   flex-shrink: 0;
   font-family: "PokemonGB"
 }
+.potions-header h3 {
+  margin: 0;
+}
+.potions {
+  display: flex;
+  flex-wrap: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+  font-size: 24px;
+}
 
+#potion-selector {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  height: 20px;
+}
+
+#potion-list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 20px
+}
