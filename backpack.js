@@ -36,3 +36,8 @@ document.getElementById('potion-selector').addEventListener('change', () => {
 
   document.getElementById('potion-selector').value = '';
 });
+
+const potions ={
+  "Potion": add 20hp,
+  ""
+}
