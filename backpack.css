@@ -119,11 +119,39 @@ h1 {
   height: 20px;
 }
 
-#potion-list {
+#potion-list li {
+  margin-bottom: 5px;
   margin: 0;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
   font-family: "PokemonGB";
   gap: 5px;
+  font-size: 12px;
+  padding: 8px;
+  list-style: none;
+}
+
+.potion-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.potion-name {
+  font-family: "PokemonSolid";
   font-size: 16px;
+}
+
+.potion-desc {
+  font-family: "PokemonGB";
+  font-size: 12px;
+}
+
+.potion-controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
 }

@@ -31,11 +31,38 @@ document.getElementById('potion-selector').addEventListener('change', () => {
   if (!selected) return;
 
   const li = document.createElement('li');
-  li.textContent = selected;
+  li.innerHTML = `
+    <div class="potion-item">
+      <div class="potion-top">
+        <spanclass="potion-name">${selected}</span>  
+        <input type="number" value="1" mjn="1" style="width: 50px;">
+        <button onclick="addQty(this)">+</button>
+        <button onclick="usePotion(this)">Use</button>
+      </div>
+      <span class="potion-desc">${potions[selected]}</span>
+    </div>
+  `;
+  
   document.getElementById('potion-list').appendChild(li);
 
   document.getElementById('potion-selector').value = '';
 });
+
+function addQty(btn) {
+  const input = btn.previousElementSibling;
+  input.value = parseInt(input.value) + 1;
+}
+
+function usePotion(btn) {
+  const input = btn.previousElementSibling.previousElementSibling;
+  let qty = parseInt(input.value);
+  if (qty > 1) {
+    input.value = qty - 1;
+  } else {
+    btn.closest('li').remove();
+  }
+  }
+
 
 const potions ={
   "Potion": "Add 20HP",
@@ -51,21 +78,3 @@ const potions ={
   "Max Elixer": "Restore PP to all moves"
 }
 
-const potionSelector = document.getElementById("potion-selector");
-
-const potionsDisplay = document.getElementById("potionsDisplay");
-
-potionSelector.addEventListener("change", updatePotions);
-
-function upDatePotions() {
-
-  const selectedPotion = potionSelector.value;
-
-  potionsDisplay.innerHTML = "";
-
-  const potionData = potions[selectedPotion];
-
-  if (potionData) {
-    
-  }
-}
