@@ -155,3 +155,9 @@ h1 {
   gap: 5px;
   margin-top: 5px;
 }
+
+.potions-too {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
