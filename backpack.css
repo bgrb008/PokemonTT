@@ -27,7 +27,7 @@ body:before {
   left: 0;
   width: 100%;
   height: 100dvh;
-  background-image: url('Backpack.png');
+  background-image: url('Pokedex.png');
   background-size: 100% 100%;
   background-position: top left;
   background-repeat: no-repeat;
@@ -103,6 +103,14 @@ h1 {
 .potions h3 {
   margin: 0 0 5px 0;
 }
+.potions-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: -20px;
+  margin-bottom: -40px;
+}
+
 .potions {
   display: flex;
   flex-direction: column;
@@ -126,9 +134,7 @@ h1 {
   flex-wrap: wrap;
   align-items: center;
   font-family: "PokemonGB";
-  gap: 5px;
   font-size: 12px;
-  padding: 8px;
   list-style: none;
 }
 
@@ -136,17 +142,19 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .potion-name {
   font-family: "PokemonSolid";
   font-size: 16px;
+  margin-left: -50px;
 }
 
 .potion-desc {
   font-family: "PokemonGB";
   font-size: 12px;
+  margin-left: -50px;
 }
 
 .potion-controls {
@@ -156,8 +164,3 @@ h1 {
   margin-top: 5px;
 }
 
-.potions-too {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
