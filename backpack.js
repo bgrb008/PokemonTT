@@ -34,7 +34,7 @@ document.getElementById('potion-selector').addEventListener('change', () => {
   li.innerHTML = `
     <div class="potion-item">
       <div class="potion-top">
-        <spanclass="potion-name">${selected}</span>  
+        <span class="potion-name">${selected}</span>  
         <input type="number" value="1" mjn="1" style="width: 50px;">
         <button onclick="addQty(this)">+</button>
         <button onclick="usePotion(this)">Use</button>
