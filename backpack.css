@@ -100,9 +100,23 @@ h1 {
   flex-shrink: 0;
   font-family: "PokemonGB"
 }
+
+.pokeball h3 {
+  margin: 0 0 5px 0;
+}
+
+.pokeballs-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: -20px;
+  margin-bottom: -40px
+}
+
 .potions h3 {
   margin: 0 0 5px 0;
 }
+
 .potions-top {
   display: flex;
   align-items: center;

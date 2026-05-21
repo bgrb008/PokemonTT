@@ -26,6 +26,46 @@ document.getElementById('subtract-pokecoins-button').addEventListener('click', (
    document.getElementById('pokecoins-amount').value = '';
 });
 
+document.getElementById('pokeball-selector').addEventListener('change', () => {
+  const selected = document.getElementById('pokeball-selector').value;
+  if (!selected) return;
+
+  const li = document.createElement('li');
+  li.innerHTML = `
+    <div class="pokeball-item">
+      <div class="pokeball-top">
+        <span class="pokeball-name">${selected}</span>
+        <input type="number" value="1" min="1" style="width: 50px;">
+        <button onclick="addQty(this)">+</button>
+        <button onclick="usePokeball(this)">Use</button>
+        <span class="pokeball-desc">${pokeballs[selected]}</span>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('pokeball-list').appendChild(li);
+  document.getElementById('pokeball-selector').value = '';
+  
+});
+
+function addQty(btn) {
+  const input = btn.previousElementSibling;
+  input.value = parseInt(input.value) + 1;
+}
+
+function usePokeball(btn) {
+  const input = btn.previousElementSibling.previousElementSibling;
+  let qty = parseInt(input.value);
+  if (qty > 1){
+    input.value = qty - 1;
+} else {
+  btn.closest('li').remove();
+}
+}
+    
+
+
+
 document.getElementById('potion-selector').addEventListener('change', () => {
   const selected = document.getElementById('potion-selector').value;
   if (!selected) return;
@@ -48,10 +88,6 @@ document.getElementById('potion-selector').addEventListener('change', () => {
   document.getElementById('potion-selector').value = '';
 });
 
-function addQty(btn) {
-  const input = btn.previousElementSibling;
-  input.value = parseInt(input.value) + 1;
-}
 
 function usePotion(btn) {
   const input = btn.previousElementSibling.previousElementSibling;
@@ -63,6 +99,13 @@ function usePotion(btn) {
   }
   }
 
+
+const pokeballs ={
+  "Pokeball": "An item for catching wild pokemon",
+  "Greatball": "A ball with a higher catch rate than a pokeball",
+  "Ultraball": "A ball with a higher catch rate than a greatball",
+  "Masterball": "A ball that catches any pokemon without fail",
+}
 
 const potions ={
   "Potion": "Add 20HP",
