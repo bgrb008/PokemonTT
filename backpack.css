@@ -110,9 +110,61 @@ h1 {
   align-items: center;
   gap: 10px;
   margin-left: -20px;
-  margin-bottom: -40px
+  margin-bottom: -40px;
 }
 
+.pokeballs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 30px;
+  font-size: 24px;
+  margin-left: 20px;
+}
+
+#pokeball-selector {
+  display: flex;
+  flex-direction: center;
+  width: 150px;
+  height: 20px;
+}
+
+#pokeball-list li {
+  margin-bottom: 5px;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-family: "PokemonGB";
+  font-size: 12px;
+  list-style: none;
+}
+
+.pokeball-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.pokeball-name {
+  font-family: "PokemonSolid";
+  font-size: 16px;
+  margin-left: -50px;
+}
+
+.pokeball-desc {
+  font-family: "PokemonGB";
+  font-size: 12px;
+  margin-left: -50px;
+}
+
+.pokeball-controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+}
 .potions h3 {
   margin: 0 0 5px 0;
 }
