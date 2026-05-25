@@ -7,7 +7,7 @@
 @font-face {
   font-family: "PokemonGB";
   src: url("PokemonGB.woff") format("woff");
-  font-display: swap
+  font-display: swap;
 }
 
 html, body{
@@ -98,42 +98,49 @@ h1 {
   font-size: 12px;
   white-space: nowrap;
   flex-shrink: 0;
-  font-family: "PokemonGB"
+  font-family: "PokemonGB";
 }
 
 .pokeball h3 {
   margin: 0 0 5px 0;
 }
 
-.pokeballs-top {
+
+
+.pokeball-top {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-left: -20px;
-  margin-bottom: -40px;
+  flex-direction: row;
+  margin-top: -35px;
+  
+}
+
+.pokeballs-top {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
 }
 
 .pokeballs {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 30px;
+  gap: 0;
   font-size: 24px;
-  margin-left: 20px;
+  margin-top: 0;
 }
 
 #pokeball-selector {
-  display: flex;
-  flex-direction: center;
   width: 150px;
-  height: 20px;
+  height: 30px;
+  gap: 10px;
+  margin-top: 35px;
 }
 
 #pokeball-list li {
   margin-bottom: 5px;
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
+  margin-top: 0;
   align-items: center;
   font-family: "PokemonGB";
   font-size: 12px;
@@ -149,78 +156,79 @@ h1 {
 
 .pokeball-name {
   font-family: "PokemonSolid";
-  font-size: 16px;
-  margin-left: -50px;
+  font-size: 22px;
 }
 
 .pokeball-desc {
   font-family: "PokemonGB";
   font-size: 12px;
-  
+  margin-bottom: 25px;  
+  word-break: break-word;
 }
 
-.pokeball-controls {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 5px;
-}
 .potions h3 {
   margin: 0 0 5px 0;
 }
 
-.potions-top {
+.potion-top {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 10px;
-  margin-left: -20px;
-  margin-bottom: -40px;
+  margin-top: -5px;
+}
+
+
+
+.potions-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 }
 
 .potions {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 30px;
+  align-items: stretch;
+  gap: 0;
+  margin-top: 10px;
   font-size: 24px;
-  margin-left: 20px;
+  margin-left: 5px;
 }
 
 #potion-selector {
-  display: flex;
-  flex-direction: center;
   width: 150px;
-  height: 20px;
+  height: 30px;
 }
 
 #potion-list li {
   margin-bottom: 5px;
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
+  margin-top: 0;
   align-items: center;
   font-family: "PokemonGB";
   font-size: 12px;
   list-style: none;
+  margin-left: 0;
+  gap: 5px;
 }
 
 .potion-item {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-bottom: 5px;
+  font-size: 16px;
+  margin-left: 0;
 }
 
 .potion-name {
   font-family: "PokemonSolid";
-  font-size: 16px;
-  margin-left: -50px;
+  font-size: 20px;
+  margin-top: 5px;
 }
 
 .potion-desc {
   font-family: "PokemonGB";
   font-size: 12px;
-  margin-left: -50px;
+  word-break: break-word;
 }
 
 .potion-controls {
@@ -230,3 +238,97 @@ h1 {
   margin-top: 5px;
 }
 
+.qty-btn {
+  width: 50px;
+  height: 30px;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+  font-family: "PokemonGB";
+  flex-shrink: 0;
+
+  
+}
+
+.qty-input {
+  width: 50px;
+  height: 30px;
+  font-size: 20px;
+  box-sizing: border-box;
+  padding: 8px;
+  text-align: center;
+}
+
+.condition h3 {
+   margin: 0 0 5px 0;
+}
+
+.condition-top {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   gap: 10px;
+   margin-top: -30px;
+}
+
+.conditions-top {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.conditions {
+   display: flex;
+   flex-direction: column;
+   align-items: stretch;
+   gap: 0;
+   margin-top: 10px;
+   font-size: 24px;
+   margin-left: 5px;
+}
+
+#condition-selector {
+   width: 150px;
+   height: 30px;
+}
+
+#condition-list li {
+  margin-bottom: 5px;
+   margin: 0;
+   margin-top: 0;
+   align-items: center;
+   font-family: "PokemonGB";
+   font-size: 12px;
+   list-style: none;
+   margin-left: 0;
+   gap: 5px;
+}
+
+.condition-item {
+   font-size: 16px;
+   margin-left: 0;
+}
+
+.condition-name {
+  font-family: "PokemonSolid";
+   font-size: 20px;
+   margin-top: 5px;
+}
+
+.condition-desc {
+   font-family: "PokemonGB";
+   font-size: 12px;
+   word-break: break-word;
+}
+
+.condition-controls {
+  display: flex;
+   align-items: center;
+   gap: 5px;
+   margin-top: 5px;
+}
