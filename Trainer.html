@@ -1,0 +1,181 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+        <title>PokemonTT</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        
+</head>
+<body>
+
+<h1>PokemonTT</h1>
+        
+<div class="top-section">
+        <div class="left-fields">
+                <div class="field">
+                        <label>Trainer Name:</label>
+                        <input id="trainerName" placeholder="Enter Name">
+                </div>
+                <div class="age">
+                        <label>Age:</label>
+                        <input id="age" placeholder="e.g. 25">
+                </div>
+        </div>
+        
+        <div class="trainers-action-container">
+                <button class="action-button" onclick="window.location.href='backpack.html'">Backpack</button>
+                <button class="action-button" onclick="window.location.href='pokedex.html'">Pokedex</button>
+                <button class="action-button" onclick="window.location.href='party.html'">Party</button>
+                <button class="action-button" onclick="window.location.href='badges.html'">Badges</button>
+        </div>
+</div>
+
+<div class="field">
+        <label for="region">Home Region:</label>
+        <select id="region" name="region">
+                <option value="">--Choose Region--</option>
+                <option value="kanto">Kanto</option>
+                <option value="johto">Johto</option>
+                <option value="hoenn">Hoenn</option>
+                <option value="sinnoh">Sinnoh</option>
+                <option value="unova">Unova</option>
+                <option value="kalos">Kalos</option>
+                <option value="alola">Alola</option>
+                <option value="galar">Galar</option>
+                <option value="paldea">Paldea</option>
+        </select>
+</div>
+
+<div class="class">
+        <label for="class">Class:</label>
+        <select id="class" name="class">
+                <option value="">--Choose Class--</option>
+                <option value="pokemonMaster">Pokemon Master</option>
+                <option value="theCollector">The Collector</option>
+                <option value="pokemonBreeder">Pokemon Breeder</option>
+                <option value="battleMaster">Battle Master</option>
+                <option value="researchFellow">Research Fellow</option>
+                <option value="influencer">Influencer</option>
+                <option value="pokemonPerformer">Pokemon Performer</option>
+                <option value="pokemonRanger">Pokemon Ranger</option>
+        </select>
+</div>
+
+<div class="subclass">
+        <label for="subclass">Subclass:</label>
+        <select id="subclass" name="subclass">
+                <option value="">--Choose Subclass--</option>
+        </select>
+</div>
+
+<div class="level">
+        <label>Level</label>
+        <input for="level" id="level" type="number" value="1">
+</div>
+
+<div class="xp">
+        <label>XP</label>
+</div>
+
+<div class="xp-adder">
+        <input type="number" id="xp-amount" placeholder="Amount">
+        <button id="add-xp-button" type="button">Add XP</button>
+</div>
+                                                  
+<div class="xp-container">
+        <div id="xp-bar-fill"></div>
+</div>
+        <p id="xp-text">0 / 100 xp</p>
+
+<div class="field">
+        <label>Backstory</label>
+        <textarea id="backstory" name="backstory"></textarea>
+</div>
+
+<div class="stats">
+        <div class="stat"><label>knowledge</label><input type="number" id="stat-knowledge"></div>
+        <div class="stat"><label>Defense</label><input type="number" id="stat-defense"></div>
+        <div class="stat"><label>Speed</label><input type="number" id="stat-speed"></div>
+        <div class="stat"><label>bond</label><input type="number" id="stat-bond"></div>
+</div>
+
+<div class="skills-section">
+        <h3>skills</h3>
+        <div id="statsDisplay"></div>
+
+        <div class="skills grid">
+                <div class="skill">
+                        <label>Pokemon Lore</label>
+                        <input type="number" class="mod" id="mod-pokemonlore">
+                </div>
+
+                <div class="skill">
+                        <label>Battle Tactics</label>
+                        <input type="number" class="mod" id="mod-battletactics">
+                </div>
+
+                <div class="skill">
+                        <label>Bonding</label>
+                        <input type="number" class="mod" id="mod-bonding">
+                </div>
+
+                <div class="skill">
+                        <label>Command</label>
+                        <input type="number" class="mod" id="mod-command">
+                </div>
+
+                <div class="skill">
+                        <label>Inspiration</label>
+                        <input type="number" class="mod" id="mod-inspiration">
+                </div>
+
+                <div class="skill">
+                        <label>Perception</label>
+                        <input type="number" class="mod" id="mod-perception">
+                </div>
+
+                <div class="skill">
+                        <label>Survival</label>
+                        <input type="number" class="mod" id="mod-survival">
+                </div>
+
+                <div class="skill">
+                        <label>Tracking</label>
+                        <input type="number" class="mod" id="mod-tracking">
+                </div>
+
+                <div class="skill">
+                        <label>Catching</label>
+                        <input type="number" class="mod" id="mod-catching">
+                </div>
+
+                <div class="skill">
+                        <label>Empathy</label>
+                        <input type="number" class="mod" id="mod-empathy">
+                </div>
+
+                <div class="skill">
+                        <label>Technology</label>
+                        <input type="number" class="mod" id="mod-technology">
+                </div>
+        </div>
+</div>
+
+<div class="region-boost">
+        <h3>Region Boost</h3>
+        <div id="regionBoostDisplay"></div>
+</div>
+
+<div class="abilities-section">
+        <h3>Abilities</h3>
+        <div id="abilitiesDisplay"></div>
+</div>
+                
+<script src="classes.js"></script>
+<script src="regions.js"></script>
+<script src="app.js"></script>
+<script src="autosave.js"></script>
+</body>
+</html>
