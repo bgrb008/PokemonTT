@@ -10,38 +10,9 @@
   font-display: swap;
 }
 
-html, body{
-  width: 100%;
-  max-width: 100%;
-  height: 100dvh;
-  margin: 0;
-  padding: 0;
-  min-height: 100dvh;
-  overflow-x: hidden;
-}
 
-body:before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100dvh;
-  background-image: url('Pokedex.png');
-  background-size: 100% 100%;
-  background-position: top left;
-  background-repeat: no-repeat;
-  opacity: 0.5;
-  z-index: -1;
-}
 
-body {
-  font-family: "PokemonSolid", sans-serif;
-  padding: 20px;
-  box-sizing: border-box;
-  z-index: -1;  
-  letter-spacing: 1px;
-  }
+
 
 label, h1, h3 {
   color:black;
@@ -54,7 +25,8 @@ label, h1, h3 {
 
 h1 {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 32px;
+  
 }
 
 .pokecoins {
@@ -128,6 +100,11 @@ h1 {
   gap: 0;
   font-size: 24px;
   margin-top: 0;
+  text-shadow: 
+    -1px -1px 0 white,
+     1px -1px 0 white,
+    -1px  1px 0 white,
+     1px  1px 0 white;
 }
 
 #pokeball-selector {
@@ -138,8 +115,7 @@ h1 {
 }
 
 #pokeball-list li {
-  margin-bottom: 5px;
-  margin: 0;
+  margin-bottom: 15px;
   margin-top: 0;
   align-items: center;
   font-family: "PokemonGB";
@@ -157,6 +133,7 @@ h1 {
 .pokeball-name {
   font-family: "PokemonSolid";
   font-size: 22px;
+ 
 }
 
 .pokeball-desc {
@@ -195,6 +172,11 @@ h1 {
   margin-top: 10px;
   font-size: 24px;
   margin-left: 5px;
+  text-shadow:
+    -1px -1px 0 white,
+     1px -1px 0 white,
+    -1px  1px 0 white,
+    1px  1px 0 white;
 }
 
 #potion-selector {
@@ -203,7 +185,7 @@ h1 {
 }
 
 #potion-list li {
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   margin: 0;
   margin-top: 0;
   align-items: center;
@@ -229,13 +211,14 @@ h1 {
   font-family: "PokemonGB";
   font-size: 12px;
   word-break: break-word;
+  margin-bottom: 10px;
 }
 
 .potion-controls {
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .qty-btn {
@@ -271,7 +254,7 @@ h1 {
    flex-direction: row;
    align-items: center;
    gap: 10px;
-   margin-top: -30px;
+   margin-top: -40px;
 }
 
 .conditions-top {
@@ -290,6 +273,11 @@ h1 {
    margin-top: 10px;
    font-size: 24px;
    margin-left: 5px;
+   text-shadow:
+     -1px -1px 0 white,
+      1px -1px 0 white,
+     -1px  1px 0 white,
+     1px  1px 0 white;
 }
 
 #condition-selector {
@@ -298,8 +286,7 @@ h1 {
 }
 
 #condition-list li {
-  margin-bottom: 5px;
-   margin: 0;
+  margin-bottom: 40px;
    margin-top: 0;
    align-items: center;
    font-family: "PokemonGB";
@@ -312,6 +299,7 @@ h1 {
 .condition-item {
    font-size: 16px;
    margin-left: 0;
+   margin-top: 10px;
 }
 
 .condition-name {
@@ -324,6 +312,8 @@ h1 {
    font-family: "PokemonGB";
    font-size: 12px;
    word-break: break-word;
+   margin-bottom: 60px;
+  
 }
 
 .condition-controls {

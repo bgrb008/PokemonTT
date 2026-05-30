@@ -3,11 +3,18 @@
 <head>
         <title>Backpack</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="backpack.css">
 </head>
 <body>
-        <h1>Backpack</h1>
 
+<div class="header">
+        <h1>PokemonTT</h1>
+</div>
+
+
+<div class="middle-section">
+        <div class="content-wrapper">
 <div class="pokecoins">
         <label>Pokecoins</label>
         <input for="pokecoins" id="pokecoins" type="number" value="0">
@@ -31,7 +38,6 @@
         </select>
      </div>
                 <ul id="pokeball-list"></ul>
-        </div>
 </div>
 
 <div class="potions">
@@ -53,7 +59,7 @@
                 </select>
         </div>
         <ul id="potion-list"></ul>
-        
+
 </div>
 
 <div class="conditions">
@@ -69,9 +75,39 @@
                         <option value="Full Heal">Full Heal</option>
                 </select>
         </div>
-        <ul id="condition-list">
+        <ul id="condition-list"></ul>
 </div>
-        
+
+        </div>
+</div>
+
+        <div class="bottom-section">
+
+                <nav class="bottom-nav">
+                        <button class="nav-btn" onclick="window.location.href='index.html'">
+                                <img src="Trainer-icon.png" alt="Trainer" class="nav-icon">
+                                <span>Trainer</span>
+                        </button>
+                        <button class="nav-btn active" onclick="window.location.href='backpack.html'">
+                                <img src="Backpack-icon.png" alt="Backpack" class="nav-icon">
+                                <span>Backpack</span>
+                        </button>
+                        <button class="nav-btn" onclick="window.location.href='pokedex.html'">
+                                <img src="Pokedex-icon.png" alt="Pokedex" class="nav-icon">
+                                <span>Pokedex</span>
+                        </button>
+                        <button class="nav-btn" onclick="window.location.href='team.html'">
+                                <img src="Team-icon.png" alt="Team" class="nav-icon">
+                                <span>Team</span>
+                        </button>
+                        <button class="nav-btn" onclick="window.location.href='badges.html'">
+                                <img src="Badges-icon.png" alt="Badges" class="nav-icon">
+                                <span>badges</span>
+                        </button>
+                </nav>
+
+        </div>
+
 <script src="backpack.js"></script>
 </body>
 </html>

@@ -5,32 +5,28 @@
 <head>
         <title>PokemonTT</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-        
+        <link rel="stylesheet" href="style.css">   
 </head>
 <body>
 
-<h1>PokemonTT</h1>
         
-<div class="top-section">
-        <div class="left-fields">
-                <div class="field">
-                        <label>Trainer Name:</label>
-                        <input id="trainerName" placeholder="Enter Name">
-                </div>
-                <div class="age">
-                        <label>Age:</label>
-                        <input id="age" placeholder="e.g. 25">
-                </div>
+<div class="header">
+        <h1>PokemonTT</h1>
+</div>   
+
+<div class="middle-section"> 
+        <div class="content-wrapper">
+        <div class="field">
+                <label>Trainer Name:</label>
+                <input id="trainerName" placeholder="Enter Name">
         </div>
         
-        <div class="trainers-action-container">
-                <button class="action-button" onclick="window.location.href='backpack.html'">Backpack</button>
-                <button class="action-button" onclick="window.location.href='pokedex.html'">Pokedex</button>
-                <button class="action-button" onclick="window.location.href='party.html'">Party</button>
-                <button class="action-button" onclick="window.location.href='badges.html'">Badges</button>
+        <div class="age">
+                <label>Age:</label>
+                <input id="age" placeholder="e.g. 25">
         </div>
-</div>
+
+        
 
 <div class="field">
         <label for="region">Home Region:</label>
@@ -172,6 +168,40 @@
         <h3>Abilities</h3>
         <div id="abilitiesDisplay"></div>
 </div>
+                
+</div>
+        
+</div>
+
+
+
+<div class="bottom-section">
+
+        <nav class="bottom-nav">
+                <button class="nav-btn active" onclick="window.location.href='index.html'">
+                        <img src="Trainer-icon.png" alt="Trainer" class="nav-icon">
+                        <span>Trainer</span>
+                </button>
+                <button class="nav-btn" onclick="window.location.href='backpack.html'">
+                        <img src="Backpack-icon.png" alt="Backpack" class="nav-icon">
+                        <span>Backpack</span>
+                </button>
+                <button class="nav-btn" onclick="window.location.href='pokedex.html'">
+                        <img src="Pokedex-icon.png" alt="Pokedex" class="nav-icon">
+                        <span>Pokedex</span>
+                </button>
+                <button class="nav-btn" onclick="window.location.href='team.html'">
+                        <img src="Team-icon.png" alt="Team" class="nav-icon">
+                        <span>Team</span>
+                </button>
+                <button class="nav-btn" onclick="window.location.href='badges.html'">
+                        <img src="Badges-icon.png" alt="Badges" class="nav-icon">
+                        <span>badges</span>
+                </button>
+        </nav>
+
+</div>
+
                 
 <script src="classes.js"></script>
 <script src="regions.js"></script>
