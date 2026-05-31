@@ -1,1 +1,96 @@
-css
+@font-face {
+  font-family: "PokemonGB";
+  src: url("PokemonGB.woff") format("woff");
+  font-display: swap;
+}
+
+.header {
+  height: auto;
+  padding: 8px;
+}
+
+.add-pokemon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: -10px;
+  padding-bottom: 20px;
+  margin-left: -115px;
+}
+
+#add-pokemon-button {
+  width: 130px;
+  height: 27px;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 10px;
+  white-space: nowrap;
+  font-family: "PokemonGB";
+  flex-shrink: 0;
+}
+
+#pokemon-name {
+  width: 145px;
+  height: 10px;
+  padding: 8px;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: 10px
+}
+
+.upper-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.pokemon-display {
+  width: 200px;
+  height: 220px;
+  border: 8px solid #aaa7ad;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  margin-top: -20px;  
+}
+
+.pokemon-display img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.pokemon-list {
+  width: 200px;
+  height: 220px;
+  border: 8px solid #aaa7ad;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-top: -20px;
+  overflow-y: auto;
+}
+
+.middle-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 335px;
+  height: 220px;
+  border: 8px solid #aaa7ad;
+  border-radius: 10px;
+  margin-left: 20px;
+}
