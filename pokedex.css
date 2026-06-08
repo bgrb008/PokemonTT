@@ -17,19 +17,33 @@
   margin-top: -10px;
   padding-bottom: 20px;
   margin-left: -115px;
+  font-size: 12px;
 }
 
 #add-pokemon-button {
-  width: 130px;
+  width: 145px;
   height: 27px;
   background-color: #333;
   color: white;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 10px;
+  font-size: 12px;
   white-space: nowrap;
   font-family: "PokemonGB";
   flex-shrink: 0;
+}
+
+#status-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
 }
 
 #pokemon-name {
@@ -38,7 +52,20 @@
   padding: 8px;
   border: 2px solid black;
   border-radius: 10px;
-  font-size: 10px
+  font-size: 10px;
+}
+
+#status-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
 }
 
 .upper-section {
@@ -55,7 +82,8 @@
 .pokemon-display {
   width: 200px;
   height: 220px;
-  border: 8px solid #aaa7ad;
+  border: 8px solid black;
+  background-color: #aaa7ad;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -73,11 +101,32 @@
 .pokemon-list {
   width: 200px;
   height: 220px;
-  border: 8px solid #aaa7ad;
+  border: 8px solid black;
+  background-color: #aaa7ad;
   border-radius: 10px;
   margin-right: 10px;
   margin-top: -20px;
   overflow-y: auto;
+  font-family: "PokemonGB";
+  font-size: 10px;
+}
+
+.ball-icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.ball-icon.seen {
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+
+.ball-icon.caught{
+  filter: grayscale(0%);
+  opacity: 1;
 }
 
 .middle-section {
@@ -90,7 +139,10 @@
   margin-bottom: 10px;
   width: 335px;
   height: 220px;
-  border: 8px solid #aaa7ad;
+  border: 8px solid black;
+  background-color: #aaa7ad;
   border-radius: 10px;
   margin-left: 20px;
+  font-size: 10px;
+  font-family: "PokemonGB";
 }
