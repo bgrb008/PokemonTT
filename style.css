@@ -116,6 +116,7 @@
                 border: 2px solid black;
                 border-radius: 10px;
                 height: 10px;
+                font-size: 16px;
         }
 
         .trainers-action-container {
@@ -160,6 +161,7 @@
                 padding: 8px;
                 border: 2px solid black;
                 border-radius: 10px;
+                font-size: 16px;
         } 
 
         .subclass {
@@ -195,6 +197,7 @@
                 border: 2px solid black;
                 border-radius: 10px;
                 height: 10px;
+                font-size: 16px;
         }
 
         .additional-info {
@@ -222,6 +225,7 @@
                 border-radius: 10px;
                 border: 2px solid black;
                 margin-bottom: 10px;
+                font-size: 16px;
         }
 
         #add-xp-button {
@@ -236,6 +240,7 @@
                 white-space: nowrap;
                 flex-shrink: 0;
                 font-family: "PokemonGb";
+                
         }
 
         .xp-container {
