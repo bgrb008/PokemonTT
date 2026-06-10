@@ -162,6 +162,8 @@ document.getElementById('confirm-delete').addEventListener('click', () => {
     document.getElementById('delete-modal').style.display = 'none';
     pokemonToDelete.remove();
     pokemonToDelete = null;
+    const displayImg = document.querySelector('.pokemon-display img');
+    if (displayImg) displayImg.remove();
     document.querySelector('.pokemon-details').innerHTML = '';
   }
 });
