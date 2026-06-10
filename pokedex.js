@@ -68,8 +68,10 @@ function attachClickHandler(li) {
       const description = descEntry ? descEntry.flavor_text : 'No description available';
     const details = document.querySelector('.pokemon-details');
     details.innerHTML =`
+    <div style="display: flex; justify-content: space-between; align-items: center;">
       <h3>${data.name}</h3>
-      <button id="delete-btn" onclick="showDeleteModal()"><img src="Trash_icon.png" alt="Remove"> Remove</button>
+      <button id="delete-btn" onclick="showDeleteModal()"><img src="Trash_icon.png"></button>
+    </div>
       <p>Number: ${data.id}</p>
       <p>Type: ${types}</p>
       <p>Stats: ${stats}</p>
@@ -117,7 +119,7 @@ document.getElementById('confirm-add').addEventListener('click', () => {
   const li = document.createElement('li');
   
   const ball = document.createElement('img');
-  ball.src = 'Pokedex-icon.png';
+  ball.src = 'caughticon.png';
   ball.className = status === 'caught' ? 'ball-icon caught' : 'ball-icon seen';
 
   attachBallHandler(li, ball);

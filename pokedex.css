@@ -47,6 +47,18 @@
   color: white;
 }
 
+#delete-btn img {
+  height: 45px;
+  width: 45px;
+}
+
+#delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
 #pokemon-name {
   width: 145px;
   height: 10px;
@@ -54,6 +66,7 @@
   border: 2px solid black;
   border-radius: 10px;
   font-size: 10px;
+  
 }
 
 #status-modal {
@@ -89,7 +102,7 @@
   width: 200px;
   height: 220px;
   border: 8px solid black;
-  background-color: #aaa7ad;
+  background-color: #48494b;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -108,13 +121,14 @@
   width: 200px;
   height: 220px;
   border: 8px solid black;
-  background-color: #aaa7ad;
+  background-color: #48494b;
   border-radius: 10px;
   margin-right: 10px;
   margin-top: -20px;
   overflow-y: auto;
   font-family: "PokemonGB";
   font-size: 10px;
+  color: white;
 }
 
 .ball-icon {
@@ -147,9 +161,10 @@
   width: 335px;
   height: 220px;
   border: 8px solid black;
-  background-color: #aaa7ad;
+  background-color: #48494b;
   border-radius: 10px;
   margin-left: 20px;
   font-size: 10px;
   font-family: "PokemonGB";
+  color: white;
 }
