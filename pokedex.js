@@ -2,6 +2,12 @@ let currentPokemonData = null;
 
 let pokedex = [];
 
+let pokemonToDelete = null;
+
+function showDeleteModal(){
+  document.getElementById('delete-modal').style.display = 'flex';
+}
+
 function savePokedex() {
   localStorage.setItem('pokedex', JSON.stringify(pokedex)
   ); 
@@ -63,6 +69,7 @@ function attachClickHandler(li) {
     const details = document.querySelector('.pokemon-details');
     details.innerHTML =`
       <h3>${data.name}</h3>
+      <button id="delete-btn" onclick="showDeleteModal()"><img src="Trash_icon.png" alt="Remove"> Remove</button>
       <p>Number: ${data.id}</p>
       <p>Type: ${types}</p>
       <p>Stats: ${stats}</p>
@@ -71,6 +78,10 @@ function attachClickHandler(li) {
       <p>Resistances: ${[...resistances].join(', ')}</p>
       <p>Immunities: ${[...immunities].join(', ')}</p>
           `;
+      
+      pokemonToDelete = li;
+      document.getElementById('delete-modal-text').textContent = `Remove ${data.name} from Pokedex?`;
+      
         });
       });
     });
@@ -141,6 +152,23 @@ document.getElementById('cancel-add').addEventListener('click', () => {
   document.getElementById('pokemon-name').value = '';
 });
 
+document.getElementById('confirm-delete').addEventListener('click', () => {
+  if (pokemonToDelete) {
+    const index = pokedex.findIndex(p => p.id == pokemonToDelete.dataset.id);
+    if (index !== -1) pokedex.splice(index, 1);
+    savePokedex();
+    document.getElementById('delete-modal').style.display = 'none';
+    pokemonToDelete.remove();
+    pokemonToDelete = null;
+    document.querySelector('.pokemon-details').innerHTML = '';
+  }
+});
+
+document.getElementById('cancel-delete').addEventListener('click', () => {
+  document.getElementById('delete-modal').style.display = 'none';
+  pokemonToDelete = null;
+});
+
 window.addEventListener('load', () => {
   const savedPokedex = localStorage.getItem('pokedex');
 
@@ -149,7 +177,7 @@ window.addEventListener('load', () => {
     pokedex.forEach(pokemon => {
       const li = document.createElement('li');
       const ball = document.createElement('img');
-      ball.src = 'Pokedex-icon.png';
+      ball.src = 'caughticon.png';
       ball.className = pokemon.caught ? 'ball-icon caught' : 'ball-icon seen';
       attachBallHandler(li, ball);
       const label = document.createElement('span');
