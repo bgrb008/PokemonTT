@@ -63,7 +63,6 @@
   width: 135px;
   height: 10px;
   padding: 8px;
-  border: 2px solid black;
   border-radius: 10px;
   font-size: 16px;
   
@@ -168,3 +167,5 @@
   font-family: "PokemonGB";
   color: white;
 }
+
+
