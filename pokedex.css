@@ -168,4 +168,8 @@
   color: white;
 }
 
-
+.pokemon-details h3 {
+  color: white;
+  font-size: 16px;
+  text-shadow: none;
+}
