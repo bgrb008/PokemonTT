@@ -4,6 +4,12 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "PokemonSolid";
+  src: url("pokemonfont.woff") format("woff");
+  font-display: swap;
+}
+
 .header {
   height: auto;
   padding: 8px;
@@ -170,10 +176,9 @@
 
 .pokemon-details h3 {
   color: white;
-  font-size: 16px;
+  font-size: 24px;
   text-shadow: none;
+  letter-spacing: .5px;
 }
 
-.pokemon-details p {
-  font-size: 14px;
-}
+
