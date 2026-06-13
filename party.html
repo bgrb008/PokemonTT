@@ -1,1 +1,94 @@
-party
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Party</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="party.css">
+    </head> 
+
+   <body>
+       <div class="header">
+            <h1>PokemonTT</h1>
+      </div>
+
+     <div class="middle-section">
+
+         <div class="party-card burned" onclick="toggleCard(this)">
+
+             <div class="card-collapsed">
+                 <img class="sprite" src="charizard.png" />
+                 <div class="top-row">
+                     <span class="name">Charizard</span>
+                     <span class="gender">&#9794;</span>
+                     <span class="level">Lv. 100</span>
+                
+         </div>
+
+         <div class="hp-bar">
+             <div class="fill" style="width: 80%"></div>
+         </div>
+         <div class="hp-text">HP: 122 / 150</div>
+
+</div>
+
+<div class="card-expanded">
+
+    <div class="xp-bar"></div>
+
+    <div class="stat-row">
+        Level <button>-</button> 52 <button>+</button>
+    </div>
+
+    <div class="stat-row">
+        HP <button>-</button> 122/150 <button>+</button>
+    </div>
+
+    <div class="moves">
+        Flamethrower 10/15 +-
+        Fly 15/15 +-
+    </div>
+
+    <select class="conditions">
+        <option>None</option>
+        <option>Burned</option>
+        <option>Poisoned</option>
+        <option>Sleep</option>
+        <option>Paralyzed</option>
+        <option>Frozen</option>
+        <option>Confused</option>
+        
+    </select>
+
+   </div>
+</div>
+
+         <div class="bottom-section">
+            <nav class="bottom-nav">
+                              <button class="nav-btn" onclick="window.location.href='index.html'">
+                                      <img src="Trainer-icon.png" alt="Trainer" class="nav-icon">
+                                      <span>Trainer</span>
+                              </button>
+                              <button class="nav-btn" onclick="window.location.href='backpack.html'">
+                                      <img src="Backpack-icon.png" alt="Backpack" class="nav-icon">
+                                      <span>Backpack</span>
+                              </button>
+                              <button class="nav-btn active" onclick="window.location.href='pokedex.html'">
+                                      <img src="Pokedex-icon.png" alt="Pokedex" class="nav-icon">
+                                      <span>Pokedex</span>
+                              </button>
+                              <button class="nav-btn" onclick="window.location.href='party.html'">
+                                      <img src="Team-icon.png" alt="Team" class="nav-icon">
+                                      <span>Team</span>
+                              </button>
+                              <button class="nav-btn" onclick="window.location.href='badges.html'">
+                                      <img src="Badges-icon.png" alt="Badges" class="nav-icon">
+                                      <span>badges</span>
+                              </button>
+                      </nav>
+
+
+         </div>
+<script src="party.js"></script>
+</body>      
+</html>
