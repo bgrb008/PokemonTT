@@ -17,24 +17,29 @@
          <div class="party-card burned" onclick="toggleCard(this)">
 
              <div class="card-collapsed">
-                 <img class="sprite" src="charizard.png" />
+                 <img class="sprite" src="charizard.png" alt="Charizard">
                  <div class="top-row">
                      <span class="name">Charizard</span>
                      <span class="gender">&#9794;</span>
                      <span class="level">Lv. 100</span>
                 
-         </div>
+             </div>
 
-         <div class="hp-bar">
-             <div class="fill" style="width: 80%"></div>
-         </div>
-         <div class="hp-text">HP: 122 / 150</div>
+             <div class="hp-bar">
+                <div class="fill hp-green" style="width: 80%"</div>
+             </div>
+                 
+             <div class="hp-text">
+                HP: 122 / 150
+             </div>
 
 </div>
 
 <div class="card-expanded">
 
-    <div class="xp-bar"></div>
+    <div class="xp-bar">
+        <div class="xp-fill"></div>
+    </div>
 
     <div class="stat-row">
         Level <button>-</button> 52 <button>+</button>
@@ -45,8 +50,18 @@
     </div>
 
     <div class="moves">
-        Flamethrower 10/15 +-
-        Fly 15/15 +-
+
+        <div class="move-row">
+            <span>Flamethrower 10/15</span>
+            <button>-</button>
+            <button>+</button>
+        </div>
+
+        <div class="move-row">
+            <span>Fly 15/15</span>
+            <button>-</button>
+            <button>+</button>
+        </div>
     </div>
 
     <select class="conditions">
@@ -63,6 +78,7 @@
    </div>
 </div>
 
+</div>
          <div class="bottom-section">
             <nav class="bottom-nav">
                               <button class="nav-btn" onclick="window.location.href='index.html'">
@@ -73,17 +89,17 @@
                                       <img src="Backpack-icon.png" alt="Backpack" class="nav-icon">
                                       <span>Backpack</span>
                               </button>
-                              <button class="nav-btn active" onclick="window.location.href='pokedex.html'">
+                              <button class="nav-btn" onclick="window.location.href='pokedex.html'">
                                       <img src="Pokedex-icon.png" alt="Pokedex" class="nav-icon">
                                       <span>Pokedex</span>
                               </button>
-                              <button class="nav-btn" onclick="window.location.href='party.html'">
+                              <button class="nav-btn active" onclick="window.location.href='party.html'">
                                       <img src="Team-icon.png" alt="Team" class="nav-icon">
                                       <span>Team</span>
                               </button>
                               <button class="nav-btn" onclick="window.location.href='badges.html'">
                                       <img src="Badges-icon.png" alt="Badges" class="nav-icon">
-                                      <span>badges</span>
+                                      <span>Badges</span>
                               </button>
                       </nav>
 
