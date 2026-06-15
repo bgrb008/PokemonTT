@@ -14,9 +14,10 @@
 
      <div class="middle-section">
 
-         <div class="party-card burned" onclick="toggleCard(this)">
+         <div class="party-card burned">
 
-             <div class="card-collapsed">
+             <div class="card-collapsed"
+                onclick="toggleCard(this.closest('.party-card'))">
                  <img class="sprite" src="charizard.png" alt="Charizard">
                  <div class="top-row">
                      <span class="name">Charizard</span>
@@ -26,11 +27,12 @@
              </div>
 
              <div class="hp-bar">
-                <div class="fill hp-green" style="width: 80%"</div>
+                <div class="fill hp-green" style="width: 97%">
+                </div>
              </div>
                  
              <div class="hp-text">
-                HP: 122 / 150
+                HP: 145 / 150
              </div>
 
 </div>
@@ -41,20 +43,62 @@
         <div class="xp-fill"></div>
     </div>
 
-    <div class="stat-row">
-        Level <button>-</button> 52 <button>+</button>
+    <div class="stat-row xp-row">
+        <span>XP</span>
+
+        <span class="xp-text">
+            320/400
+        </span>
+
+        <input type="number"
+               class="xp-input"
+               placeholder="XP">
+
+        <button onclick="addXP(this)">
+            add
+        </button>
+        
     </div>
 
-    <div class="stat-row">
-        HP <button>-</button> 122/150 <button>+</button>
+    <div class="stat-row hp-row">
+        <span>HP</span>
+
+        <span class="hp-number"
+              data-current="145"
+              data-max="150">
+            145/150
+        </span>
+
+        <input type="number"
+               class="hp-input"
+               placeholder="HP">
+
+        <button onclick="changeHP(this, 'damage')">
+            Damage
+        </button>
+
+        <button onclick="changeHP(this, 'heal')">
+            Heal
+        </button>
     </div>
 
     <div class="moves">
 
         <div class="move-row">
-            <span>Flamethrower 10/15</span>
-            <button>-</button>
-            <button>+</button>
+            <span class="move-name">
+                Flamethrower
+            </span>
+            <button onclick="changePP(this, -1)">
+                -
+            </button>
+            <span class="pp-number"
+                data-current="10"
+                data-max="15">
+                10/15
+            </span>
+            <button onclick="changePP(this, 1)">
+                +
+            </button>
         </div>
 
         <div class="move-row">
