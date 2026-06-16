@@ -43,6 +43,21 @@
         <div class="xp-fill"></div>
     </div>
 
+    <div class="stat-row hp-row">
+
+        <input type="number"
+               class="hp-input"
+               placeholder="HP">
+
+        <button onclick="changeHP(this, 'damage')">
+            Damage
+        </button>
+
+        <button onclick="changeHP(this, 'heal')">
+            Heal
+        </button>
+    </div>
+
     <div class="stat-row xp-row">
         <span>XP</span>
 
@@ -60,27 +75,7 @@
         
     </div>
 
-    <div class="stat-row hp-row">
-        <span>HP</span>
-
-        <span class="hp-number"
-              data-current="145"
-              data-max="150">
-            145/150
-        </span>
-
-        <input type="number"
-               class="hp-input"
-               placeholder="HP">
-
-        <button onclick="changeHP(this, 'damage')">
-            Damage
-        </button>
-
-        <button onclick="changeHP(this, 'heal')">
-            Heal
-        </button>
-    </div>
+    
 
     <div class="moves">
 

@@ -1,10 +1,27 @@
+@font-face {
+  font-family: "PokemonGB";
+  src: url(PokemonGB.woff) format("woff");
+  font-display: swap;
+}
+
+.middle-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: "PokemonGB";
+  color: white
+}
+
 .card-expanded {
   display: none;
   margin-top: 10px;
+  
 }
 
 .party-card.expanded .card-expanded {
   display: block;
+  
 }
 
 .party-card {
@@ -12,15 +29,26 @@
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
+  width: 350px;
+  border: 8px solid black;
+  background-color: #48494b;
+}
+
+.name {
+  font-size: 20px;
+  margin-right: 10px;
 }
 
 .hp-bar {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
   height: 10px;
   background: #444;
-  border radius: 10px;
+  border-radius: 10px;
   overflow: hidden;
   margin-bottom: 15px;
+  align-items: right;
 }
 
 .hp-fill {
@@ -29,11 +57,19 @@
   background: gold;
 }
 
+.hp-text {
+  font-size: 8px;
+  margin-top: -5px;
+  text-align: center;
+  
+}
+
 .stat-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  size: 10px;
 }
 
 .stat-row button {
@@ -73,4 +109,9 @@
 
 .hp-red {
   background: crimson;
+}
+
+.gender {
+  height: 35px;
+  width: 35px;
 }
