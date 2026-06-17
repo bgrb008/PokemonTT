@@ -84,19 +84,23 @@ function changePP(button, amount) {
 
 //condition function
 
-function updateCondition(select) {
-  alert("workin");
+function updateConditions(select) {
   
   const card = select.closest(".party-card");
 
   const condition = select.value.toLowerCase();
-  console.log(condition);
 
   card.classList.remove(
-    "burned", "poisoned", "sleep", "paralyzed", "frozen", "confused"
+    "burned",
+    "poisoned", 
+    "sleep",
+    "paralyzed",
+    "frozen", 
+    "confused"
   );
 
-  if (condition !== "none") {card.classList.add(condition);
+  if (condition !== "none") {
+    card.classList.add(condition);
   }
   
 }
@@ -115,7 +119,7 @@ function addXP(button) {
 
   const levelInput = card.querySelector(".level");
   let currentLevel = parseInt(levelInput.textContent.replace("Lvl.", ""));
-  let xpNeeded = Math.floor(50 * Math.pow(1.25, currentLevel - 1));
+  let xpNeeded = 50 * currentLevel;
 
   if (currentXP >= xpNeeded) {
     currentLevel += 1;
@@ -138,7 +142,7 @@ function updateXPBar(card) {
 
   let currentLevel = parseInt(levelInput.textContent.replace("Lvl.", ""));
 
-  let xpNeeded = Math.floor(50 * Math.pow(1.25, currentLevel - 1));
+  let xpNeeded = 50 * currentLevel;
 
   let currentXP = parseInt(xpText.dataset.current) || 0;
   let percentage = (currentXP / xpNeeded) * 100;
