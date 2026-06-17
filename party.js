@@ -130,7 +130,6 @@ function addXP(button) {
 
 function updateXPBar(card) {
 
-  card.querySelector(".xp-text").dataset.current = currentXP;
   
   const levelInput = card.querySelector(".level");
   const barFill = card.querySelector(".xp-fill");
