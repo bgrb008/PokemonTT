@@ -75,3 +75,25 @@ function changePP(button, amount) {
   ppNumber.textContent = `${currentPP} / ${maxPP}`;
   
 }
+
+//xp bar function
+
+let currenXP = 0;
+
+function updateXPBar() {
+  const levelInput = document.getElementById("level");
+  const barFill = document.getElementById("xp-fill");
+  const xpText = document.getElementById("xp-text");
+
+  let currentLevel = parseInt(levelInput.value) || 1;
+
+  let xpNeeded = Math.floor(50 * Math.pow(1.25, currentLevel - 1));
+
+  let percentage = (currentXP / xpNeeded) * 100;
+
+  barFill.style.width = percentage + "%";
+  xpText.innerText = `${currentXP} / ${xpNeeded} XP`;
+  
+}
+
+updateXPBar();
