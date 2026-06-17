@@ -14,7 +14,7 @@
 
      <div class="middle-section">
 
-         <div class="party-card burned">
+         <div class="party-card">
             
              <div class="card-colapsed"
                 onclick="toggleCard(this.closest('.party-card'))">
@@ -123,7 +123,7 @@
             Conditions
         </span>
         
-        <select class="conditions">
+        <select class="conditions" onchange="updateConditions(this)">
             <option>None</option>
             <option>Burned</option>
             <option>Poisoned</option>

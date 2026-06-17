@@ -68,11 +68,31 @@ function changePP(button, amount) {
   currentPP += amount;
 
   if (currentPP < 0) currentPP = 0;
+  if (currentPP === 0) {
+    card.classList.add("fainted");
+  } else {
+    card.classList.remove("fainted");
+  }
   if (currentPP > maxPP) currentPP = maxPP;
 
   ppNumber.dataset.current = currentPP;
 
   ppNumber.textContent = `${currentPP} / ${maxPP}`;
+  
+}
+
+//condition function
+
+function updateCondition(select) {
+  const card = select.closest(".party-card");
+
+  card.classList.remove(
+    "burned", "poisoned", "sleep", "paralyzed", "frozen", "confused"
+  );
+
+  const condition = select.value.toLowerCase();
+  if (condition !== "none. {card.classList.add(condition);
+  });
   
 }
 
