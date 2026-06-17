@@ -78,12 +78,12 @@ function changePP(button, amount) {
 
 //xp bar function
 
-let currenXP = 0;
+let currentXP = 0;
 
 function updateXPBar() {
-  const levelInput = document.getElementById("level");
-  const barFill = document.getElementById("xp-fill");
-  const xpText = document.getElementById("xp-text");
+  const levelInput = card.querySelector("level");
+  const barFill = card.querySelector("xp-fill");
+  const xpText = card.querySelector("xp-text");
 
   let currentLevel = parseInt(levelInput.value) || 1;
 
