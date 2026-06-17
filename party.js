@@ -81,6 +81,8 @@ function changePP(button, amount) {
 let currentXP = 0;
 
 function updateXPBar() {
+  const card = button.closest(".party-card");
+  
   const levelInput = card.querySelector("level");
   const barFill = card.querySelector("xp-fill");
   const xpText = card.querySelector("xp-text");
@@ -93,7 +95,8 @@ function updateXPBar() {
 
   barFill.style.width = percentage + "%";
   xpText.innerText = `${currentXP} / ${xpNeeded} XP`;
-  
+
+  xpInput.value = "";
 }
 
 updateXPBar();
