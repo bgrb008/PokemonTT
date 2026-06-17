@@ -1,3 +1,5 @@
+//XP system
+
 let currentXP = 0;
 
 
@@ -43,6 +45,7 @@ parseInt(document.getElementById('xp-amount').value) || 0;
     saveData();
 });
 
+// character sheet references
 
 const classSelect = document.getElementById("class");
 const regionSelect = document.getElementById("region");
@@ -51,8 +54,12 @@ const statsDisplay = document.getElementById("statsDisplay");
 const regionBoostDisplay = document.getElementById("regionBoostDisplay");
 const abilitiesDisplay = document.getElementById("abilitiesDisplay");
 
+//update character sheet event listeners
+
 classSelect.addEventListener("change", updateCharacterSheet); 
 regionSelect.addEventListener("change", updateCharacterSheet);
+
+//stat calculation system
 
 function calculateStats(classData, regionData) {
     const result = classData ? { ...classData.stats } : {};
@@ -65,6 +72,8 @@ function calculateStats(classData, regionData) {
 
     return result;
 }
+
+//character sheet update system
 
 function updateCharacterSheet() {
 
@@ -93,6 +102,8 @@ function updateCharacterSheet() {
     }
     }
 
+//region boost system
+    
         regionBoostDisplay.innerHTML = "";
 if (regionData && regionData.boosts) {
     regionData.boosts.forEach((boostItem) => {
@@ -115,7 +126,8 @@ if (regionData && regionData.boosts) {
     regionBoostDisplay.innerHTML = "";
 }
 
-
+//class ability display system
+    
         abilitiesDisplay.innerHTML = "";
 
  if (classData && classData.abilities) {  
