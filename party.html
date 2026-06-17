@@ -8,9 +8,9 @@
     </head> 
 
    <body>
-       <div class="header">
+        <div class="header">
             <h1>PokemonTT</h1>
-      </div>
+        </div>
 
      <div class="middle-section">
 
@@ -44,45 +44,49 @@
 
 <div class="card-expanded">
 
-    <div class="xp-bar">
-        <div class="xp-fill"></div>
-    </div>
-
     <div class="stat-row hp-row">
 
         <input type="number"
                class="hp-input"
                placeholder="HP">
 
-        <button onclick="changeHP(this, 'damage')">
+        <button id="damage-button" onclick="changeHP(this, 'damage')">
             Damage
         </button>
 
-        <button onclick="changeHP(this, 'heal')">
+        <button id="heal-button" onclick="changeHP(this, 'heal')">
             Heal
         </button>
     </div>
 
     <div class="stat-row xp-row">
-        <span>XP</span>
+
+        <div class="xp-bar">
+            <div class="xp-fill"></div>
+        </div>
 
         <span class="xp-text">
-            320/400
+            XP:320/400
         </span>
 
-        <input type="number"
-               class="xp-input"
-               placeholder="XP">
+        <div class="xp-adder">
+            <input type="number"
+                class="xp-input"
+                placeholder="XP">
 
-        <button onclick="addXP(this)">
-            add
-        </button>
+            <button id="xp-button" onclick="addXP(this)">
+                Add
+            </button>
+        </div>
         
     </div>
 
     
 
     <div class="moves">
+        <span class="moves-header">
+            Moves
+        </span>
 
         <div class="move-row">
             <span class="move-name">

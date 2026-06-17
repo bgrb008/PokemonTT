@@ -44,7 +44,7 @@
 
 .party-card {
   position: relative;
-  background: #2b2b2b;
+  background: #48494b;
   padding: 18px;
   border: 8px solid black;
   margin-bottom: 10px;
@@ -114,20 +114,94 @@
   margin-left: 2;
 }
 
-.stat-row {
+.stat-row hp-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  size: 10px;
+  margin-top: 20%;
 }
 
-.stat-row button {
-  width: 30px;
+.hp-input {
+  width: 100px;
+  height: 20px;
+  font-size: 16px;
+  margin-bottom: 5%;
+}
+
+#damage-button {
+  width: 75px;
   height: 30px;
-  border: none;
   border-radius: 10px;
   font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: 1px solid white;
+  margin-right: 0;
+}
+
+#heal-button {
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: 1px solid white;
+  margin-left: 0;
+}
+
+.xp-bar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 10px;
+  background: #444;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 15px
+}
+
+.xp-fill {
+  width: 65%;
+  height: 100%;
+  background: limegreen;
+}
+
+.xp-text {
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+  margin-top: -5px;
+}
+
+.xp-adder {
+  display: flex;
+}
+
+.xp-input {
+  width: 100px;
+  height: 20px;
+  font-size: 16px;
+  margin-bottom: 5%;
+}
+
+#xp-button {
+  width: 75px;
+  height: 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: 1px solid white;
+  margin-right: 0
+}
+
+.moves-header {
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  
 }
 
 .moves {
