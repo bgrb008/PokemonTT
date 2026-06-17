@@ -98,6 +98,4 @@ function updateXPBar(card) {
 
   xpInput.value = "";
   
-  updateXPBar();
-
 }
