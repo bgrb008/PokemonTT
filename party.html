@@ -34,7 +34,7 @@
                     </div>
                 </div>
                  
-                <div class="hp-text">
+                <div class="hp-number" data-current="145" data-max="150">
                     HP:145/150
                 </div>
 
@@ -50,11 +50,11 @@
                class="hp-input"
                placeholder="HP">
 
-        <button id="damage-button" onclick="changeHP(this, 'damage')">
+        <button class="damage-button" onclick="changeHP(this, 'damage')">
             Damage
         </button>
 
-        <button id="heal-button" onclick="changeHP(this, 'heal')">
+        <button class="heal-button" onclick="changeHP(this, 'heal')">
             Heal
         </button>
     </div>
@@ -62,7 +62,7 @@
     <div class="stat-row xp-row">
 
         <div class="xp-bar">
-            <div class="xp-fill"></div>
+            <div class="xp-fill" style="width: 80%"></div>
         </div>
 
         <span class="xp-text">
@@ -74,7 +74,7 @@
                 class="xp-input"
                 placeholder="XP">
 
-            <button id="xp-button" onclick="addXP(this)">
+            <button class="xp-button" onclick="addXP(this)">
                 Add
             </button>
         </div>
@@ -92,37 +92,48 @@
             <span class="move-name">
                 Flamethrower
             </span>
-            <button onclick="changePP(this, -1)">
-                -
-            </button>
+            <span class="move-type">
+                Fire
+            </span>
+            
+        </div>
+
+        <div class="move-pp">
+            <span class="move-power">
+                PWR:90
+            </span>
             <span class="pp-number"
                 data-current="10"
                 data-max="15">
                 10/15
             </span>
-            <button onclick="changePP(this, 1)">
+            <button class="pp-minus" onclick="changePP(this, -1)">
+                -
+            </button>
+            <button class ="pp-plus" onclick="changePP(this, 1)">
                 +
             </button>
         </div>
 
-        <div class="move-row">
-            <span>Fly 15/15</span>
-            <button>-</button>
-            <button>+</button>
-        </div>
     </div>
 
-    <select class="conditions">
-        <option>None</option>
-        <option>Burned</option>
-        <option>Poisoned</option>
-        <option>Sleep</option>
-        <option>Paralyzed</option>
-        <option>Frozen</option>
-        <option>Confused</option>
-        
-    </select>
 
+    <div class="conditions-row">
+        <span class="conditions-label">
+            Conditions
+        </span>
+        
+        <select class="conditions">
+            <option>None</option>
+            <option>Burned</option>
+            <option>Poisoned</option>
+            <option>Sleep</option>
+            <option>Paralyzed</option>
+            <option>Frozen</option>
+            <option>Confused</option>
+        
+        </select>
+    </div>
    </div>
 </div>
 

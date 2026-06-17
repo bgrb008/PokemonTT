@@ -106,7 +106,7 @@
   background: gold;
 }
 
-.hp-text {
+.hp-number {
   display: flex;
   justify-content: center;
   font-size: 12px;
@@ -129,7 +129,7 @@
   margin-bottom: 5%;
 }
 
-#damage-button {
+.damage-button {
   width: 75px;
   height: 30px;
   border-radius: 10px;
@@ -140,7 +140,7 @@
   margin-right: 0;
 }
 
-#heal-button {
+.heal-button {
   width: 80px;
   height: 30px;
   border-radius: 10px;
@@ -186,7 +186,7 @@
   margin-bottom: 5%;
 }
 
-#xp-button {
+.xp-button {
   width: 75px;
   height: 30px;
   border-radius: 10px;
@@ -201,6 +201,8 @@
   display: flex;
   justify-content: center;
   font-size: 16px;
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
   
 }
 
@@ -209,6 +211,69 @@
   flex-direction: column;
   gap: 8px;
   margin: 12px 0;
+}
+
+.move-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+.move-name {
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.move-type {
+  font-size: 10px;
+  margin-left: 10px;
+}
+
+.move-pp {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.move-power {
+  font-size: 10px;
+  margin-right: 10px;
+}
+
+.pp-number {
+  font-size: 10px;
+  margin-left: 10px;
+}
+
+.pp-minus {
+  width: 50px;
+  height: 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: 1px solid white;
+  margin-right: 0;
+}
+
+.pp-plus {
+  width: 50px;
+  height: 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: 1px solid white;
+  margin-left: 0
+}
+
+.conditions-label {
+  display: flex;
+  justify-content: center;
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+  margin-bottom: 2%;
 }
 
 .conditions {

@@ -15,7 +15,6 @@ function changeHP(button, type) {
 
   const hpNumber = card.querySelector(".hp-number");
   const hpFill = card.querySelector(".hp-bar .fill");
-  const hpText = card.querySelector(".hp-text");
   const hpInput = card.querySelector(".hp-input");
 
   let currentHP = parseInt(hpNumber.dataset.current);
@@ -40,7 +39,6 @@ function changeHP(button, type) {
   hpNumber.dataset.current = currentHP;
 
   hpNumber.textContent = `${currentHP} / ${maxHP}`
-  hpText.textContent = `HP: ${currentHP} / ${maxHP}`;
 
   const hpPercent = (currentHP / maxHP) * 100;
   hpFill.style.width = hpPercent + "%";
@@ -60,8 +58,8 @@ function changeHP(button, type) {
 
 //move pp function
 function changePP(button, amount) {
-  const moveRow = button.closest(".move-row");
-  const ppNumber = moveRow.querySelector(".pp-number");
+  const movePP = button.closest(".move-pp");
+  const ppNumber = movePP.querySelector(".pp-number");
 
   let currentPP = parseInt(ppNumber.dataset.current);
 
