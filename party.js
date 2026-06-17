@@ -36,6 +36,13 @@ function changeHP(button, type) {
   if (currentHP < 0) currentHP = 0;
   if (currentHP > maxHP) currentHP = maxHP;
 
+  if (currentHP < 0) currentHP = 0;
+  if (currentHP === 0) {
+    card.classList.add("fainted");
+  } else {
+    card.classList.remove("fainted");
+  }
+
   hpNumber.dataset.current = currentHP;
 
   hpNumber.textContent = `${currentHP} / ${maxHP}`
@@ -67,12 +74,6 @@ function changePP(button, amount) {
 
   currentPP += amount;
 
-  if (currentPP < 0) currentPP = 0;
-  if (currentPP === 0) {
-    card.classList.add("fainted");
-  } else {
-    card.classList.remove("fainted");
-  }
   if (currentPP > maxPP) currentPP = maxPP;
 
   ppNumber.dataset.current = currentPP;
@@ -84,38 +85,39 @@ function changePP(button, amount) {
 //condition function
 
 function updateCondition(select) {
+  alert("workin");
+  
   const card = select.closest(".party-card");
+
+  const condition = select.value.toLowerCase();
+  console.log(condition);
 
   card.classList.remove(
     "burned", "poisoned", "sleep", "paralyzed", "frozen", "confused"
   );
 
-  const condition = select.value.toLowerCase();
-  if (condition !== "none. {card.classList.add(condition);
-  });
+  if (condition !== "none") {card.classList.add(condition);
+  }
   
 }
 
 //xp bar function
 
-let currentXP = 0;
-
 function addXP(button) {
+  let currentXP = parseInt(card.querySelector(".xp-text").dataset.current) || 0;
   const card = button.closest(".party-card");
   const xpInput = card.querySelector(".xp-input");
   const amount = parseInt(xpInput.value) || 0;
   if (amount <= 0) return;
 
-  currentXP += amount;
-
   const levelInput = card.querySelector(".level");
-  let currentLevel = parseInt(levelInput.value) || 1;
+  let currentLevel = parseInt(levelInput.textContent.replace("Lvl.", ""));
   let xpNeeded = Math.floor(50 * Math.pow(1.25, currentLevel - 1));
 
   if (currentXP >= xpNeeded) {
     currentLevel += 1;
     currentXP = currentXP - xpNeeded;
-    levelInput.value = currentLevel;
+    levelInput.textContent = `Lvl.${currentLevel}`;
     alert(`Level up! Now level ${currentLevel}`);
   }
 
@@ -123,16 +125,19 @@ function addXP(button) {
 }
 
 function updateXPBar(card) {
+
+  card.querySelector(".xp-text").dataset.current = currentXP;
   
   const levelInput = card.querySelector(".level");
   const barFill = card.querySelector(".xp-fill");
   const xpText = card.querySelector(".xp-text");
   const xpInput = card.querySelector(".xp-input");
 
-  let currentLevel = parseInt(levelInput.value) || 1;
+  let currentLevel = parseInt(levelInput.textContent.replace("Lvl.", ""));
 
   let xpNeeded = Math.floor(50 * Math.pow(1.25, currentLevel - 1));
 
+  let currentXP = parseInt(xpText.dataset.current) || 0;
   let percentage = (currentXP / xpNeeded) * 100;
 
   barFill.style.width = percentage + "%";
