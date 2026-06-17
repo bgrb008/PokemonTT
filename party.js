@@ -104,11 +104,14 @@ function updateCondition(select) {
 //xp bar function
 
 function addXP(button) {
-  let currentXP = parseInt(card.querySelector(".xp-text").dataset.current) || 0;
+
   const card = button.closest(".party-card");
+  let currentXP = parseInt(card.querySelector(".xp-text").dataset.current) || 0;
+  
   const xpInput = card.querySelector(".xp-input");
   const amount = parseInt(xpInput.value) || 0;
   if (amount <= 0) return;
+  currentXP += amount;
 
   const levelInput = card.querySelector(".level");
   let currentLevel = parseInt(levelInput.textContent.replace("Lvl.", ""));
@@ -121,6 +124,7 @@ function addXP(button) {
     alert(`Level up! Now level ${currentLevel}`);
   }
 
+  card.querySelector(".xp-text").dataset.current = currentXP;
   updateXPBar(card);
 }
 
