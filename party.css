@@ -56,27 +56,40 @@
 }
 
 .party-card.burned {
-  box-shadow: 0 0 18px rgba(255, 90, 0,0.9);
+  box-shadow: 0 0 18px rgba(255, 90, 0, 0.9),
+              0 0 25px rgba(255, 90, 0, 0.6),
+              0 0 30px rgba(255, 90, 0, 0.3);
 }
 
 .party-card.poisoned {
-  box-shadow: 0 0 18px rgba(170, 70, 255, 0.9);
+  box-shadow: 0 0 18px rgba(170, 70, 255, 0.9),
+              0 0 25px rgba(170, 70, 255, 0.6),
+              0 0 30px rgba(170, 70, 255, 0.3);
+  
 }
 
 .party-card.sleep {
-  box-shadow: 0 0 18px rgba(120, 120, 255, 0.8);
+  box-shadow: 0 0 18px rgba(120, 120, 255, 0.8),
+              0 0 25px rgba(120, 120, 255, 0.6),
+              0 0 30px rgba(120, 120, 255, 0.3);
 }
 
 .party-card.paralyzed {
-  box-shadow: 0 0 18px rgba(255, 220, 50, 0.9);
+  box-shadow: 0 0 18px rgba(255, 220, 50, 0.9),
+              0 0 25px rgba(255, 220, 50, 0.6),
+              0 0 30px rgba(255, 220, 50, 0.3);
 }
 
 .party-card.frozen {
-  box-shadow: 0 0 18px rgba(120,220, 255, 0.95);
+  box-shadow: 0 0 18px rgba(120,220, 255, 0.95),
+              0 0 25px rgba(120, 220, 255, 0.6),
+              0 0 30px rgba(120, 220, 255, 0.3);
 }
 
 .party-card.confused {
-  box-shadow: 0 0 18px rgba(255, 150, 50, 0.9);
+  box-shadow: 0 0 18px rgba(255, 150, 50, 0.9),
+              0 0 25px rgba(255, 150, 50, 0.6),
+              0 0 30px rgba(255, 150, 50, 0.3);
 }
 
 .party-card.fainted .sprite {
