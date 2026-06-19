@@ -166,15 +166,14 @@ function addXP(button) {
   if (currentXP >= xpNeeded) {
     currentXP -= xpNeeded;
     currentLevel += 1;
+    xpNeeded = 50 * currentLevel;
 
     card.querySelector(".level").textContent = `Lvl.${currentLevel}`;
-    updateXPBar(card);
     
   }
 
   xpText.dataset.current = currentXP;
   xpText.dataset.max= xpNeeded;
-  xpNeeded = 50 * currentLevel;
   
   updateXPBar(card);
   saveParty()
@@ -239,7 +238,7 @@ function  loadParty() {
     if (!card) return;
 
     const hp = card.querySelector(".hp-number");
-    const hpfill = card.querySelector(".hp-fill");
+    const hpfill = card.querySelector(".hp-bar .fill");
     const hpPercent = (saved.hpCurrent / saved.hpMax) * 100;
     hpfill.style.width = hpPercent + "%";
     const xpText = card.querySelector(".xp-text");
