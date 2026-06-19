@@ -79,6 +79,7 @@ function changePP(button, amount) {
   currentPP += amount;
 
   if (currentPP > maxPP) currentPP = maxPP;
+  if (currentPP < 0) currentPP = 0;
 
   ppNumber.dataset.current = currentPP;
 
