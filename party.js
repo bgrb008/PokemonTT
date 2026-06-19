@@ -243,7 +243,7 @@ function  loadParty() {
     hpfill.style.width = hpPercent + "%";
     const xpText = card.querySelector(".xp-text");
     const xpFill = card.querySelector(".xp-fill");
-    xpFill.style.width = (saved.xpCurrent / saved.xpMax) * 100 + "%";
+    
     const level = card.querySelector(".level");
     const condition = card.querySelector(".conditions");
     const ppNumbers = card.querySelectorAll(".pp-number");
