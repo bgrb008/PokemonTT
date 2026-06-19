@@ -241,9 +241,17 @@ function  loadParty() {
     const hpfill = card.querySelector(".hp-bar .fill");
     const hpPercent = (saved.hpCurrent / saved.hpMax) * 100;
     hpfill.style.width = hpPercent + "%";
+    hpfill.classList.remove("hp-green", "hp-yellow", "hp-red") 
+    if (hpPercent >= 65) {
+      hpfill.classList.add("hp-green");
+    } else if (hpPercent >= 25) {
+      hpfill.classList.add("hp-yellow");
+    } else {
+      hpfill.classList.add("hp-red");
+    }
     const xpText = card.querySelector(".xp-text");
     const xpFill = card.querySelector(".xp-fill");
-    
+     
     const level = card.querySelector(".level");
     const condition = card.querySelector(".conditions");
     const ppNumbers = card.querySelectorAll(".pp-number");
