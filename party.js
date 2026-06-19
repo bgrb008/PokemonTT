@@ -1,3 +1,5 @@
+const PARTY_SAVE_KEY = "partyData";
+
 function toggleCard(card) {
   const allCards = document.querySelectorAll(".party-card");
   allCards.forEach(c => {
@@ -61,6 +63,8 @@ function changeHP(button, type) {
   }
 
   hpInput.value = "";
+
+  saveParty();
 }
 
 //move pp function
@@ -79,6 +83,8 @@ function changePP(button, amount) {
   ppNumber.dataset.current = currentPP;
 
   ppNumber.textContent = `${currentPP} / ${maxPP}`;
+
+  saveParty();
   
 }
 
@@ -87,6 +93,8 @@ function changePP(button, amount) {
 function updateConditions(select) {
   
   const card = select.closest(".party-card");
+
+  const effectBox = card.querySelector(".condition-effect");
 
   const condition = select.value.toLowerCase();
 
@@ -102,7 +110,37 @@ function updateConditions(select) {
   if (condition !== "none") {
     card.classList.add(condition);
   }
-  
+
+  if (condition === "burned") {
+    effectBox.textContent = "End of turn: lose 5HP";
+  }
+
+  if (condition === "poisoned") {
+    effectBox.textContent = "End of turn: lose 3HP";
+  }
+
+  if (condition === "sleep") {
+    effectBox.textContent = "At beginning of turn: Roll 1D20 DC10 to wake up";
+  }
+
+  if (condition === "paralyzed") {
+    effectBox.textContent = "At beginning of turn: Roll 1D20 DC10 to move, still paralized until healed";
+  }
+
+  if (condition === "frozen") {
+    effectBox.textContent = "At beginning of turn: Roll 1D20 DC10 to thaw";
+  }
+
+  if (condition === "confused") {
+    effectBox.textContent = "At beginning of turn: Roll 1D20 DC10, if fail self damage";
+  }
+
+  if (condition === "none") {
+    effectBox.textContent = "";
+  }
+
+  saveParty();
+
 }
 
 //xp bar function
@@ -110,46 +148,129 @@ function updateConditions(select) {
 function addXP(button) {
 
   const card = button.closest(".party-card");
-  let currentXP = parseInt(card.querySelector(".xp-text").dataset.current) || 0;
-  
+  const xpText = card.querySelector(".xp-text");
   const xpInput = card.querySelector(".xp-input");
+
+  let currentXP = parseInt(xpText.dataset.current) || 0;
+  let xpNeeded = parseInt(xpText.dataset.max) || 1;
+  
   const amount = parseInt(xpInput.value) || 0;
   if (amount <= 0) return;
+  
   currentXP += amount;
 
-  const levelInput = card.querySelector(".level");
-  let currentLevel = parseInt(levelInput.textContent.replace("Lvl.", ""));
-  let xpNeeded = 50 * currentLevel;
-
+  let currentLevel = parseInt(card.querySelector(".level").textContent.replace("Lvl.", ""))
+  
   if (currentXP >= xpNeeded) {
+    currentXP -= xpNeeded;
     currentLevel += 1;
-    currentXP = currentXP - xpNeeded;
-    levelInput.textContent = `Lvl.${currentLevel}`;
-    alert(`Level up! Now level ${currentLevel}`);
+    xpNeeded = 50 * currentLevel;
+
+    card.querySelector(".level").textContent = `Lvl.${currentLevel}`;
+    updateXPBar(card);
+    
   }
 
-  card.querySelector(".xp-text").dataset.current = currentXP;
+  xpText.dataset.current = currentXP;
+  xpText.dataset.max= xpNeeded;
+  xpNeeded = 50 * currentLevel;
+  
   updateXPBar(card);
+  saveParty()
 }
 
 function updateXPBar(card) {
 
-  
-  const levelInput = card.querySelector(".level");
-  const barFill = card.querySelector(".xp-fill");
   const xpText = card.querySelector(".xp-text");
-  const xpInput = card.querySelector(".xp-input");
-
-  let currentLevel = parseInt(levelInput.textContent.replace("Lvl.", ""));
-
-  let xpNeeded = 50 * currentLevel;
+  const barFill = card.querySelector(".xp-fill");
 
   let currentXP = parseInt(xpText.dataset.current) || 0;
-  let percentage = (currentXP / xpNeeded) * 100;
+  let xpNeeded = parseInt(xpText.dataset.max) || 1;
 
-  barFill.style.width = percentage + "%";
-  xpText.innerText = `${currentXP} / ${xpNeeded} XP`;
+  xpText.textContent = `${currentXP} / ${xpNeeded}`;
 
-  xpInput.value = "";
+  barFill.style.width = (currentXP / xpNeeded) * 100 + "%";
   
+}
+
+//Autosave function
+
+function saveParty() {
+  const cards = document.querySelectorAll(".party-card");
+
+  const data = [];
+
+  cards.forEach(card => {
+    const hp = card.querySelector(".hp-number");
+    const xpText = card.querySelector(".xp-text");
+    const level = card.querySelector(".level");
+    const condition = card.querySelector(".conditions");
+
+    data.push({
+      name: card.querySelector(".name")?.textContent,
+      hpCurrent: parseInt(hp.dataset.current),
+      hpMax: parseInt(hp.dataset.max),
+      level: level.textContent,
+      xpCurrent: parseInt(xpText.dataset.current),
+      xpMax: parseInt(xpText.dataset.max),
+      condition: condition ? condition.value : "None",
+      pp: Array.from(card.querySelectorAll(".pp-number")).map(pp => ({
+        current: parseInt(pp.dataset.current),
+        max: parseInt(pp.dataset.max)
+     }))
+    });
+  });
+  localStorage.setItem(PARTY_SAVE_KEY, JSON.stringify(data));
+}
+
+//load function
+
+window.addEventListener("load", loadParty); 
+
+function  loadParty() {
+  const data = JSON.parse(localStorage.getItem(PARTY_SAVE_KEY));
+  if (!data) return;
+
+  const cards = document.querySelectorAll(".party-card");
+
+  data.forEach((saved, i) => {
+    const card = cards[i];
+    if (!card) return;
+
+    const hp = card.querySelector(".hp-number");
+    const xpText = card.querySelector(".xp-text");
+    const xpFill = card.querySelector(".xp-fill");
+    xpFill.style.width = (saved.xpCurrent / saved.xpMax) * 100 + "%";
+    const level = card.querySelector(".level");
+    const condition = card.querySelector(".conditions");
+    const ppNumbers = card.querySelectorAll(".pp-number");
+    saved.pp?.forEach((ppData, i) => {
+      if (!ppNumbers[i]) return;
+
+      ppNumbers[i].dataset.current = ppData.current;
+      ppNumbers[i].dataset.max = ppData.max;
+      ppNumbers[i].textContent = `${ppData.current} / ${ppData.max}`;
+    });
+
+    if (hp) {
+      hp.dataset.current = saved.hpCurrent;
+      hp.dataset.max = saved.hpMax;
+      hp.textContent = `${saved.hpCurrent} / ${saved.hpMax}`;
+    }
+
+    if (level) {
+      level.textContent = saved.level;
+    }
+
+    if (xpText) {
+      xpText.dataset.current = saved.xpCurrent;
+      xpText.dataset.max = saved.xpMax;
+      updateXPBar(card);
+    }
+
+    if (condition) {
+      condition.value = saved.condition;
+      updateConditions(condition);
+    }
+  });
 }

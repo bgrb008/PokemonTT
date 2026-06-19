@@ -92,6 +92,12 @@
               0 0 30px rgba(255, 150, 50, 0.3);
 }
 
+.condition-effect {
+  font-size: 10px;
+  margin-top: 4%;
+  text-align: center
+}
+
 .party-card.fainted .sprite {
   filter: grayscale(100%) brightness(35%);
   opacity: 0.65;
