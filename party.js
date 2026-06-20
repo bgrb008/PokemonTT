@@ -11,6 +11,18 @@ function toggleCard(card) {
   card.classList.toggle("expanded");
 }
 
+//=====================
+//dice scaling function
+//=====================
+function getMoveDice(power, level) {
+
+  const baseDice = power >= 80 ? "d8" : "d6";
+
+  const diceCount = Math.floor((level - 1) / 5) + 1;
+
+  return `${diceCount}${baseDice}`;
+}
+
   //hp bar fill function
 function changeHP(button, type) {
   const card = button.closest(".party-card");
@@ -80,7 +92,7 @@ pokemon.moves.forEach(move => {
   const dice = getMoveDice(move.power, level);
 
   const wrapper = document.createElement("div");
-  wrapper.classname =  "move-wrapper";
+  wrapper.className =  "move-wrapper";
 
   wrapper.innerHTML = `
     <div class="move-row">
@@ -92,6 +104,7 @@ pokemon.moves.forEach(move => {
       <span class="pp-number" data-current="${move.pp.current}"
       data-max="${move.pp.max}">${move.pp.current}/${move.pp.max}
       </span>
+    </div>
 
       <button onclick="changePP(this, -1)">-</button>
       <button onclick="changePP(this, 1)">+</button>
