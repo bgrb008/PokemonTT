@@ -105,11 +105,12 @@ pokemon.moves.forEach(move => {
       <span class="move-power">PWR:${move.power}</span>
       <span class="move-dice">${dice}</span>
     </div>
+    
     <div class="move-pp">
-      <span class="pp-number" data-current="${move.pp.current}"
-      data-max="${move.pp.max}">${move.pp.current}/${move.pp.max}
+      <span class="pp-number" 
+        data-current="${move.pp.current}"
+        data-max="${move.pp.max}">${move.pp.current}/${move.pp.max}
       </span>
-    </div>
 
       <button onclick="changePP(this, -1)">-</button>
       <button onclick="changePP(this, 1)">+</button>
@@ -119,6 +120,7 @@ pokemon.moves.forEach(move => {
           ${move.condition}
         </div>
         ` : ""}
+    </div>
       `;
 
      container.appendChild(wrapper);
@@ -307,8 +309,6 @@ function  loadParty() {
     const card = cards[i];
     if (!card) return;
 
-    renderMoves(card, saved);
-
     const hp = card.querySelector(".hp-number");
     const hpfill = card.querySelector(".hp-bar .fill");
     const hpPercent = (saved.hpCurrent / saved.hpMax) * 100;
@@ -355,5 +355,7 @@ function  loadParty() {
       condition.value = saved.condition;
       updateConditions(condition);
     }
+
+    renderMoves(card, saved)
   });
 }
