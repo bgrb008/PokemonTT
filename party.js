@@ -271,7 +271,18 @@ function saveParty() {
       pp: Array.from(card.querySelectorAll(".pp-number")).map(pp => ({
         current: parseInt(pp.dataset.current),
         max: parseInt(pp.dataset.max)
-     }))
+     })),
+       moves: Array.from(card.querySelectorAll(".move-wrapper")).map(m => ({
+         name: m.querySelector(".move-name")?.textContent,
+         power: parseInt(m.querySelector(".move-power")?.textContent.replace("PWR:", "")),
+         condition: m.querySelector(".move-condition")?.textContent.trim() || null,
+         pp: {
+           current: parseInt(m.querySelector(".pp-number")?.dataset.current),
+           max: parseInt(m.querySelector(".pp-number")?.dataset.max)
+         }
+       }))
+          
+    
     });
   });
   localStorage.setItem(PARTY_SAVE_KEY, JSON.stringify(data));
