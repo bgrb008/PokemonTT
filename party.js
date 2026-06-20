@@ -67,6 +67,46 @@ function changeHP(button, type) {
   saveParty();
 }
 
+//====================
+//move render function
+//====================
+function renderMoves(card, pokemon) {
+  const container = card.querySelector(".moves");
+  if (!container) return;
+
+  const level = parseInt(pokemon.level.replace("Lvl.", "")) || 1;
+
+pokemon.moves.forEach(move => {
+  const dice = getMoveDice(move.power, level);
+
+  const wrapper = document.createElement("div");
+  wrapper.classname =  "move-wrapper";
+
+  wrapper.innerHTML = `
+    <div class="move-row">
+      <span class="move-name">${move.name}</span>
+      <span class="move-power">PWR:${move.power}</span>
+      <span class="move-dice">${dice}</span>
+    </div>
+    <div class="move-pp">
+      <span class="pp-number" data-current="${move.pp.current}"
+      data-max="${move.pp.max}">${move.pp.current}/${move.pp.max}
+      </span>
+
+      <button onclick="changePP(this, -1)">-</button>
+      <button onclick="changePP(this, 1)">+</button>
+
+      ${move.condition ? `
+        <div class="move-condition">
+          ${move.condition}
+        </div>
+        ` : ""}
+      `;
+
+     container.appendChild(wrapper);
+  });
+}
+
 //move pp function
 function changePP(button, amount) {
   const movePP = button.closest(".move-pp");
@@ -170,7 +210,7 @@ function addXP(button) {
     xpNeeded = 50 * currentLevel;
 
     card.querySelector(".level").textContent = `Lvl.${currentLevel}`;
-    
+    alert(`Congratulations! ${card.querySelector(".name").textContent} has leveled up to ${currentLevel}!`)
   }
 
   xpText.dataset.current = currentXP;
@@ -237,6 +277,8 @@ function  loadParty() {
   data.forEach((saved, i) => {
     const card = cards[i];
     if (!card) return;
+
+    renderMoves(card, saved);
 
     const hp = card.querySelector(".hp-number");
     const hpfill = card.querySelector(".hp-bar .fill");

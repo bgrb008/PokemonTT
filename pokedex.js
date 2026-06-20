@@ -1,18 +1,77 @@
+//======================
+//global state(app data)
+//======================
+
+//pokemon sellected from api
 let currentPokemonData = null;
-
+//pokedex storage array
 let pokedex = [];
-
+//pokemon selected to be deleted
 let pokemonToDelete = null;
 
+//=================
+//move power lookup
+//=================
+function getMovePower(moveName) {
+  const movePowers = {
+    tackle: 40,
+    ember: 40,
+    flamethrower: 90,
+    scratch: 40,
+    thunderbolt: 90,
+  };
+
+  return movePowers[moveName.toLowerCase()] || 50;
+}
+
+//=====================
+//dice scaling function
+//=====================
+function getMoveDice(power, level) {
+
+  const baseDice = power >= 80 ? "d8" : "d6";
+
+  const diceCount = Math.floor((level - 1) / 5) + 1;
+
+  return `${diceCount}${baseDice}`;
+}
+
+//==========================
+//condition mapping function
+//==========================
+function getMoveCondition(moveName) {
+  const moveConditions = {
+    ember: "burned",
+    flamethrower: "burned",
+    thunderwave: "paralyzed",
+    poisonpowder: "poisoned",
+    icebeam: "frozen",
+    hypnosis: "sleep",
+  };
+
+  return moveConditions[moveName.toLowerCase()] || null;
+}
+
+//===============
+//modal functions
+//===============
+
+//opens the delete confirmation modal when trash icon clicked
 function showDeleteModal(){
   document.getElementById('delete-modal').style.display = 'flex';
 }
 
+//=============
+//save function
+//=============
 function savePokedex() {
   localStorage.setItem('pokedex', JSON.stringify(pokedex)
   ); 
 }
 
+//=============================
+//add pokemon(api fetch & modal)
+//=============================
 document.getElementById('add-pokemon-button').addEventListener('click', () => {
   const pokemonName = document.getElementById('pokemon-name').value;
 
@@ -26,6 +85,10 @@ document.getElementById('add-pokemon-button').addEventListener('click', () => {
     });    
 });
 
+
+//=====================
+//pokemon details view
+//=====================
 function attachClickHandler(li) {
   li.addEventListener('click', () => {
     const image = document.querySelector('.pokemon-display img') || document.createElement('img');
@@ -90,6 +153,9 @@ function attachClickHandler(li) {
   });  
 }
 
+//===========================
+//status toggle (caught/seen)
+//===========================
 function attachBallHandler(li, ball) {
   ball.addEventListener('click', (event) => {
     event.stopPropagation();
@@ -112,6 +178,10 @@ function attachBallHandler(li, ball) {
     }
   });
 }
+
+//===================
+//confirm add pokemon
+//===================
 document.getElementById('confirm-add').addEventListener('click', () => {
   const status = document.getElementById('pokemon-status').value;
   const imgurl = currentPokemonData.sprites.other['official-artwork'].front_default;
@@ -138,7 +208,28 @@ pokedex.push({
   image: imgurl,
   status: status,
   caught: status === 'caught',
-  id: currentPokemonData.id
+  id: currentPokemonData.id,
+
+  level: 1,
+
+  hp: {
+    current:(currentPokemonData.stats.find(s => s.stat.name === 'hp').base_stat * 2) + 10,
+    max: (currentPokemonData.stats.find(s => s.stat.name === 'hp').base_stat * 2) + 10
+  },
+
+  xp: {
+    current: 0,
+    max: 50
+  },
+
+                                               moves: currentPokemonData.moves.slice(0, 4).map(m => ({
+    name: m.move.name,
+    power: getMovePower(m.move.name),
+    condition: getMoveCondition(m.move.name),
+    pp: {
+      current: 15,
+      max: 15
+    }                                          }))
 });
 
   savePokedex();
@@ -149,11 +240,17 @@ pokedex.push({
   document.getElementById('status-modal').style.display = 'none';
 });
 
+//================
+//cancel add modal
+//================
 document.getElementById('cancel-add').addEventListener('click', () => {
   document.getElementById('status-modal').style.display = 'none';
   document.getElementById('pokemon-name').value = '';
 });
 
+//=======================================
+//delete pokemon(remove from liststorage)
+//=======================================
 document.getElementById('confirm-delete').addEventListener('click', () => {
   if (pokemonToDelete) {
     const index = pokedex.findIndex(p => p.id == pokemonToDelete.dataset.id);
@@ -168,11 +265,17 @@ document.getElementById('confirm-delete').addEventListener('click', () => {
   }
 });
 
+//===================
+//cancel delete modal
+//===================
 document.getElementById('cancel-delete').addEventListener('click', () => {
   document.getElementById('delete-modal').style.display = 'none';
   pokemonToDelete = null;
 });
 
+//=======================================
+//initial load(rebuild list from storage)
+//=======================================
 window.addEventListener('load', () => {
   const savedPokedex = localStorage.getItem('pokedex');
 
