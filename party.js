@@ -85,6 +85,11 @@ function changeHP(button, type) {
 function renderMoves(card, pokemon) {
   const container = card.querySelector(".moves");
   if (!container) return;
+  if (!pokemon.moves || pokemon.moves.length === 0) return;
+
+  container.innerHTML = `
+    <span class="moves-header">Moves</span>
+  `
 
   const level = parseInt(pokemon.level.replace("Lvl.", "")) || 1;
 
