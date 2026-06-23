@@ -1,5 +1,8 @@
 const PARTY_SAVE_KEY = "partyData";
 
+//array of pokemon in the party
+let currentParty = [] 
+
 function toggleCard(card) {
   const allCards = document.querySelectorAll(".party-card");
   allCards.forEach(c => {
@@ -79,6 +82,65 @@ function changeHP(button, type) {
   saveParty();
 }
 
+//==========================
+//building movesets by level
+//==========================
+function buildInitialMoves(pokemon) {
+  const learnset = pokemon.learnset || [];
+
+  const known = learnset
+  .filter(m => m.level <= pokemon.level)
+  .sort((a, b) =>a.level - b.level)
+  .slice(-4); //keep the 4 most recently learned
+
+  return known.map(m => {
+    const power = getMovePower(m.move);
+    return {
+      name: m.move,
+      power: power,
+      pp: { current: 10, max: 10 },
+      condition: getMoveCondition(m.move)
+    };
+  });
+}
+
+//==================
+//new moves by level
+//==================
+function getNewMovesAtLevel(card, level) {
+  const pokedexData = JSON.parse(localStorage.getItem("pokedex")) || [];
+  const pokemon = pokedexData.find(p => p.id == card.dataset.pokedexId);
+  if (!pokemon || !pokemon.learnset) return [];
+
+  return pokemon.learnset.filter(m => parseInt(m.level) === level);
+}
+
+//=================
+//add moves to card
+//=================
+function addMovesToCard(card, moveName) {
+  const container = card.querySelector(".moves");
+  const power = getMovePower(moveName);
+  const level = parseInt(card.querySelector(".level").textContent.replace("Lvl.", ""))
+  
+  const wrapper = document.createElement("div");
+  wrapper.className = "move-wrapper";
+  wrapper.innerHTML = `
+    <div class="move-row">
+      <span class="move-name">${moveName}</span>
+      <span class="move-power">PWR:${power}</span>
+      <span class="move-dice">${getMoveDice(power, level)}</span>
+    </div>
+    <div class="move-pp">
+      <span class="pp-number" data-current="10" data-max="10">10/10</span>
+      <button onclick="changePP(this, -1)">-</button>
+      <button onclick="changePP(this, 1)">+</button>
+    </div>
+  `;
+  container.appendChild(wrapper);
+}
+                                                            
+
 //====================
 //move render function
 //====================
@@ -91,7 +153,7 @@ function renderMoves(card, pokemon) {
     <span class="moves-header">Moves</span>
   `
 
-  const level = parseInt(pokemon.level.replace("Lvl.", "")) || 1;
+  const level = parseInt(String(pokemon.level).replace("Lvl.", "")) || 1;
 
 pokemon.moves.forEach(move => {
   const dice = getMoveDice(move.power, level);
@@ -224,13 +286,27 @@ function addXP(button) {
 
   let currentLevel = parseInt(card.querySelector(".level").textContent.replace("Lvl.", ""))
   
-  if (currentXP >= xpNeeded) {
+  while (currentXP >= xpNeeded) {
     currentXP -= xpNeeded;
     currentLevel += 1;
     xpNeeded = 50 * currentLevel;
 
     card.querySelector(".level").textContent = `Lvl.${currentLevel}`;
     alert(`Congratulations! ${card.querySelector(".name").textContent} has leveled up to ${currentLevel}!`)
+
+    const newMoves = getNewMovesAtLevel(card, currentLevel);
+
+      const pokedexData = JSON.parse(localStorage.getItem("pokedex")) || [];
+      const pokemon = pokedexData.find(p => p.id == card.dataset.pokedexId);
+
+    newMoves.forEach(move => {
+      const moveCount = card.querySelectorAll(".move-wrapper").length;
+      if (moveCount < 4) {
+        addMovesToCard(card, move.move);
+      } else {
+        openForgetMoveModal(card, move.move);
+      }
+    });
   }
 
   xpText.dataset.current = currentXP;
@@ -253,6 +329,124 @@ function updateXPBar(card) {
   barFill.style.width = (currentXP / xpNeeded) * 100 + "%";
   
 }
+//========================================
+//party card template clone, add info from pokedx
+//========================================
+function addPokemonToParty(id) {
+
+  try{
+  const pokedexData = JSON.parse(localStorage.getItem("pokedex")) || [];
+  const pokemon = pokedexData.find(p => p.id === id);
+
+  if (!pokemon) return;
+
+  const template = document.getElementById("party-card-template");
+  const card = template.content.cloneNode(true).querySelector(".party-card");
+
+  card.dataset.pokedexId = pokemon.id;
+
+  card.querySelector(".sprite").src = pokemon.image;
+  card.querySelector(".name").textContent = pokemon.name;
+  card.querySelector(".level").textContent = `Lvl.${pokemon.level}`;
+
+  const hpNumber = card.querySelector(".hp-number");
+  hpNumber.dataset.current = pokemon.hp.current;
+  hpNumber.dataset.max = pokemon.hp.max;
+  hpNumber.textContent = `${pokemon.hp.current} / ${pokemon.hp.max}`;
+
+  const hpFill = card.querySelector(".hp-bar .fill");
+  const hpPercent = (pokemon.hp.current / pokemon.hp.max) * 100;
+  hpFill.style.width = hpPercent + "%";
+  hpFill.classList.add( hpPercent >= 65 ? "hp-green" : hpPercent >= 25 ? "hp-yellow" : "hp-red");
+
+  const xpText = card.querySelector(".xp-text");
+  xpText.dataset.current = pokemon.xp.current;
+  xpText.dataset.max = pokemon.xp.max;
+
+  document.getElementById("party-container").appendChild(card);
+
+  updateXPBar(card);
+
+  pokemon.moves = buildInitialMoves(pokemon)
+  renderMoves(card, pokemon);
+
+  currentParty.push(pokemon.id);
+
+  saveParty();
+  } catch (err) { 
+    alert("Error adding pokemon to party: " + err.message);
+  }
+}
+
+//======================
+//party picker functions
+//======================
+
+function openPartyPicker() {
+  if (currentParty.length >= 6) {
+    alert("Your party is full! max number in party is 6. Choose one to replace");
+    return;
+  }
+
+  const pokedexData = JSON.parse(localStorage.getItem("pokedex")) || [];
+
+  const available = pokedexData.filter(p => p.caught && !currentParty.includes(p.id));
+
+  const list = document.getElementById("party-picker-list");
+  list.innerHTML = "";
+
+  if (available.length === 0) {
+    list.innerHTML = "<li>No available pokemon in pokedex</li>";
+  } else {
+    available.forEach(p => {
+       const li = document.createElement("li");
+       li.textContent = p.name;
+       li.dataset.id = p.id;
+       li.onclick = () => {
+         addPokemonToParty(p.id);
+         closePartyPicker();
+       };
+       list.appendChild(li);
+    });
+  }
+  document.getElementById("party-picker-modal").style.display = "flex";
+}
+
+function closePartyPicker() {
+   document.getElementById("party-picker-modal").style.display = "none";
+}
+
+//=================
+//forget move modal
+//=================
+function openForgetMoveModal(card, newMoveName) {
+  const list = document.getElementById("forget-move-list");
+  list.innerHTML = "";
+
+  document.getElementById("forget-move-title").textContent = `Learn ${newMoveName}?`;
+
+  const currentMoves =card.querySelectorAll(".move-wrapper");
+
+  currentMoves.forEach(wrapper => {
+    const moveName = wrapper.querySelector(".move-name").textContent;
+    const li = document.createElement("li");
+    li.textContent = moveName;
+    li.onclick = () => {
+      wrapper.remove();
+      addMovesToCard(card, newMoveName);
+      closeForgetMoveModal();
+      saveParty();
+    };
+    list.appendChild(li);
+  });
+
+  document.getElementById("forget-move-modal").style.display = "flex";
+}
+
+function closeForgetMoveModal() {
+  document.getElementById("forget-move-modal").style.display = "none";
+}
+  
 
 //Autosave function
 
@@ -268,7 +462,9 @@ function saveParty() {
     const condition = card.querySelector(".conditions");
 
     data.push({
+      pokedexId: parseInt(card.dataset.pokedexId),
       name: card.querySelector(".name")?.textContent,
+      fainted: card.classList.contains("fainted"),
       hpCurrent: parseInt(hp.dataset.current),
       hpMax: parseInt(hp.dataset.max),
       level: level.textContent,
@@ -303,11 +499,11 @@ function  loadParty() {
   const data = JSON.parse(localStorage.getItem(PARTY_SAVE_KEY));
   if (!data) return;
 
-  const cards = document.querySelectorAll(".party-card");
+  data.forEach(saved => {
+    addPokemonToParty(saved.pokedexId);
 
-  data.forEach((saved, i) => {
-    const card = cards[i];
-    if (!card) return;
+    const cards = document.querySelectorAll(".party-card");
+    const card = cards[cards.length - 1];
 
     const hp = card.querySelector(".hp-number");
     const hpfill = card.querySelector(".hp-bar .fill");
@@ -339,6 +535,10 @@ function  loadParty() {
       hp.dataset.current = saved.hpCurrent;
       hp.dataset.max = saved.hpMax;
       hp.textContent = `${saved.hpCurrent} / ${saved.hpMax}`;
+    }
+
+    if (saved.fainted) {
+      card.classList.add("fainted");
     }
 
     if (level) {

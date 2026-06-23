@@ -78,7 +78,41 @@ document.getElementById('add-pokemon-button').addEventListener('click', () => {
   fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`)
   .then(response => response.json())
   .then(data => {
-    currentPokemonData = data;
+    currentPokemonData = {
+      id: data.id,
+      name: data.name,
+      image: data.sprites.other['official-artwork'].front_default,
+
+      types: data.types.map(t => t.type.name),
+
+      stats: {
+        hp: data.stats[0].base_stat,
+        attack: data.stats[1].base_stat,
+        defense: data.stats[2].base_stat,
+        spAttack: data.stats[3].base_stat,
+        spDefense: data.stats[4].base_stat,
+        speed: data.stats[5].base_stat
+      },
+
+      abilities: data.abilities.map(a => a.ability.name),
+
+      learnset: data.moves
+        .map(m => {
+          const details = m.version_group_details || [];
+          
+          const levelMove = details.find(v => v.move_learn_method.name === 'level-up' && v.version_group.name === 'scarlet-violet');
+
+          if (!levelMove) return null;
+
+          return {
+            move: m.move.name,
+            level: levelMove.level_learned_at,
+            url: m.move.url
+          };
+        })
+    .filter(Boolean)
+    };
+  
     document.getElementById('modal-pokemon-name').textContent = data.name;
     const modal=document.getElementById('status-modal');
     modal.style.display = 'flex';
@@ -184,7 +218,7 @@ function attachBallHandler(li, ball) {
 //===================
 document.getElementById('confirm-add').addEventListener('click', () => {
   const status = document.getElementById('pokemon-status').value;
-  const imgurl = currentPokemonData.sprites.other['official-artwork'].front_default;
+  const imgurl = currentPokemonData.image;
 
   const li = document.createElement('li');
   
@@ -200,21 +234,32 @@ document.getElementById('confirm-add').addEventListener('click', () => {
   li.appendChild(label);
   li.dataset.image = imgurl;
   li.dataset.status = status;
-  li.dataset.caught = status === 'caught';
+  li.dataset.caught = status === 'caught' ? "true" : "false";
   li.dataset.id = currentPokemonData.id;
 
+  const baseHP = currentPokemonData.stats.hp;
+  
 pokedex.push({
+  id: currentPokemonData.id,
   name: currentPokemonData.name,
-  image: imgurl,
+  image: currentPokemonData.image,
+  
   status: status,
   caught: status === 'caught',
-  id: currentPokemonData.id,
+
+  types: currentPokemonData.types,
+  stats: currentPokemonData.stats,
+  abilities: currentPokemonData.abilities,
+  learnset: currentPokemonData.learnset,
 
   level: 1,
 
+  
+
   hp: {
-    current:(currentPokemonData.stats.find(s => s.stat.name === 'hp').base_stat * 2) + 10,
-    max: (currentPokemonData.stats.find(s => s.stat.name === 'hp').base_stat * 2) + 10
+    base: baseHP,
+    current: baseHP,
+    max: baseHP
   },
 
   xp: {
@@ -222,14 +267,6 @@ pokedex.push({
     max: 50
   },
 
-                                               moves: currentPokemonData.moves.slice(0, 4).map(m => ({
-    name: m.move.name,
-    power: getMovePower(m.move.name),
-    condition: getMoveCondition(m.move.name),
-    pp: {
-      current: 15,
-      max: 15
-    }                                          }))
 });
 
   savePokedex();
@@ -293,7 +330,7 @@ window.addEventListener('load', () => {
       li.appendChild(label);
       li.dataset.image = pokemon.image;
       li.dataset.status = pokemon.status;
-      li.dataset.caught = pokemon.caught;
+      li.dataset.caught = pokemon.caught ? "true" : "false";
       li.dataset.id = pokemon.id;
       attachClickHandler(li);
         document.getElementById('pokemon-list').appendChild(li);

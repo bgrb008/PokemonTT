@@ -7,73 +7,76 @@
         <link rel="stylesheet" href="party.css">
     </head> 
 
+
+    
    <body>
         <div class="header">
             <h1>PokemonTT</h1>
         </div>
+       
+ <button class="add-pokemon-button" onclick="openPartyPicker()">+ Add Pokemon</button>
 
-     <div class="middle-section">
+        <div id="forget-move-modal" style="display: none;">
+            <div class="modal-content">
+                <h3 id="forget-move-title">Learn new move</h3>
+                <p id="forget-move-subtitle">Choose a move to forget, cancel to skip</p>
+                <ul id="forget-move-list"></ul>
+                <button onclick="closeForgetMoveModal()">Dont learn</button>
+            </div>
+        </div>
 
-         <div class="party-card">
-            
-             <div class="card-colapsed"
-                onclick="toggleCard(this.closest('.party-card'))">
-                 <div class="sprite-container">
-                    <img class="sprite" src="charizard.png" alt="Charizard">
-                    <span class="level">Lvl.5</span>
-                 </div>
-                 
-                 <div class="top-row">
-                     <div class="name-line">
-                        <span class="name">Charizard</span>
-                        <span class="gender">&#9794;</span>
-                     </div>
-                     
+       
+ <div class="middle-section">
+
+    <div id="party-container"></div>
+
+    <template id="party-card-template">   
+        <div class="party-card">
+            <div class="card-colapsed" onclick="toggleCard(this.closest('.party-card'))">
+            <div class="sprite-container">
+                <img class="sprite" src="" alt="">
+                <span class="level">Lvl.5</span>
+            </div>
+            <div class="top-row">
+                <div class="name-line">
+                <span class="name"></span>
+                <span class="gender">&#9794;</span>
+                </div>
                 <div class="hp-bar">
                     <div class="fill hp-green">
                     </div>
                 </div>
                  
-                <div class="hp-number" data-current="145" data-max="150">
-                    HP:145/150
+                <div class="hp-number" data-current="0" data-max="0">
+                    HP:0/0
                 </div>
-
             </div>
+        </div>
 
-</div>
-
-<div class="card-expanded">
-
-    <div class="stat-row hp-row">
-
-        <input type="number"
-               class="hp-input"
-               placeholder="HP">
-
-        <button class="damage-button" onclick="changeHP(this, 'damage')">
+    <div class="card-expanded">
+        <div class="stat-row hp-row">
+            <input type="number"
+                   class="hp-input"
+                   placeholder="HP">
+            <button class="damage-button" onclick="changeHP(this, 'damage')">
             Damage
-        </button>
-
-        <button class="heal-button" onclick="changeHP(this, 'heal')">
+            </button>
+            <button class="heal-button" onclick="changeHP(this, 'heal')">
             Heal
-        </button>
-    </div>
-
+            </button>
+        </div>
+        
     <div class="stat-row xp-row">
-
         <div class="xp-bar">
-            <div class="xp-fill" style="width: 80%"></div>
+            <div class="xp-fill" style="width: 0%"></div>
         </div>
-
-        <div class="xp-text" data-current="40" data-max="50">
-            XP:40/50
+        <div class="xp-text" data-current="0" data-max="50">
+            XP:0/50
         </div>
-
         <div class="xp-adder">
             <input type="number"
-                class="xp-input"
-                placeholder="XP">
-
+                   class="xp-input"
+                   placeholder="XP">
             <button class="xp-button" onclick="addXP(this)">
                 Add
             </button>
@@ -81,21 +84,17 @@
         
     </div>
 
-    
-
     <div class="moves">
         <span class="moves-header">
             Moves
         </span>
     </div>
 
-
     <div class="conditions-row">
         <span class="conditions-label">
             Conditions
         </span>
 
-    
         <select class="conditions" onchange="updateConditions(this)">
             <option>None</option>
             <option>Burned</option>
@@ -111,7 +110,7 @@
     </div>
    </div>
 </div>
-
+    </template>
 </div>
          <div class="bottom-section">
             <nav class="bottom-nav">
@@ -139,6 +138,16 @@
 
 
          </div>
+
+    <div id="party-picker-modal" style="display:none">
+        <div class="modal-content">
+            <h3> Choose a Pokemon</h3>
+            <ul id="party-picker-list"></ul>
+            <button onclick="closePartyPicker()">Cancel</button>
+        </div>
+    </div>
+
+<script src="pokedex.js"></script>
 <script src="party.js"></script>
 </body>      
 </html>
