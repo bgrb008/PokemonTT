@@ -89,15 +89,17 @@ function buildInitialMoves(pokemon) {
   const learnset = pokemon.learnset || [];
 
   const known = learnset
-  .filter(m => m.level <= pokemon.level)
+  .filter(m => m && m.level != null)
+  .filter(m => Number(m.level) <= Number(pokemon.level))
   .sort((a, b) =>a.level - b.level)
   .slice(-4); //keep the 4 most recently learned
 
   return known.map(m => {
-    const power = getMovePower(m.move);
     return {
       name: m.move,
-      power: power,
+      power: m.power,
+      type: m.type,
+      description: m.description,
       pp: { current: 10, max: 10 },
       condition: getMoveCondition(m.move)
     };
@@ -118,18 +120,22 @@ function getNewMovesAtLevel(card, level) {
 //=================
 //add moves to card
 //=================
-function addMovesToCard(card, moveName) {
+function addMovesToCard(card, moveData) {
   const container = card.querySelector(".moves");
-  const power = getMovePower(moveName);
+  const power = moveData.power;
   const level = parseInt(card.querySelector(".level").textContent.replace("Lvl.", ""))
   
   const wrapper = document.createElement("div");
   wrapper.className = "move-wrapper";
   wrapper.innerHTML = `
     <div class="move-row">
-      <span class="move-name">${moveName}</span>
-      <span class="move-power">PWR:${power}</span>
-      <span class="move-dice">${getMoveDice(power, level)}</span>
+      <span class="move-name">${moveData.name || moveData.move}</span>
+      <span class="move-power">${moveData.power ?? "STATUS"}</span>
+      <span class="move-dice">${moveData.power ? getMoveDice(moveData.power, level) : "--"}</span>
+    </div>
+
+    <div class="move-description">
+      ${moveData.description}
     </div>
     <div class="move-pp">
       <span class="pp-number" data-current="10" data-max="10">10/10</span>
@@ -156,7 +162,7 @@ function renderMoves(card, pokemon) {
   const level = parseInt(String(pokemon.level).replace("Lvl.", "")) || 1;
 
 pokemon.moves.forEach(move => {
-  const dice = getMoveDice(move.power, level);
+  const dice = move.power ? getMoveDice(move.power, level) : "--"
 
   const wrapper = document.createElement("div");
   wrapper.className =  "move-wrapper";
@@ -164,8 +170,14 @@ pokemon.moves.forEach(move => {
   wrapper.innerHTML = `
     <div class="move-row">
       <span class="move-name">${move.name}</span>
-      <span class="move-power">PWR:${move.power}</span>
+      <span class="move-power">
+        ${move.power ?? "STATUS"}
+        </span>
       <span class="move-dice">${dice}</span>
+    </div>
+
+    <div class="move-description">
+      ${move.description || "No description available"}
     </div>
     
     <div class="move-pp">
@@ -302,9 +314,9 @@ function addXP(button) {
     newMoves.forEach(move => {
       const moveCount = card.querySelectorAll(".move-wrapper").length;
       if (moveCount < 4) {
-        addMovesToCard(card, move.move);
+        addMovesToCard(card, move);
       } else {
-        openForgetMoveModal(card, move.move);
+        openForgetMoveModal(card, move);
       }
     });
   }
@@ -336,7 +348,7 @@ function addPokemonToParty(id) {
 
   try{
   const pokedexData = JSON.parse(localStorage.getItem("pokedex")) || [];
-  const pokemon = pokedexData.find(p => p.id === id);
+  const pokemon = pokedexData.find(p => p.id == id);
 
   if (!pokemon) return;
 
@@ -383,8 +395,9 @@ function addPokemonToParty(id) {
 //======================
 
 function openPartyPicker() {
+  try {
   if (currentParty.length >= 6) {
-    alert("Your party is full! max number in party is 6. Choose one to replace");
+    openReplacePartyModal();
     return;
   }
 
@@ -410,6 +423,9 @@ function openPartyPicker() {
     });
   }
   document.getElementById("party-picker-modal").style.display = "flex";
+    } catch (err) {
+      alert("Error opening party picker: " + err.message);
+    }
 }
 
 function closePartyPicker() {
@@ -419,11 +435,11 @@ function closePartyPicker() {
 //=================
 //forget move modal
 //=================
-function openForgetMoveModal(card, newMoveName) {
+function openForgetMoveModal(card, newMoveData) {
   const list = document.getElementById("forget-move-list");
   list.innerHTML = "";
 
-  document.getElementById("forget-move-title").textContent = `Learn ${newMoveName}?`;
+  document.getElementById("forget-move-title").textContent = `Learn ${newMoveData.move}?`;
 
   const currentMoves =card.querySelectorAll(".move-wrapper");
 
@@ -433,7 +449,7 @@ function openForgetMoveModal(card, newMoveName) {
     li.textContent = moveName;
     li.onclick = () => {
       wrapper.remove();
-      addMovesToCard(card, newMoveName);
+      addMovesToCard(card, newMoveData);
       closeForgetMoveModal();
       saveParty();
     };
@@ -445,6 +461,36 @@ function openForgetMoveModal(card, newMoveName) {
 
 function closeForgetMoveModal() {
   document.getElementById("forget-move-modal").style.display = "none";
+}
+
+//===================
+//replace party modal
+//===================
+function openReplacePartyModal() {
+  const list = document.getElementById("replace-party-list");
+  list.innerHTML = "";
+
+  const cards = document.querySelectorAll(".party-card");
+
+  cards.forEach(card => {
+    const name = card.querySelector(".name").textContent;
+    const id = parseInt(card.dataset.pokedexId);
+    const li = document.createElement("li");
+    li.textContent = name;
+    li.onclick = () => {
+      currentParty = currentParty.filter(p => p !== id);
+      card.remove();
+      closeReplacePartyModal();
+      openPartyPicker();
+    };
+    list.appendChild(li);
+  });
+
+  document.getElementById("replace-party-modal").style.display = "flex";
+}
+
+function closeReplacePartyModal() {
+  document.getElementById("replace-party-modal").style.display = "none";
 }
   
 
@@ -460,6 +506,26 @@ function saveParty() {
     const xpText = card.querySelector(".xp-text");
     const level = card.querySelector(".level");
     const condition = card.querySelector(".conditions");
+    const moves = Array.from(card.querySelectorAll(".move-wrapper")).map(m => {
+      const powerText = m.querySelector(".move-power")?.textContent.trim();
+
+      return {
+        name: m.querySelector(".move-name")?.textContent || "",
+        
+        power: powerText === "STATUS"
+          ? null
+          : parseInt(powerText) || null,
+        
+        description: m.querySelector(".move-description")?.textContent.trim() || "No description available",
+        
+        condition: m.querySelector(".move-condition")?.textContent.trim() || null,
+        
+        pp: {
+          current: parseInt(m.querySelector(".pp-number")?.dataset.current) || 0,
+          max: parseInt(m.querySelector(".pp-number")?.dataset.max) || 0
+             }
+          };
+      });
 
     data.push({
       pokedexId: parseInt(card.dataset.pokedexId),
@@ -471,23 +537,10 @@ function saveParty() {
       xpCurrent: parseInt(xpText.dataset.current),
       xpMax: parseInt(xpText.dataset.max),
       condition: condition ? condition.value : "None",
-      pp: Array.from(card.querySelectorAll(".pp-number")).map(pp => ({
-        current: parseInt(pp.dataset.current),
-        max: parseInt(pp.dataset.max)
-     })),
-       moves: Array.from(card.querySelectorAll(".move-wrapper")).map(m => ({
-         name: m.querySelector(".move-name")?.textContent,
-         power: parseInt(m.querySelector(".move-power")?.textContent.replace("PWR:", "")),
-         condition: m.querySelector(".move-condition")?.textContent.trim() || null,
-         pp: {
-           current: parseInt(m.querySelector(".pp-number")?.dataset.current),
-           max: parseInt(m.querySelector(".pp-number")?.dataset.max)
-         }
-       }))
-          
-    
+      moves: moves,
     });
-  });
+});
+       
   localStorage.setItem(PARTY_SAVE_KEY, JSON.stringify(data));
 }
 
@@ -496,6 +549,7 @@ function saveParty() {
 window.addEventListener("load", loadParty); 
 
 function  loadParty() {
+  
   const data = JSON.parse(localStorage.getItem(PARTY_SAVE_KEY));
   if (!data) return;
 
@@ -522,14 +576,7 @@ function  loadParty() {
      
     const level = card.querySelector(".level");
     const condition = card.querySelector(".conditions");
-    const ppNumbers = card.querySelectorAll(".pp-number");
-    saved.pp?.forEach((ppData, i) => {
-      if (!ppNumbers[i]) return;
-
-      ppNumbers[i].dataset.current = ppData.current;
-      ppNumbers[i].dataset.max = ppData.max;
-      ppNumbers[i].textContent = `${ppData.current} / ${ppData.max}`;
-    });
+    
 
     if (hp) {
       hp.dataset.current = saved.hpCurrent;

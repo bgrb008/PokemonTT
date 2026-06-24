@@ -17,7 +17,11 @@
    </div>
       <div class="add-pokemon">
          <button id="add-pokemon-button">Add Pokemon</button>
+
+         <div class="search-wrapper">
          <input type="text" id="pokemon-name" placeholder="Enter Pokemon">
+         <div id="suggestions" class="suggestions-box"></div>
+         </div>
 
       
    </div>
@@ -68,16 +72,24 @@
      
 </div>
 
-   <div id="status-modal">
-      <div id="modal-content">
+   <div id="status-modal" style="display: none;">
+      <div class="modal-content">
          <p id="modal-pokemon-name"></p>
-         <select id="pokemon-status">
-            <option value="seen">Seen</option>
-            <option value="caught">Caught</option>
-         </select>
+         <div>
+            <select id="pokemon-status">
+               <option value="seen">Seen</option>
+               <option value="caught">Caught</option>
+            </select>
+               <label for="pokemon-level">Level</label>
+               <input type="number" id="pokemon-level" min="1" max="100" value="5">
+            
+         </div>
          <button id="confirm-add">Add</button>
          <button id="cancel-add">Cancel</button>
+         
       </div>
+        
+      
    </div>
 
    <div id="delete-modal">

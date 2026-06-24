@@ -41,16 +41,63 @@
 
 #status-modal, #delete-modal {
   display: none;
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 9999 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
   justify-content: center;
   align-items: center;
+}
+
+#delete-modal .modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+#status-modal .modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  height: 100px;
+  overflow-y: auto;
+}
+
+#pokemon-level {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 50px;
+  height: 20px;
+  font-size: 16px;
+}
+
+#pokemon-status {
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+}
+
+#modal-pokemon-name {
+  font-size: 24px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+}
+
+#confirm-add, #cancel-add, #confirm-delete, #cancel-delete {
+  width: 100px;
+  height: 30px;
+  background-color: #333;
   color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
 #delete-btn img {
@@ -181,4 +228,12 @@
   letter-spacing: -2px;
 }
 
-
+.suggestions-box {
+  position: absolute;
+  width: 200px;
+  background: white;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1000;
+  font-size: 16px;
+}

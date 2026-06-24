@@ -412,3 +412,62 @@
   max-height: 80vh;
   overflow-y: auto;
 }
+
+#dont-learn {
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: 1px solid white;
+}
+
+.move-description {
+  font-size: 8px;
+}
+
+.add-pokemon-button {
+  width: 150px;
+  height: 28px;
+  margin-top: 10px;
+  margin-left: 20%;
+  background: #333;
+  border-radius: 5px;
+  border: 1px solid white;
+  color: white;
+  font-family: "PokemonGB";
+}
+
+#replace-party-modal .modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+#replace-party-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+#close-replace {
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: 1px solid white;
+  
+}

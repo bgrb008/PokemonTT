@@ -8,6 +8,8 @@ let currentPokemonData = null;
 let pokedex = [];
 //pokemon selected to be deleted
 let pokemonToDelete = null;
+//predictive search for add pokemon
+let pokemonListCache = [];
 
 //=================
 //move power lookup
@@ -72,12 +74,63 @@ function savePokedex() {
 //=============================
 //add pokemon(api fetch & modal)
 //=============================
-document.getElementById('add-pokemon-button').addEventListener('click', () => {
+const addBtn = document.getElementById('add-pokemon-button');
+if (addBtn) addBtn.addEventListener('click', async () => {
   const pokemonName = document.getElementById('pokemon-name').value;
 
-  fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`)
-  .then(response => response.json())
-  .then(data => {
+  const response = await fetch(
+   `https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`
+  );
+
+  const data = await response.json();
+
+  const movesWithDetails = await Promise.all(
+    data.moves.map(async (m) => {
+      
+      const details = m.version_group_details || [];
+
+      const levelMove = details.find(v => 
+        v.move_learn_method.name === 'level-up'
+      );
+
+      if (!levelMove) return null;
+
+      const moveData = await fetch(m.move.url).then(r => r.json());
+
+      let description = "No description available";
+
+      const effectEntry = moveData.effect_entries.find(e => e.language.name === 'en');
+
+      if (effectEntry?.effect) {
+        description = effectEntry.effect;
+      } else {
+        const flavorEntry = moveData.flavor_text_entries.find(e => e.language.name === 'en'
+      );
+
+      if (flavorEntry?.flavor_text) {
+        description = flavorEntry.flavor_text;
+      }
+    }
+
+    description = description.replace(/\n/g, ' ').replace(/\f/g, ' ');
+
+      return {
+        move: m.move.name,
+        level: levelMove.level_learned_at,
+        power: moveData.power,
+        type: moveData.damage_class.name,
+        description: description
+      };
+    })
+);
+    
+  const cleanLearnset = movesWithDetails.filter(Boolean);
+
+  if (!data) {
+    console.warn("Pokemon fetch failed");
+    return;
+  }
+  
     currentPokemonData = {
       id: data.id,
       name: data.name,
@@ -96,28 +149,15 @@ document.getElementById('add-pokemon-button').addEventListener('click', () => {
 
       abilities: data.abilities.map(a => a.ability.name),
 
-      learnset: data.moves
-        .map(m => {
-          const details = m.version_group_details || [];
-          
-          const levelMove = details.find(v => v.move_learn_method.name === 'level-up' && v.version_group.name === 'scarlet-violet');
-
-          if (!levelMove) return null;
-
-          return {
-            move: m.move.name,
-            level: levelMove.level_learned_at,
-            url: m.move.url
-          };
-        })
-    .filter(Boolean)
+      learnset: cleanLearnset
     };
-  
+
     document.getElementById('modal-pokemon-name').textContent = data.name;
+    document.getElementById('status-modal').style.display = 'flex';
+
     const modal=document.getElementById('status-modal');
-    modal.style.display = 'flex';
-    });    
-});
+    modal.style.display = 'flex';  
+  });
 
 
 //=====================
@@ -125,6 +165,8 @@ document.getElementById('add-pokemon-button').addEventListener('click', () => {
 //=====================
 function attachClickHandler(li) {
   li.addEventListener('click', () => {
+
+    console.log("POKEMON CLICKED:", li.dataset.id);
     const image = document.querySelector('.pokemon-display img') || document.createElement('img');
     image.src = li.dataset.image;
     document.querySelector('.pokemon-display').appendChild(image);
@@ -216,9 +258,16 @@ function attachBallHandler(li, ball) {
 //===================
 //confirm add pokemon
 //===================
-document.getElementById('confirm-add').addEventListener('click', () => {
+const confirmAdd = document.getElementById('confirm-add');
+if (confirmAdd) confirmAdd.addEventListener('click', () => {
   const status = document.getElementById('pokemon-status').value;
+
+  if (!currentPokemonData) {
+    console.warn("No pokemon selected yet");
+    return;
+  }
   const imgurl = currentPokemonData.image;
+  const level = parseInt(document.getElementById('pokemon-level').value) || 1;
 
   const li = document.createElement('li');
   
@@ -234,7 +283,9 @@ document.getElementById('confirm-add').addEventListener('click', () => {
   li.appendChild(label);
   li.dataset.image = imgurl;
   li.dataset.status = status;
-  li.dataset.caught = status === 'caught' ? "true" : "false";
+  li.dataset.caught = status === 'caught'
+    ? "true"
+    : "false";
   li.dataset.id = currentPokemonData.id;
 
   const baseHP = currentPokemonData.stats.hp;
@@ -245,14 +296,14 @@ pokedex.push({
   image: currentPokemonData.image,
   
   status: status,
-  caught: status === 'caught',
+  caught: status === 'caught' ? true : false,
 
   types: currentPokemonData.types,
   stats: currentPokemonData.stats,
   abilities: currentPokemonData.abilities,
   learnset: currentPokemonData.learnset,
 
-  level: 1,
+  level,
 
   
 
@@ -269,6 +320,7 @@ pokedex.push({
 
 });
 
+
   savePokedex();
 
   attachClickHandler(li);
@@ -280,7 +332,8 @@ pokedex.push({
 //================
 //cancel add modal
 //================
-document.getElementById('cancel-add').addEventListener('click', () => {
+const cancelAdd = document.getElementById('cancel-add');
+if (cancelAdd) cancelAdd.addEventListener('click', () => {
   document.getElementById('status-modal').style.display = 'none';
   document.getElementById('pokemon-name').value = '';
 });
@@ -288,7 +341,8 @@ document.getElementById('cancel-add').addEventListener('click', () => {
 //=======================================
 //delete pokemon(remove from liststorage)
 //=======================================
-document.getElementById('confirm-delete').addEventListener('click', () => {
+const confirmDelete =document.getElementById('confirm-delete');
+if (confirmDelete) confirmDelete.addEventListener('click', () => {
   if (pokemonToDelete) {
     const index = pokedex.findIndex(p => p.id == pokemonToDelete.dataset.id);
     if (index !== -1) pokedex.splice(index, 1);
@@ -305,15 +359,63 @@ document.getElementById('confirm-delete').addEventListener('click', () => {
 //===================
 //cancel delete modal
 //===================
-document.getElementById('cancel-delete').addEventListener('click', () => {
+const cancelDelete = document.getElementById('cancel-delete');
+if (cancelDelete) cancelDelete.addEventListener('click', () => {
   document.getElementById('delete-modal').style.display = 'none';
   pokemonToDelete = null;
+});
+
+//=================================
+//cache list for add pokemon search
+//=================================
+fetch('https://pokeapi.co/api/v2/pokemon?limit=10000')
+  .then(res => res.json())
+  .then(data => {
+        pokemonListCache = data.results.map(p => p.name);
+  });
+
+//======================================
+//live input listener for pokemon search
+//======================================
+const input = document.getElementById("pokemon-name");
+const suggestionsBox = document.getElementById("suggestions");
+
+if (input) input.addEventListener("input", () => {
+  const value = input.value.toLowerCase();
+
+  suggestionsBox.innerHTML = "";
+
+  if (!value || pokemonListCache.length === 0) return;
+
+  const matches = pokemonListCache
+    .filter(name => name.startsWith(value))
+    .slice(0, 6);
+
+  matches.forEach(name => {
+    const div = document.createElement("div");
+    div.className = "suggestion-item";
+    div.textContent = name;
+
+    div.addEventListener("click", () => {
+      input.value = name;
+      suggestionsBox.innerHTML = "";
+    });
+
+    suggestionsBox.appendChild(div);
+  });
+});
+
+if (suggestionsBox) document.addEventListener("click", (e) => {
+  if (e.target.id !== "pokemon-name") {
+    suggestionsBox.innerHTML = "";
+  }
 });
 
 //=======================================
 //initial load(rebuild list from storage)
 //=======================================
 window.addEventListener('load', () => {
+  if (!document.getElementById('pokemon-list')) return;
   const savedPokedex = localStorage.getItem('pokedex');
 
   if (savedPokedex) {
@@ -322,7 +424,14 @@ window.addEventListener('load', () => {
       const li = document.createElement('li');
       const ball = document.createElement('img');
       ball.src = 'caughticon.png';
-      ball.className = pokemon.caught ? 'ball-icon caught' : 'ball-icon seen';
+
+      const caughtBool = 
+        pokemon.caught === true || pokemon.caught === 'true';
+      
+      ball.className = caughtBool 
+        ? 'ball-icon caught' 
+        : 'ball-icon seen';
+      
       attachBallHandler(li, ball);
       const label = document.createElement('span');
       label.textContent = pokemon.name;
@@ -330,7 +439,7 @@ window.addEventListener('load', () => {
       li.appendChild(label);
       li.dataset.image = pokemon.image;
       li.dataset.status = pokemon.status;
-      li.dataset.caught = pokemon.caught ? "true" : "false";
+      li.dataset.caught = caughtBool ? "true" : "false";
       li.dataset.id = pokemon.id;
       attachClickHandler(li);
         document.getElementById('pokemon-list').appendChild(li);
