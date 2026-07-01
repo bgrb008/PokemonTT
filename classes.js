@@ -1,6 +1,7 @@
 const classes = {
      pokemonMaster: {
          name: "Pokemon Master",
+         travelSpeed: 35,
 
          stats: {
              battletactics: 3,
@@ -43,6 +44,7 @@ const classes = {
 
     theCollector: {
         name: "The Collector",
+        travelSpeed: 35,
 
         stats: {
             catching: 3,
@@ -87,6 +89,7 @@ const classes = {
 
     pokemonBreeder: {
         name: "Pokemon Breeder",
+        travelSpeed: 40,
 
         stats: {
             bonding: 3,
@@ -130,6 +133,7 @@ const classes = {
 
     battleMaster: {
         name: "Battle Master",
+        travelSpeed: 40,
 
         stats: {
             battletactics: 3,
@@ -173,6 +177,7 @@ const classes = {
 
     researchFellow: {
         name: "Research Fellow",
+        travelSpeed: 30,
 
         stats: {
             pokemonlore: 3,
@@ -216,6 +221,7 @@ const classes = {
 
     influencer: {
         name: "Influencer",
+        travelSpeed: 40,
 
         stats: {
             inspiration: 3,
@@ -259,6 +265,7 @@ const classes = {
 
     pokemonPerformer: {
         name: "Pokemon Performer",
+        travelSpeed: 35,
 
         stats: {
             inspiration: 3,
@@ -301,6 +308,7 @@ const classes = {
 
     pokemonRanger: {
         name: "Pokemon Ranger",
+        travelSpeed: 30,
 
         stats: {
             survival: 3,
@@ -339,7 +347,11 @@ const classes = {
             description: "When in a wild area roll 1d20 + perception vs dc 15, if successful divert 25% of allys damage to yourself",
             cooldown: "Once per wild area",
             },
-        ]
-        },
 
+            ]
+        
+        },
 };
+
+
+

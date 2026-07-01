@@ -73,6 +73,22 @@ function calculateStats(classData, regionData) {
     return result;
 }
 
+//=====================
+//travel speed function
+//=====================
+function updateTravelSpeed(classData) {
+    if (!classData) return;
+
+    const walk = classData.travelSpeed;
+    const run = walk * 1.5;
+    const grass = walk - 10;
+    const bike = walk * 2;
+
+    document.getElementById("walk-speed").textContent = walk;
+    document.getElementById("run-speed").textContent = run;
+    document.getElementById("grass-speed").textContent = grass;
+    document.getElementById("bike-speed").textContent = bike;
+}
 //character sheet update system
 
 function updateCharacterSheet() {
@@ -87,6 +103,8 @@ function updateCharacterSheet() {
 
     const classData = classes[selectedClass];
     const regionData = regions[selectedRegion];
+
+    updateTravelSpeed(classData);
 
     const finalStats = calculateStats(classData, regionData);
 
@@ -146,3 +164,6 @@ if (regionData && regionData.boosts) {
      abilitiesDisplay.innerHTML = "";
    }
 }
+window.addEventListener("DOMContentLoaded", () => {
+    updateCharacterSheet();
+});

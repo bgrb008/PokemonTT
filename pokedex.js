@@ -51,8 +51,54 @@ function getMoveCondition(moveName) {
     hypnosis: "sleep",
   };
 
-  return moveConditions[moveName.toLowerCase()] || null;
-}
+   return moveConditions[moveName.toLowerCase()] || null;
+  }
+
+  function convertMoveDescription(desc) {
+    if (!desc) return "No effect.";
+
+    let text = desc.toLowerCase();
+
+    if (text.includes("paraly")) {
+      return "Deal damage. Target rolls 1d20 dc12 or becomes Paralyzed.";
+    }
+
+    if (text.includes("burn")) {
+      return "Deal damage. Target rolls 1d20 dc12 or becomes Burned, lose 5HP at end of turn.";
+    }
+
+    if (text.includes("poison")) {
+      return "Deal damage. Target rolls 1d20 dc12 or becomes Poisoned, lose 3HP at end of turn.";
+    }
+
+    if (text.includes("sleep")) {
+      return "Deal damage. Target rolls 1d20 dc12 or becomes Asleep, skip turn until woken.";
+    }
+
+    if (text.includes("freeze")) {
+      return "Deal damage. Target rolls 1d20 dc12 or becomes Frozen, skip turn until thawed.";
+    }
+
+    if (text.includes("confus")) {
+      return "Deal damage. Target rolls 1d20 dc12 or becomes Confused, self damage on turn.";
+    }
+
+    if (text.includes("flinch")) {
+      return "Target loses next action";
+    }
+
+    if (text.includes("raises")) {
+      return "Raise one related stat by 2 for 3 turns";
+    }
+
+    if (text.includes("lowers")) {
+      return "Lower one related stat by 2 for 3 turns";
+    }
+
+    return "No effect.";
+  }
+
+ 
 
 //===============
 //modal functions
@@ -79,8 +125,13 @@ if (addBtn) addBtn.addEventListener('click', async () => {
   const pokemonName = document.getElementById('pokemon-name').value;
 
   const response = await fetch(
-   `https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`
+   `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
   );
+
+  if (!response.ok) {
+    console.warn("Pokemon not found");
+    return;
+  }
 
   const data = await response.json();
 
@@ -119,7 +170,7 @@ if (addBtn) addBtn.addEventListener('click', async () => {
         level: levelMove.level_learned_at,
         power: moveData.power,
         type: moveData.damage_class.name,
-        description: description
+        description: convertMoveDescription(description)
       };
     })
 );
@@ -167,9 +218,12 @@ function attachClickHandler(li) {
   li.addEventListener('click', () => {
 
     console.log("POKEMON CLICKED:", li.dataset.id);
-    const image = document.querySelector('.pokemon-display img') || document.createElement('img');
+    const display = document.querySelector('.pokemon-display');
+    display.innerHTML = "";
+    
+    const image = document.createElement('img');
     image.src = li.dataset.image;
-    document.querySelector('.pokemon-display').appendChild(image);
+    display.appendChild(image);
 
 
   fetch(`https://pokeapi.co/api/v2/pokemon/${li.dataset.id}`)
@@ -200,17 +254,47 @@ function attachClickHandler(li) {
                                                 });
   });
 
-    fetch(`https://pokeapi.co/api/v2/pokemon-species/${data.id}`)
-    .then(response => response.json())
+    fetch(data.species.url)
+    .then(response => {
+      if (!response.ok) throw new Error("Species data not found");
+      return response.json();
+      })
+    
     .then(speciesData => {
       const descEntry = speciesData.flavor_text_entries.find(e => e.language.name === 'en');
       const description = descEntry ? descEntry.flavor_text : 'No description available';
-    const details = document.querySelector('.pokemon-details');
-    details.innerHTML =`
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-      <h3>${data.name}</h3>
-      <button id="delete-btn" onclick="showDeleteModal()"><img src="Trash_icon.png"></button>
-    </div>
+
+      const details = document.querySelector('.pokemon-details');
+      details.innerHTML = "";
+
+      const header = document.createElement("div");
+      header.style.display = "flex";
+      header.style.justifyContent = "space-between";
+      header.style.alignItems = "center";
+
+      const title = document.createElement("h3");
+      title.textContent = data.name;
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.id = "delete-btn";
+      
+      const trashImg = document.createElement("img");
+      trashImg.src = "Trash_icon.png";
+      trashImg.alt = "Delete";
+      
+      
+      deleteBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        showDeleteModal()
+      });
+
+      deleteBtn.appendChild(trashImg);
+
+      header.appendChild(title);
+      header.appendChild(deleteBtn);
+      
+      const content = document.createElement("div");  
+      content.innerHTML = `
       <p>Number: ${data.id}</p>
       <p>Type: ${types}</p>
       <p>Stats: ${stats}</p>
@@ -219,12 +303,20 @@ function attachClickHandler(li) {
       <p>Resistances: ${[...resistances].join(', ')}</p>
       <p>Immunities: ${[...immunities].join(', ')}</p>
           `;
+
+      details.appendChild(header);
+      details.appendChild(content);
       
       pokemonToDelete = li;
       document.getElementById('delete-modal-text').textContent = `Remove ${data.name} from Pokedex?`;
       
         });
       });
+  })
+    .catch(err => {
+      console.error("Error fetching species data:", err);
+      document.querySelector('.pokemon-details').innerHTML = 
+        `<p>Error loading details. Please try again.</p>`;
     });
   });  
 }

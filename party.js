@@ -18,12 +18,49 @@ function toggleCard(card) {
 //dice scaling function
 //=====================
 function getMoveDice(power, level) {
+  if (!power) return "--";
 
-  const baseDice = power >= 80 ? "d8" : "d6";
+  let baseDice;
+  let baseCount;
 
-  const diceCount = Math.floor((level - 1) / 5) + 1;
+  if (power <= 20) {
+    baseDice = "d4";
+    baseCount = 1;
+  }
 
-  return `${diceCount}${baseDice}`;
+  else if (power <= 40) {
+    baseDice = "d6";
+    baseCount = 1;
+  }
+
+  else if (power <= 60) {
+    baseDice = "d8";
+    baseCount = 1;
+  }
+
+  else if (power <= 80) {
+    baseDice = "d10";
+    baseCount = 1;
+  }
+
+  else if (power <= 100) {
+    baseDice = "d12";
+    baseCount = 1;
+  }
+
+  else if (power <= 120) {
+    baseDice = "d12"; iii 
+    baseCount = 2;
+  }
+
+  else {
+    baseDice = "d12";
+    baseCount = 3;
+  }
+
+  const levelBonus = Math.floor((level - 1) / 10);
+
+  return `${baseCount + levelBonus}${baseDice}`;
 }
 
   //hp bar fill function

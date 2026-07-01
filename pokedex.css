@@ -103,13 +103,21 @@
 #delete-btn img {
   height: 45px;
   width: 45px;
+  display: block;
 }
 
 #delete-btn {
-  background: none;
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+  display: inline-flex;
   border: none;
-  cursor: pointer;
   padding: 0;
+  flex-shrink: 0;
+}
+
+.pokemon-details button {
+  line-height: 0;
 }
 
 #pokemon-name {
