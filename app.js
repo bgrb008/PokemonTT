@@ -80,7 +80,7 @@ function updateTravelSpeed(classData) {
     if (!classData) return;
 
     const walk = classData.travelSpeed;
-    const run = walk * 1.5;
+    const run = walk + 20;
     const grass = walk - 10;
     const bike = walk * 2;
 

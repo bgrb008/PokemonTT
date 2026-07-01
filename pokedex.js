@@ -92,7 +92,7 @@ function getMoveCondition(moveName) {
     }
 
     if (text.includes("lowers")) {
-      return "Lower one related stat by 2 for 3 turns";
+      return "Lower defense by 2 for 3 turns";
     }
 
     return "No effect.";
