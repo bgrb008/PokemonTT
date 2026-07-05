@@ -588,6 +588,16 @@ function closePartyPicker() {
 //========================
 function removefromparty(button) {
   const card = button.closest(".party-card");
+  
+  const condition = card.querySelector(".conditions");
+  const hasCondition = condition && condition.value !== "None";
+  const isFainted = card.classList.contains("fainted");
+
+  if (hasCondition || isFainted) {
+    alert("Cannot remove pokemon with conditions or fainted pokemon");
+    return;
+  }
+  
   const id = parseInt(card.dataset.pokedexId);
 
   currentParty = currentParty.filter(p => p !== id)
