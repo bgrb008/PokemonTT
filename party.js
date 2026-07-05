@@ -1,5 +1,93 @@
 const PARTY_SAVE_KEY = "partyData";
 
+//===================================
+//target level get xp helper function
+//===================================
+function getXpNeededForLevel(targetLevel) {
+  let xp = 20;
+  for (let i = 2; i <= targetLevel; i++) {
+    xp = Math.round(xp * 1.12);
+  }
+
+  return xp;
+}
+
+//=============================
+//multistage evolution function
+//=============================
+function findChainNode(chain, speciesName) {
+  if (chain.species.name === speciesName) return chain;
+  for (const next of chain.evolves_to) {
+    const found = findChainNode(next, speciesName);
+    if (found) return found;
+  }
+  return null;
+}
+//=========================
+//check for level evolution
+//=========================
+async function checkEvolution(card, currentLevel) {
+  const pokedexData = JSON.parse(localStorage.getItem("pokedex")) || [];
+  const pokemon = pokedexData.find(p => p.id == card.dataset.pokedexId);
+
+  if(!pokemon) return;
+
+  const speciesData = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemon.id}`)
+    .then(res => res.json());
+
+  const evoChainData = await fetch(speciesData.evolution_chain.url).then(res => res.json());
+
+  const chain = evoChainData.chain;
+
+  const currentNode = findChainNode(chain, pokemon.name);
+  if (!currentNode) return;
+
+  const nextEvolution = currentNode.evolves_to.find(evo => 
+    evo.evolution_details[0]?.min_level &&
+    evo.evolution_details[0].min_level <= currentLevel
+  );
+
+  if (nextEvolution) {
+    await evolvePokemon(card, nextEvolution.species.name);
+    }
+}
+
+async function evolvePokemon(card, newName) {
+  const newData = await fetch(`https://pokeapi.co/api/v2/pokemon/${newName}`).then(res => res.json());
+
+  card.querySelector(".name").textContent = newData.name;
+  card.querySelector(".sprite").src = newData.sprites.other["official-artwork"].front_default;
+
+  
+
+  const newHP = newData.stats.find(
+    stat => stat.stat.name === "hp").base_stat;
+
+  const hpNumber = card.querySelector(".hp-number");
+
+  hpNumber.dataset.max = newHP;
+  hpNumber.dataset.current = newHP;
+  hpNumber.textContent = `${newHP} / ${newHP}`;
+
+  const pokedexData = JSON.parse(localStorage.getItem("pokedex")) || [];
+
+  const oldIndex = pokedexData.findIndex(p => p.id == card.dataset.pokedexId);
+
+  card.dataset.pokedexId = newData.id;
+
+  if (oldIndex !== -1) {
+    pokedexData[oldIndex].id = newData.id;
+    pokedexData[oldIndex].name = newData.name;
+    pokedexData[oldIndex].image = newData.sprites.other["official-artwork"].front_default;
+  }
+
+  localStorage.setItem("pokedex", JSON.stringify(pokedexData));
+
+  saveParty();
+
+  alert(`${newData.name} has evolved!`);
+}
+
 //array of pokemon in the party
 let currentParty = [] 
 
@@ -49,7 +137,7 @@ function getMoveDice(power, level) {
   }
 
   else if (power <= 120) {
-    baseDice = "d12"; iii 
+    baseDice = "d12"; 
     baseCount = 2;
   }
 
@@ -260,71 +348,18 @@ function changePP(button, amount) {
   
 }
 
-//condition function
 
-function updateConditions(select) {
-  
-  const card = select.closest(".party-card");
-
-  const effectBox = card.querySelector(".condition-effect");
-
-  const condition = select.value.toLowerCase();
-
-  card.classList.remove(
-    "burned",
-    "poisoned", 
-    "sleep",
-    "paralyzed",
-    "frozen", 
-    "confused"
-  );
-
-  if (condition !== "none") {
-    card.classList.add(condition);
-  }
-
-  if (condition === "burned") {
-    effectBox.textContent = "End of turn: lose 5HP";
-  }
-
-  if (condition === "poisoned") {
-    effectBox.textContent = "End of turn: lose 3HP";
-  }
-
-  if (condition === "sleep") {
-    effectBox.textContent = "At beginning of turn: Roll 1D20 DC10 to wake up";
-  }
-
-  if (condition === "paralyzed") {
-    effectBox.textContent = "At beginning of turn: Roll 1D20 DC10 to move, still paralized until healed";
-  }
-
-  if (condition === "frozen") {
-    effectBox.textContent = "At beginning of turn: Roll 1D20 DC10 to thaw";
-  }
-
-  if (condition === "confused") {
-    effectBox.textContent = "At beginning of turn: Roll 1D20 DC10, if fail self damage";
-  }
-
-  if (condition === "none") {
-    effectBox.textContent = "";
-  }
-
-  saveParty();
-
-}
 
 //xp bar function
 
-function addXP(button) {
+async function addXP(button) {
 
   const card = button.closest(".party-card");
   const xpText = card.querySelector(".xp-text");
   const xpInput = card.querySelector(".xp-input");
 
   let currentXP = parseInt(xpText.dataset.current) || 0;
-  let xpNeeded = parseInt(xpText.dataset.max) || 1;
+  let xpNeeded = parseInt(xpText.dataset.max) || 20;
   
   const amount = parseInt(xpInput.value) || 0;
   if (amount <= 0) return;
@@ -334,19 +369,42 @@ function addXP(button) {
   currentXP += amount;
 
   let currentLevel = parseInt(card.querySelector(".level").textContent.replace("Lvl.", ""))
+
+  const correctXpForThisLevel = getXpNeededForLevel(currentLevel);
+  if (xpNeeded !== correctXpForThisLevel) {
+    xpNeeded = correctXpForThisLevel;
+  }
   
   while (currentXP >= xpNeeded) {
     currentXP -= xpNeeded;
     currentLevel += 1;
-    xpNeeded = 50 * currentLevel;
+
+    const hpGain = Math.floor(Math.random() * 3) + 1;
+    const hpNumber = card.querySelector(".hp-number");
+    const newMax = parseInt(hpNumber.dataset.max) + hpGain;
+    const newCurrent = parseInt(hpNumber.dataset.current) + hpGain;
+
+    hpNumber.dataset.max = newMax;
+    hpNumber.dataset.current = newCurrent;
+    hpNumber.textContent = `${newCurrent} / ${newMax}`;
+
+    const hpFill = card.querySelector(".hp-bar .fill");
+    hpFill.style.width = (newCurrent / newMax) * 100 + "%";
+  
+    xpNeeded = Math.round(xpNeeded * 1.12);
 
     card.querySelector(".level").textContent = `Lvl.${currentLevel}`;
+
+    const pokedexDataSync = JSON.parse(localStorage.getItem("pokedex")) || [];
+    const pokedexEntry = pokedexDataSync.find(p => p.id == card.dataset.pokedexId);
+    if (pokedexEntry) {
+       pokedexEntry.level = currentLevel;
+       localStorage.setItem("pokedex", JSON.stringify(pokedexDataSync));
+  }
+    await checkEvolution(card, currentLevel);
     alert(`Congratulations! ${card.querySelector(".name").textContent} has leveled up to ${currentLevel}!`)
 
     const newMoves = getNewMovesAtLevel(card, currentLevel);
-
-      const pokedexData = JSON.parse(localStorage.getItem("pokedex")) || [];
-      const pokemon = pokedexData.find(p => p.id == card.dataset.pokedexId);
 
     newMoves.forEach(move => {
       const moveCount = card.querySelectorAll(".move-wrapper").length;
@@ -410,7 +468,8 @@ function addPokemonToParty(id) {
 
   const xpText = card.querySelector(".xp-text");
   xpText.dataset.current = pokemon.xp.current;
-  xpText.dataset.max = pokemon.xp.max;
+  const startingLevel = parseInt(String(pokemon.level).replace("Lvl.", "")) || 1;
+  xpText.dataset.max = getXpNeededForLevel(startingLevel);
 
   document.getElementById("party-container").appendChild(card);
 
@@ -425,6 +484,61 @@ function addPokemonToParty(id) {
   } catch (err) { 
     alert("Error adding pokemon to party: " + err.message);
   }
+}
+
+//condition function
+
+function updateConditions(select) {
+
+  const card = select.closest(".party-card");
+
+  const effectBox = card.querySelector(".condition-effect");
+
+  const condition = select.value.toLowerCase();
+
+  card.classList.remove(
+    "burned",
+    "poisoned", 
+    "sleep",
+    "paralyzed",
+    "frozen", 
+    "confused"
+  );
+
+  if (condition !== "none") {
+    card.classList.add(condition);
+  }
+
+  if (condition === "burned") {
+    effectBox.textContent = "End of turn: lose 5HP";
+  }
+
+  if (condition === "poisoned") {
+    effectBox.textContent = "End of turn: lose 3HP";
+  }
+
+  if (condition === "sleep") {
+    effectBox.textContent = "At beginning of turn: Roll 1D20 DC10 to wake up";
+  }
+
+  if (condition === "paralyzed") {
+    effectBox.textContent = "At beginning of turn: Roll 1D20 DC10 to move, still paralized until healed";
+  }
+
+  if (condition === "frozen") {
+    effectBox.textContent = "At beginning of turn: Roll 1D20 DC10 to thaw";
+  }
+
+  if (condition === "confused") {
+    effectBox.textContent = "At beginning of turn: Roll 1D20 DC10, if fail self damage";
+  }
+
+  if (condition === "none") {
+    effectBox.textContent = "";
+  }
+
+  saveParty();
+
 }
 
 //======================
@@ -450,7 +564,7 @@ function openPartyPicker() {
   } else {
     available.forEach(p => {
        const li = document.createElement("li");
-       li.textContent = p.name;
+       li.textContent = `${p.name} (Lvl.${p.level})`;
        li.dataset.id = p.id;
        li.onclick = () => {
          addPokemonToParty(p.id);
@@ -631,7 +745,8 @@ function  loadParty() {
 
     if (xpText) {
       xpText.dataset.current = saved.xpCurrent;
-      xpText.dataset.max = saved.xpMax;
+      const savedLevelNum = parseInt(saved.level.replace("Lvl.", "")) || 1;
+      xpText.dataset.max = getXpNeededForLevel(savedLevelNum);
       updateXPBar(card);
     }
 

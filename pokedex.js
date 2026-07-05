@@ -38,65 +38,7 @@ function getMoveDice(power, level) {
   return `${diceCount}${baseDice}`;
 }
 
-//==========================
-//condition mapping function
-//==========================
-function getMoveCondition(moveName) {
-  const moveConditions = {
-    ember: "burned",
-    flamethrower: "burned",
-    thunderwave: "paralyzed",
-    poisonpowder: "poisoned",
-    icebeam: "frozen",
-    hypnosis: "sleep",
-  };
 
-   return moveConditions[moveName.toLowerCase()] || null;
-  }
-
-  function convertMoveDescription(desc) {
-    if (!desc) return "No effect.";
-
-    let text = desc.toLowerCase();
-
-    if (text.includes("paraly")) {
-      return "Deal damage. Target rolls 1d20 dc12 or becomes Paralyzed.";
-    }
-
-    if (text.includes("burn")) {
-      return "Deal damage. Target rolls 1d20 dc12 or becomes Burned, lose 5HP at end of turn.";
-    }
-
-    if (text.includes("poison")) {
-      return "Deal damage. Target rolls 1d20 dc12 or becomes Poisoned, lose 3HP at end of turn.";
-    }
-
-    if (text.includes("sleep")) {
-      return "Deal damage. Target rolls 1d20 dc12 or becomes Asleep, skip turn until woken.";
-    }
-
-    if (text.includes("freeze")) {
-      return "Deal damage. Target rolls 1d20 dc12 or becomes Frozen, skip turn until thawed.";
-    }
-
-    if (text.includes("confus")) {
-      return "Deal damage. Target rolls 1d20 dc12 or becomes Confused, self damage on turn.";
-    }
-
-    if (text.includes("flinch")) {
-      return "Target loses next action";
-    }
-
-    if (text.includes("raises")) {
-      return "Raise one related stat by 2 for 3 turns";
-    }
-
-    if (text.includes("lowers")) {
-      return "Lower defense by 2 for 3 turns";
-    }
-
-    return "No effect.";
-  }
 
  
 
@@ -370,7 +312,7 @@ if (confirmAdd) confirmAdd.addEventListener('click', () => {
   attachBallHandler(li, ball);
 
   const label = document.createElement('span');
-  label.textContent = currentPokemonData.name;
+  label.textContent = `${currentPokemonData.name} (Lvl.${level})`;
   li.appendChild(ball);
   li.appendChild(label);
   li.dataset.image = imgurl;
@@ -526,7 +468,7 @@ window.addEventListener('load', () => {
       
       attachBallHandler(li, ball);
       const label = document.createElement('span');
-      label.textContent = pokemon.name;
+      label.textContent = `${pokemon.name} (Lvl.${pokemon.level})`;
       li.appendChild(ball);
       li.appendChild(label);
       li.dataset.image = pokemon.image;
