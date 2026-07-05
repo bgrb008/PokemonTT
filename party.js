@@ -583,6 +583,18 @@ function closePartyPicker() {
    document.getElementById("party-picker-modal").style.display = "none";
 }
 
+//========================
+//remove from party button
+//========================
+function removefromparty(button) {
+  const card = button.closest(".party-card");
+  const id = parseInt(card.dataset.pokedexId);
+
+  currentParty = currentParty.filter(p => p !== id)
+  card.remove();
+  saveParty();
+}
+
 //=================
 //forget move modal
 //=================
