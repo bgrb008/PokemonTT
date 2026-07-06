@@ -209,7 +209,7 @@ function changeHP(button, type) {
 }
 
 //==========================
-//building movesets by level
+//building movesets by levels
 //==========================
 function buildInitialMoves(pokemon) {
   const learnset = pokemon.learnset || [];
