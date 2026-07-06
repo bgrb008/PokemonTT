@@ -87,8 +87,9 @@ async function evolvePokemon(card, newName) {
 
   alert(`${newData.name} has evolved!`);
 }
-
+//=============================
 //array of pokemon in the party
+//=============================
 let currentParty = [] 
 
 function toggleCard(card) {
