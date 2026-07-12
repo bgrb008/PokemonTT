@@ -294,7 +294,7 @@ const classes = {
 
             {
             name: "Audience Effect",
-            descriptions: "When performing a contest move, draw inspiration from the crowd, roll 1d20 + inspiration vs dc15, if successful add 1d6 in bonus damage",
+            description: "When performing a contest move, draw inspiration from the crowd, roll 1d20 + inspiration vs dc15, if successful add 1d6 in bonus damage",
             cooldown: "Once per contest",
             },
 
