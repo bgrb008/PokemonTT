@@ -209,6 +209,15 @@
   touch-action: manipulation;
 }
 
+.defense-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  gap: 10px;
+}
+
 .xp-bar {
   display: flex;
   flex-direction: column;

@@ -69,6 +69,13 @@ async function evolvePokemon(card, newName) {
   hpNumber.dataset.current = newHP;
   hpNumber.textContent = `${newHP} / ${newHP}`;
 
+  const newDefense = newData.stats.find(
+    stat => stat.stat.name === "defense").base_stat;
+  const defenseValue = card.querySelector(".defense-value");
+  if (defenseValue) {
+    defenseValue.textContent = getDefenseReduction(newDefense);;;
+  }
+
   const pokedexData = JSON.parse(localStorage.getItem("pokedex")) || [];
 
   const oldIndex = pokedexData.findIndex(p => p.id == card.dataset.pokedexId);
@@ -113,33 +120,33 @@ function getMoveDice(power, level) {
   let baseCount;
 
   if (power <= 20) {
-    baseDice = "d4";
-    baseCount = 1;
-  }
-
-  else if (power <= 40) {
-    baseDice = "d6";
-    baseCount = 1;
-  }
-
-  else if (power <= 60) {
     baseDice = "d8";
     baseCount = 1;
   }
 
-  else if (power <= 80) {
+  else if (power <= 40) {
     baseDice = "d10";
     baseCount = 1;
   }
 
+  else if (power <= 60) {
+    baseDice = "d6";
+    baseCount = 2;
+  }
+
+  else if (power <= 80) {
+    baseDice = "d8";
+    baseCount = 2;
+  }
+
   else if (power <= 100) {
     baseDice = "d12";
-    baseCount = 1;
+    baseCount = 2;
   }
 
   else if (power <= 120) {
-    baseDice = "d12"; 
-    baseCount = 2;
+    baseDice = "d10"; 
+    baseCount = 3;
   }
 
   else {
@@ -150,6 +157,14 @@ function getMoveDice(power, level) {
   const levelBonus = Math.floor((level - 1) / 10);
 
   return `${baseCount + levelBonus}${baseDice}`;
+}
+
+//===========================
+//defense conversion function
+//===========================
+
+function getDefenseReduction(defense) {
+  return Math.round(defense / 20);
 }
 
   //hp bar fill function
@@ -462,10 +477,16 @@ function addPokemonToParty(id) {
   hpNumber.dataset.max = pokemon.hp.max;
   hpNumber.textContent = `${pokemon.hp.current} / ${pokemon.hp.max}`;
 
+
   const hpFill = card.querySelector(".hp-bar .fill");
   const hpPercent = (pokemon.hp.current / pokemon.hp.max) * 100;
   hpFill.style.width = hpPercent + "%";
   hpFill.classList.add( hpPercent >= 65 ? "hp-green" : hpPercent >= 25 ? "hp-yellow" : "hp-red");
+
+  const defenseValue = card.querySelector(".defense-value");
+    if (defenseValue) {
+      defenseValue.textContent = getDefenseReduction(pokemon.stats.defense);
+    }
 
   const xpText = card.querySelector(".xp-text");
   xpText.dataset.current = pokemon.xp.current;
