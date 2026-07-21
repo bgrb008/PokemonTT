@@ -30,7 +30,7 @@ const classes = {
 
              {
              name: "Clutch Synchronization",
-             description: "When your active pokemon has 30% or less hp, add 1d6 to all rolls and +2 to AC or defense",
+             description: "When your active pokemon has 30% or less hp, add 1d6 to all damage rolls and +2 to defense",
              cooldown: "Duration 2 turns, once per battle",
              },
 

@@ -64,16 +64,12 @@ function getMoveCondition(moveName) {
       return "Raise one related stat by 2 for 3 turns";
     }
 
-    if (text.includes("lowers")) {
+    if (text.includes("lower") && text.includes("attack")) {
+      return "Lower attack by 20 for 3 turns";
+    }
+
+    if (text.includes("lower") && text.includes("defense")) {
       return "Lower defense by 2 for 3 turns";
-    }
-
-    if (text.includes("lowers defense")) {
-      return "Lower defense by 2 for 3 turns"
-    }
-
-    if (text.includes("lowers attack")) {
-      return "Lower attack by 2 for 3 turns"
     }
 
     if (text.includes("lowers speed")) {

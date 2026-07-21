@@ -3,3 +3,19 @@
     font-size: 24px;
     margin-bottom: 20px
 }
+
+.badge-item {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.badge-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.
