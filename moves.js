@@ -25,7 +25,8 @@ function getMoveCondition(moveName) {
       "thunderwave": "Target rolls 1d20 dc12 or becomes Paralyzed.",
       "poisonpowder": "Target rolls 1d20 dc12 or becomes Poisoned.",
       "icebeam": "Target rolls 1d20 dc12 or becomes Frozen.",
-      "hypnosis": "Target rolls 1d20 dc12 or becomes Asleep."
+      "hypnosis": "Target rolls 1d20 dc12 or becomes Asleep.",
+      "soak": "Target changes type to water until end of battle."
     }
 
     if (specialMoves[text]) {
