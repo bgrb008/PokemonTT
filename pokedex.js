@@ -82,7 +82,7 @@ if (addBtn) addBtn.addEventListener('click', async () => {
       
       const details = m.version_group_details || [];
 
-      const prefferedVersions = [
+      const preferedVersions = [
         'scarlet-violet',
         'sword-shield',
         'sun-moon',
@@ -95,12 +95,12 @@ if (addBtn) addBtn.addEventListener('click', async () => {
         'ruby-sapphire',
       ];
 
-      const levelMove = prefferedVersions
+      const levelMove = preferedVersions
         .map(v => details.find(d => 
           d.move_learn_method.name === 'level-up' &&
           d.version_group.name === v
         ))
-      .find(Boolean);
+        .find(Boolean);
 
       if (!levelMove) return null;
 
