@@ -17,13 +17,6 @@ function getMoveCondition(moveName) {
   function convertMoveDescription(desc) {
     if (!desc) return "No effect.";
 
-    const specialMoves = { ...same as before...};
-    if (specialMoves[desc.toLowerCase()]) {
-      return specialMoves[desc.toLowerCase()];
-    }
-
-    let text = desc.toLowerCase();
-
     const specialMoves = {
       "ember": "Deal damage. Target rolls 1d20 dc12 or becomes Burned.",
       "flamethrower": "Deal damage. Target rolls 1d20 dc12 or becomes Burned.",
@@ -34,9 +27,11 @@ function getMoveCondition(moveName) {
       "soak": "Target changes type to water until end of battle."
     }
 
-    if (specialMoves[text]) {
-      return specialMoves[text];
+    if (moveName && specialMoves[moveName.toLowerCase()]) {
+      return specialMoves[moveName.toLowerCase()];
     }
+
+    let text = desc.toLowerCase();
 
     if (text.includes("paraly")) {
       return "Deal damage. Target rolls 1d20 dc12 or becomes Paralyzed.";
