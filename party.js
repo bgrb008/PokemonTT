@@ -411,6 +411,15 @@ async function addXP(button) {
 
     card.querySelector(".level").textContent = `Lvl.${currentLevel}`;
 
+    card.querySelectorAll(".move-wrapper").forEach(wrapper => {
+       const powerText = wrapper.querySelector(".move-power").textContent("PWR:", "");
+       const power = parseInt(powerText);
+       const diceSpan = wrapper.querySelector(".move-dice");
+       if (diceSpan && power) {
+          diceSpan.textContent = getMoveDice(power, currentLevel);
+       } 
+    });
+
     const pokedexDataSync = JSON.parse(localStorage.getItem("pokedex")) || [];
     const pokedexEntry = pokedexDataSync.find(p => p.id == card.dataset.pokedexId);
     if (pokedexEntry) {
