@@ -17,6 +17,11 @@ function getMoveCondition(moveName) {
   function convertMoveDescription(desc) {
     if (!desc) return "No effect.";
 
+    const specialMoves = { ...same as before...};
+    if (specialMoves[desc.toLowerCase()]) {
+      return specialMoves[desc.toLowerCase()];
+    }
+
     let text = desc.toLowerCase();
 
     const specialMoves = {

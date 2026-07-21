@@ -112,7 +112,7 @@ if (addBtn) addBtn.addEventListener('click', async () => {
         level: levelMove.level_learned_at,
         power: moveData.power,
         type: moveData.damage_class.name,
-        description: convertMoveDescription(description)
+        description: convertMoveDescription(m.move.name,description)
       };
     })
 );
