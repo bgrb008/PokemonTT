@@ -14,7 +14,7 @@ function getMoveCondition(moveName) {
    return moveConditions[moveName.toLowerCase()] || null;
   }
 
-  function convertMoveDescription(desc) {
+  function convertMoveDescription(moveName, desc) {
     if (!desc) return "No effect.";
 
     const specialMoves = {
@@ -24,7 +24,8 @@ function getMoveCondition(moveName) {
       "poisonpowder": "Target rolls 1d20 dc12 or becomes Poisoned.",
       "icebeam": "Target rolls 1d20 dc12 or becomes Frozen.",
       "hypnosis": "Target rolls 1d20 dc12 or becomes Asleep.",
-      "soak": "Target changes type to water until end of battle."
+      "soak": "Target changes type to water until end of battle.",
+      "water-sport": "Opponent is covered by a layer of water, reducing fire damage by 50% until end of battle."
     }
 
     if (moveName && specialMoves[moveName.toLowerCase()]) {
