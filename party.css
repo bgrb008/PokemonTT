@@ -214,8 +214,17 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 5%;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.attack-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 5%;
   gap: 10px;
+  font-size: 12px;
 }
 
 .xp-bar {

@@ -20,6 +20,7 @@
             <div class="modal-content">
                 <h3 id="forget-move-title">Learn new move</h3>
                 <p id="forget-move-subtitle">Choose a move to forget, cancel to skip</p>
+                <div id="forget-move-new-info" class="move-wrapper"></div>
                 <ul id="forget-move-list"></ul>
                 <button id="dont-learn" onclick="closeForgetMoveModal()">Dont learn</button>
             </div>
@@ -72,10 +73,15 @@
             Heal
             </button>
         </div>
+        <div class="stat-row attack-row">
+            <span class="attack-label">AC:</span>
+        <span class="attack-value"></span>
+        </div>
         <div class="stat-row defense-row">
             <span class="defense-label">Defense:</span>
         <span class="defense-value"></span>
         </div>
+        
         
     <div class="stat-row xp-row">
         <div class="xp-bar">

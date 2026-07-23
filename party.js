@@ -12,6 +12,28 @@ function getXpNeededForLevel(targetLevel) {
   return xp;
 }
 
+//==================
+//ac helper funtions
+//==================
+function getBaseAC(speed) {
+  if (speed <= 30) return 10;
+  if (speed <= 60) return 11;
+  if (speed <= 90) return 12;
+  if (speed <= 120) return 13;
+  if (speed <= 150) return 14;
+  return 15;
+}
+
+function getLevelACBonus(level) {
+  if (level >= 50) return 6;
+  if (level >= 40) return 5;
+  if (level >= 30) return 4;
+  if (level >= 20) return 3;
+  if (level >= 10) return 2;
+  return 1;
+  
+}
+
 //=============================
 //multistage evolution function
 //=============================
@@ -130,31 +152,31 @@ function getMoveDice(power, level) {
   }
 
   else if (power <= 60) {
-    baseDice = "d6";
+    baseDice = "d10";
     baseCount = 2;
   }
 
   else if (power <= 80) {
-    baseDice = "d8";
+    baseDice = "d12";
     baseCount = 2;
   }
 
   else if (power <= 100) {
     baseDice = "d12";
-    baseCount = 2;
+    baseCount = 3;
   }
 
   else if (power <= 120) {
     baseDice = "d10"; 
-    baseCount = 3;
+    baseCount = 4;
   }
 
   else {
     baseDice = "d12";
-    baseCount = 3;
+    baseCount = 4;
   }
 
-  const levelBonus = Math.floor(level / 5);
+  const levelBonus = Math.floor(level / 10);
 
   return `${baseCount + levelBonus}${baseDice}`;
 }
@@ -497,6 +519,11 @@ function addPokemonToParty(id) {
       defenseValue.textContent = getDefenseReduction(pokemon.stats.defense);
     }
 
+  const baseAC = getBaseAC(pokemon.stats.speed);
+  const levelAC = getLevelACBonus(pokemon.level);
+
+  card.querySelector(".attack-value").textContent = `${baseAC} + ${levelAC}`;
+
   const xpText = card.querySelector(".xp-text");
   xpText.dataset.current = pokemon.xp.current;
   const startingLevel = parseInt(String(pokemon.level).replace("Lvl.", "")) || 1;
@@ -645,12 +672,33 @@ function openForgetMoveModal(card, newMoveData) {
 
   document.getElementById("forget-move-title").textContent = `Learn ${newMoveData.move}?`;
 
+  const newMoveInfo = document.getElementById("forget-move-new-info");
+  if (newMoveInfo) {
+    newMoveInfo.innerHTML = `
+      <div class="move-row">
+        <span class="move-name">${newMoveData.move}</span>
+        <span class="move-power">${newMoveData.power ?? "STATUS"}</span>
+      </div>
+      <div class="move-description">${newMoveData.description || "No description available"}</div>
+    `;
+  }
+
   const currentMoves =card.querySelectorAll(".move-wrapper");
 
   currentMoves.forEach(wrapper => {
     const moveName = wrapper.querySelector(".move-name").textContent;
+    const movePower = wrapper.querySelector(".move-power").textContent
+    const moveDescription = wrapper.querySelector(".move-description").textContent.trim();
+    
     const li = document.createElement("li");
-    li.textContent = moveName;
+    li.innerHTML = `
+      <div class="move-row">
+        <span class="move-name">${moveName}</span>
+        <span class="move-power">${movePower}</span>
+      </div>
+      <div class="move-description">${moveDescription}</div>
+    `;
+    
     li.onclick = () => {
       wrapper.remove();
       addMovesToCard(card, newMoveData);
