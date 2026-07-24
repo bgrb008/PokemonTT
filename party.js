@@ -176,7 +176,7 @@ function getMoveDice(power, level) {
     baseCount = 4;
   }
 
-  const levelBonus = Math.floor(level / 10);
+  const levelBonus = Math.floor(level / 5);
 
   return `${baseCount + levelBonus}${baseDice}`;
 }
